@@ -1,8 +1,10 @@
 ---
+
 title: about me
 date: 2022-04-28
 type: "about"
 cover: https://img-blog.csdnimg.cn/ee31700882a64d7b878195af87115b7a.png
+
 ---
 CTFer小学生，Sky Mirror成员
 
@@ -22,6 +24,6 @@ CTFer小学生，Sky Mirror成员
 
 [Css0k's blog](https://css0k.top/)
 
-[Wanan's blog](
+[Wanan's blog](https://lovewanan.github.io/)
 
 
