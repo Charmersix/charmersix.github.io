@@ -1,10 +1,8 @@
 ---
-
 title: about me
 date: 2022-04-28
 type: "about"
 cover: https://img-blog.csdnimg.cn/ee31700882a64d7b878195af87115b7a.png
-
 ---
 CTFer小学生，Sky Mirror成员
 
