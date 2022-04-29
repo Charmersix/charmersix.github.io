@@ -24,4 +24,6 @@ CTFer小学生，Sky Mirror成员
 
 [Wanan's blog](https://lovewanan.github.io/)
 
+另外，bgm取自个人歌单随机播放，如有侵权，请通知删除，谢谢
+
 
