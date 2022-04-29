@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SkyMirror_WP_simple_flow - Charmersix</title>
+    <title>SkyMirror_WP_流量分析 - Charmersix</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -29,7 +29,7 @@ wire,">
     
     
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="SkyMirror_WP_simple_flow - Charmersix"/>
+    <meta name="twitter:title" content="SkyMirror_WP_流量分析 - Charmersix"/>
     <meta name="twitter:description" content="数据包中的线索题目在这儿
 wireshark打开，追踪流一波
 
@@ -46,7 +46,7 @@ wire,"/>
     
     <meta property="og:site_name" content="Charmersix"/>
     <meta property="og:type" content="object"/>
-    <meta property="og:title" content="SkyMirror_WP_simple_flow - Charmersix"/>
+    <meta property="og:title" content="SkyMirror_WP_流量分析 - Charmersix"/>
     <meta property="og:description" content="数据包中的线索题目在这儿
 wireshark打开，追踪流一波
 
@@ -70,7 +70,7 @@ wire,"/>
     <div class="bar" style="width: 0;"></div>
     <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.gihub.io"></a>
     <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">SkyMirror_WP_simple_flow</h3>
+    <h3 class="subtitle">SkyMirror_WP_流量分析</h3>
     <div class="social">
         <div>
             <div class="share">
@@ -85,7 +85,7 @@ wire,"/>
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">SkyMirror_WP_simple_flow</h1>
+        <h1 class="title">SkyMirror_WP_流量分析</h1>
         <div class="stuff">
             <span>四月 28, 2022</span>
             
@@ -126,6 +126,19 @@ wire,"/>
 <p><img src="https://img-blog.csdnimg.cn/39d0af8b9d44411b9baf85b8a04320ae.png"></p>
 <p>密码<code>5790</code></p>
 <p>解压得到flag</p>
+<h3 id="菜刀666"><a href="#菜刀666" class="headerlink" title="菜刀666"></a>菜刀666</h3><p>统计HTTP看一看，有个/upload/1.php</p>
+<p>CTRL+F搜一下1.php，过滤下HTTP</p>
+<p>追踪HTTP流看一看</p>
+<p>小技巧，倒着看</p>
+<p><img src="https://img-blog.csdnimg.cn/34f1f5ebd2cf4c9bbcf4fa1152e50178.png"></p>
+<p>有个压缩包，整出来，压缩包，有密码，而且提示了</p>
+<p><img src="https://img-blog.csdnimg.cn/ca8b7c20dd6e4edb97fb729c2502bf2b.png"></p>
+<p>继续看</p>
+<p><img src="https://img-blog.csdnimg.cn/2a1f357d0ab340ed81b65cb9b7c1546c.png"></p>
+<p>Z2解码，十六进制，<a target="_blank" rel="noopener" href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')">解码</a></p>
+<p>是个图片</p>
+<p><img src="https://img-blog.csdnimg.cn/9676a7fc946d4cd49c1b817272b8533b.png"></p>
+<p>搞定！！！</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -149,7 +162,7 @@ wire,"/>
     </div>
     
         <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2"><span class="toc-number">1.</span> <span class="toc-text">数据包中的线索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">被偷走的文件</span></a></li></ol>	
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2"><span class="toc-number">1.</span> <span class="toc-text">数据包中的线索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">被偷走的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8F%9C%E5%88%80666"><span class="toc-number">3.</span> <span class="toc-text">菜刀666</span></a></li></ol>	
         </div>
     
 </div>
