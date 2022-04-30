@@ -5,20 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>(陇剑杯 2021)ios系列 - Charmersix</title>
+    <title>SkyMirror_WP_USB流量分析 - Charmersix</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="（1）根据经验，没思路就追踪TCP流
-追到15流，会发现一坨东西，翻一翻就能得到。
-
-很明显，3.128.156.159
-（2）还是刚刚追踪的TCP流
-
-项目连接都摆出来了
-
-https://git,"> 
+    <meta name="description" content="(RoarCTF2019)davinci_cipher_数位板流量分析这是我目前做的比较难的一个流量分析，这题干扰项超级多，但是根据提示能知道是个usb流量分析，如果没有这个提示，做这个题绝对是超级,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -28,32 +20,16 @@ https://git,">
     
     
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="(陇剑杯 2021)ios系列 - Charmersix"/>
-    <meta name="twitter:description" content="（1）根据经验，没思路就追踪TCP流
-追到15流，会发现一坨东西，翻一翻就能得到。
-
-很明显，3.128.156.159
-（2）还是刚刚追踪的TCP流
-
-项目连接都摆出来了
-
-https://git,"/>
+    <meta name="twitter:title" content="SkyMirror_WP_USB流量分析 - Charmersix"/>
+    <meta name="twitter:description" content="(RoarCTF2019)davinci_cipher_数位板流量分析这是我目前做的比较难的一个流量分析，这题干扰项超级多，但是根据提示能知道是个usb流量分析，如果没有这个提示，做这个题绝对是超级,"/>
     
     
     
     
     <meta property="og:site_name" content="Charmersix"/>
     <meta property="og:type" content="object"/>
-    <meta property="og:title" content="(陇剑杯 2021)ios系列 - Charmersix"/>
-    <meta property="og:description" content="（1）根据经验，没思路就追踪TCP流
-追到15流，会发现一坨东西，翻一翻就能得到。
-
-很明显，3.128.156.159
-（2）还是刚刚追踪的TCP流
-
-项目连接都摆出来了
-
-https://git,"/>
+    <meta property="og:title" content="SkyMirror_WP_USB流量分析 - Charmersix"/>
+    <meta property="og:description" content="(RoarCTF2019)davinci_cipher_数位板流量分析这是我目前做的比较难的一个流量分析，这题干扰项超级多，但是根据提示能知道是个usb流量分析，如果没有这个提示，做这个题绝对是超级,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -67,7 +43,7 @@ https://git,"/>
     <div class="bar" style="width: 0;"></div>
     <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.gihub.io"></a>
     <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">(陇剑杯 2021)ios系列</h3>
+    <h3 class="subtitle">SkyMirror_WP_USB流量分析</h3>
     <div class="social">
         <div>
             <div class="share">
@@ -82,55 +58,47 @@ https://git,"/>
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">(陇剑杯 2021)ios系列</h1>
+        <h1 class="title">SkyMirror_WP_USB流量分析</h1>
         <div class="stuff">
-            <span>四月 29, 2022</span>
+            <span>四月 30, 2022</span>
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/flow/" rel="tag">flow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SkyMirror/" rel="tag">SkyMirror</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/USB-flow/" rel="tag">USB_flow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>根据经验，没思路就追踪TCP流</p>
-<p>追到15流，会发现一坨东西，翻一翻就能得到。</p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxZCuV.png"></p>
-<p>很明显，3.128.156.159</p>
-<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>还是刚刚追踪的TCP流</p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxZpj0.png"></p>
-<p>项目连接都摆出来了</p>
+            <h3 id="RoarCTF2019-davinci-cipher-数位板流量分析"><a href="#RoarCTF2019-davinci-cipher-数位板流量分析" class="headerlink" title="(RoarCTF2019)davinci_cipher_数位板流量分析"></a>(RoarCTF2019)davinci_cipher_<em>数位板流量分析</em></h3><p>这是我目前做的比较难的一个流量分析，这题干扰项超级多，但是根据提示能知道是个usb流量分析，如果没有这个提示，做这个题绝对是超级艰难；题目在<a target="_blank" rel="noopener" href="http://ctfer.club/challenges#[RoarCTF2019]davinci_cipher-116">这儿</a></p>
+<p>首先flag.txt：通过百度，可以得出是一串emoji的Unicode的编码，可以来<a target="_blank" rel="noopener" href="https://r12a.github.io/app-conversion/">这里</a>解码一下</p>
+<p>然后经过初步的流量分析（或者说是看提示），可以看出有一串非常可疑的USB流量tshark分离一下</p>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/ph4ntonn/Stowaway/">https://github.com/ph4ntonn/Stowaway/</a></p>
+<p>tshark -r k3y.pcapng -T fields -e usbhid.data &gt; usbdata.txt</p>
 </blockquote>
-<p>工具就是stowaway</p>
-<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>访问项目连接，翻一翻得到了</p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxVx9s.png"></p>
-<p>hack4sec就是密文了</p>
-<h3 id="（4）"><a href="#（4）" class="headerlink" title="（4）"></a>（4）</h3><p>翻来覆去，并没有找到跟SQL注入有关的数据，但是看见了TLS加密的</p>
-<p>解密（wireshark➡编辑➡首选项➡protocols）一下，看HTTP2发现了SQL注入的语句，存下来，然后把需要的数据筛选出来，这里我看花眼了，所以写了个脚本</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;1.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">indata = file.read()</span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;_from_user%29%3D%22(?P&lt;wahaha&gt;.*?)%22_then_id_else&quot;</span>,re.S)</span><br><span class="line">result = obj.finditer(indata)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> result :</span><br><span class="line">    <span class="built_in">print</span>(it.group(<span class="string">&quot;wahaha&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>看别的大佬的博客，学到了一种处理空白数据的方法</p>
+<blockquote>
+<p>tshark -r ‘k3y.pcapng’ -T fields -e usbhid.data |sed ‘/^$/d’ &gt; usbdata.txt</p>
+</blockquote>
+<p>再看流量，看到了wacom是一块数位板</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSGoJ1.png"></p>
+<p>wacom是有压感的绘图板，详细说明在<a target="_blank" rel="noopener" href="https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf">USB协议文档</a>里的<strong>Figure 19</strong>：</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSGTRx.png"></p>
+<p>一般都是x坐标2个字节，Y坐标也是2个字节，又因为X，Y坐标均以小端方式存储，因此画图坐标个位数字变化会大一些。猜测坐标如图所示（深紫X，浅蓝Y，红色压感）。</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSGIiR.png"></p>
+<p>开始处理一下有用数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">open</span>(<span class="string">&quot;coor.txt&quot;</span>,<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;usbdata.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>):</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">len</span>(line)==<span class="number">55</span>):</span><br><span class="line">        a.write(line)</span><br><span class="line"><span class="comment">#把没必要的数据过滤掉，依据长度</span></span><br><span class="line">a.close()</span><br></pre></td></tr></table></figure>
 
-<p>然后得到的数据，<a target="_blank" rel="noopener" href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')&input=MzcgMzQgMzYgMzUgMzUgMzggNjYgMzMgMkQgNjMgMzggMzQgMzEgMkQgMzQgMzUgMzYgNjIgMkQgMzggMzUgNjQgMzcgMkQgNjQgMzYgNjMgMzAgNjYgMzIgNjUgNjQgNjEgNjIgNjIgMzIg">hex解码</a>一下，就能得到</p>
+<p>剃掉压感为0的数据，把坐标提取出来还原成10进制。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">open</span>(<span class="string">&quot;finish.txt&quot;</span>,<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line">x1 = []</span><br><span class="line">y1 = []</span><br><span class="line">x2 = []</span><br><span class="line">y2 = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;coor.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>):</span><br><span class="line">    <span class="keyword">if</span>(line[<span class="number">16</span>:<span class="number">18</span>]!=<span class="string">&quot;00&quot;</span>):</span><br><span class="line">        x1.append(line[<span class="number">4</span>:<span class="number">8</span>])</span><br><span class="line">        y1.append(line[<span class="number">10</span>:<span class="number">14</span>])</span><br><span class="line"><span class="comment">#筛选必要的坐标数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x1:</span><br><span class="line">    x2.append(<span class="built_in">int</span>(i[<span class="number">2</span>:<span class="number">4</span>]+i[<span class="number">0</span>:<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> y1:</span><br><span class="line">    y2.append(<span class="built_in">int</span>(j[<span class="number">2</span>:<span class="number">4</span>]+j[<span class="number">0</span>:<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line"><span class="comment">#把十六进制坐标转为十进制</span></span><br><span class="line"><span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x2)):<span class="comment">#根据 一般都是x坐标2个字节，Y坐标也是2个字节 再判断一下</span></span><br><span class="line">    a.write(<span class="built_in">str</span>(x2[z])+<span class="string">&quot; &quot;</span>+<span class="built_in">str</span>(y2[z])+<span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后放到gnuplot</p>
 <blockquote>
-<p>746558f-c841-456b-85d7-d6c0f2edabb2</p>
+<p>plot “finish.txt”</p>
 </blockquote>
-<h3 id="（5）"><a href="#（5）" class="headerlink" title="（5）"></a>（5）</h3><p>两种办法，第一种很笨，就是用wireshark过滤，借助</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSG4o9.png"></p>
+<p>反转一下得到</p>
 <blockquote>
-<p>tcp.port == n</p>
+<p>MONA_LISA_IS_A_MAN</p>
 </blockquote>
-<p>发现10-499是有数据的</p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxZScq.png"></p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxVz3n.png"></p>
-<p>第二种参考了雪殇的wp，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wongbingming/p/13212306.html">TCP dump</a>一下</p>
-<blockquote>
-<p>tcpdump -n -r triffic.pcap | awk ‘{print $3}’ | sort -u &gt; ou1t.txt</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxZiHU.png"></p>
-<h3 id="（7）"><a href="#（7）" class="headerlink" title="（7）"></a>（7）</h3><p>看一眼access.log,很明显</p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxZkEF.png"></p>
-<p>再结合（4）或者（5）都能得到192.168.1.12</p>
-<h3 id="（8）"><a href="#（8）" class="headerlink" title="（8）"></a>（8）</h3><p>看日志，明显。</p>
-<p><img src="https://s1.ax1x.com/2022/04/29/LxZPBT.png"></p>
-<p>webshell特征，所以密码为fxxk</p>
+<p>用第一步flag.txt里的emoji作为密文，上步得出的字符串作为密钥，<a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/#">emoji解密</a>，得到flag。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -186,7 +154,7 @@ https://git,"/>
     </div>
     
         <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">（2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">（3）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">（4）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">（5）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%887%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">（7）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%888%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">（8）</span></a></li></ol>	
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#RoarCTF2019-davinci-cipher-%E6%95%B0%E4%BD%8D%E6%9D%BF%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">(RoarCTF2019)davinci_cipher_数位板流量分析</span></a></li></ol>	
         </div>
     
 </div>
