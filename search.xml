@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>welcome to my blog</title>
+    <url>/6666/07/27/welcome-to-my-blog/</url>
+    <content><![CDATA[<p>我是Charmersix，这个名字，大家可能不认识，你们可以叫我C&amp;S。<br>是一名小学生ctfer，为了方便自己记笔记，所以效仿身边的大佬，搭了这个blog。<br>这里将会写一些wp。<br>虽然叫wp，但是就是个人的刷题笔记，既然是笔记，就会有些地方详细，有些地方粗略。<br>都不一定有人看，所以全当自己笔记。</p>
+]]></content>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SkyMirror_WP_流量分析</title>
+    <url>/2022/05/03/SkyMirror-WP-simple-flow/</url>
+    <content><![CDATA[<h3 id="数据包中的线索"><a href="#数据包中的线索" class="headerlink" title="数据包中的线索"></a>数据包中的线索</h3><p>题目在<a href="http://ctfer.club/challenges#%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2-22">这儿</a></p>
+<p>wireshark打开，追踪流一波</p>
+<p><img src="https://img-blog.csdnimg.cn/8681ca6cf41b4ee8ad3bee70daf34653.png"></p>
+<p>这base64编码，来<a href="https://the-x.cn/base64">这儿</a>解码一下</p>
+<p>然后就能得到一张图片</p>
+<p><img src="https://img-blog.csdnimg.cn/8dffbdfa0a2444ac95f89e9400f1059d.png"></p>
+<p>flag显而易见</p>
+<h3 id="被偷走的文件"><a href="#被偷走的文件" class="headerlink" title="被偷走的文件"></a>被偷走的文件</h3><p>题目在<a href="http://ctfer.club/challenges#%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E6%96%87%E4%BB%B6-77">这儿</a></p>
+<p>这题可不全是流量分析 </p>
+<p>wireshark看一波</p>
+<p><img src="https://img-blog.csdnimg.cn/53a3e30cf7174b7e894366f924839f17.png"></p>
+<p>一打眼，有ftp，一想《文件》，筛选一下ftp</p>
+<p><img src="https://img-blog.csdnimg.cn/f5a1e6339a0b4b31a20f4b56f99b1961.png"></p>
+<p>追踪一波</p>
+<p><img src="https://img-blog.csdnimg.cn/0ae681604366452cb1734398aae98177.png"></p>
+<p>看见了rar</p>
+<p>然后foremost分离一波</p>
+<p>讲到foremost，Kali linux里一般有，如果万一没有，像我下载的kali2021，可以apt下载一下</p>
+<p>像这样</p>
+<blockquote>
+<p><code>sudo apt-get update</code><br><code>sudo apt-get install foremost</code></p>
+</blockquote>
+<p>然后直接</p>
+<blockquote>
+<p><code>foremost  文件地址/文件名</code></p>
+</blockquote>
+<p>如果是存在了kali目录下，就不用加文件地址了</p>
+<p>分离得到的压缩包，我没有得到密码，直接就爆破了（因为没有得到任何提示）</p>
+<p><code>ARCHPR</code>四位数字掩码爆破</p>
+<p><img src="https://img-blog.csdnimg.cn/39d0af8b9d44411b9baf85b8a04320ae.png"></p>
+<p>密码<code>5790</code></p>
+<p>解压得到flag</p>
+<h3 id="菜刀666"><a href="#菜刀666" class="headerlink" title="菜刀666"></a>菜刀666</h3><p>统计HTTP看一看，有个/upload/1.php</p>
+<p>CTRL+F搜一下1.php，过滤下HTTP</p>
+<p>追踪HTTP流看一看</p>
+<p>小技巧，倒着看</p>
+<p><img src="https://img-blog.csdnimg.cn/34f1f5ebd2cf4c9bbcf4fa1152e50178.png"></p>
+<p>有个压缩包，整出来，压缩包，有密码，而且提示了</p>
+<p><img src="https://img-blog.csdnimg.cn/ca8b7c20dd6e4edb97fb729c2502bf2b.png"></p>
+<p>继续看</p>
+<p><img src="https://img-blog.csdnimg.cn/2a1f357d0ab340ed81b65cb9b7c1546c.png"></p>
+<p>Z2解码，十六进制，<a href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')">解码</a></p>
+<p>是个图片</p>
+<p><img src="https://img-blog.csdnimg.cn/9676a7fc946d4cd49c1b817272b8533b.png"></p>
+<p>搞定！！！</p>
+<h3 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h3><p>这题一看题目telnet，首先就过滤telnet</p>
+<p>追踪流一看，发现password有提示</p>
+<p><img src="https://img-blog.csdnimg.cn/af7d788eb4f444348b22cc2384f28996.png"></p>
+<p>细心的小伙伴会发现这里有一些点，红色是源到目的地，蓝色反之，我们单独看一下红色的内容，发现变成了三个点，这三个点是不可见字符，而不是真正的三个点</p>
+<p><img src="https://img-blog.csdnimg.cn/d5bac84c81a94da989eb75563936b64d.png"></p>
+<p>看16进制，发现08</p>
+<p><img src="https://img-blog.csdnimg.cn/b59ef4ccf2ec4dac8be5ee3fa6110dd6.png"></p>
+<p>找ASCII码表，发现08是退格字符</p>
+<p><img src="https://img-blog.csdnimg.cn/653271d88d3947f8994f971040c466f0.png"></p>
+<p>所以得到flag</p>
+<blockquote>
+<p>28d982kwalx8e</p>
+</blockquote>
+<h3 id="CISCN-2021初赛-robot"><a href="#CISCN-2021初赛-robot" class="headerlink" title="[CISCN 2021初赛]robot"></a>[CISCN 2021初赛]robot</h3><p>题目在[这儿]([SkyMirror (ctfer.club)](<a href="http://ctfer.club/challenges#[CISCN">http://ctfer.club/challenges#[CISCN</a> 2021初赛]robot-128))</p>
+<p>这是去年国赛里比较简单的一题，这玩意压缩包一坨东西，其实也就流量是有用的，根据其他文件百度来看，能知道这是个画图的robot。看看流量里有没有什么坐标相关的。</p>
+<p>无脑追踪流看一看，</p>
+<p><img src="https://img-blog.csdnimg.cn/8e9053a5ee8f4528821b0dfcb44878f0.png"></p>
+<p>好像坐标，grep分出来</p>
+<blockquote>
+<p><code>strings a cap.pcapng |grep &quot;\[.*\]&quot; | sort -u &gt; 123.txt</code></p>
+</blockquote>
+<p>这种数据gnuplot没法识别，所以</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;123.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">indata = file.read()</span><br><span class="line">obj = indata.replace(<span class="string">&quot;[&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;]&quot;</span>,<span class="string">&quot;&quot;</span>).replace(<span class="string">&quot;,&quot;</span>,<span class="string">&quot; &quot;</span>)</span><br><span class="line">out_file = <span class="built_in">open</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">out_file.write(obj)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;alright&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后上到gnuplot</p>
+<blockquote>
+<p><code>plot &quot;out.txt&quot;</code></p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/38de08d3a84643da927746bb1438e6ad.png"></p>
+<p>旋转镜像对称一下</p>
+<p><img src="https://img-blog.csdnimg.cn/5507c71d79b84aec959e2974ed7abce1.png"></p>
+<p><code>easy_robo_xx</code></p>
+<p>记得MD5解一下</p>
+<p>还是<a href="https://ctf.mzy0.com/CyberChef3/#recipe=MD5()&input=ZWFzeV9yb2JvX3h4">这里</a></p>
+<p>得到flag<code>d4f1fb80bc11ffd722861367747c0f10</code></p>
+<h3 id="GKCTF-2021-签到"><a href="#GKCTF-2021-签到" class="headerlink" title="[GKCTF 2021]签到"></a>[GKCTF 2021]签到</h3><p>这也配叫签到题？题目[链接]([SkyMirror (ctfer.club)](<a href="http://ctfer.club/challenges#[GKCTF">http://ctfer.club/challenges#[GKCTF</a> 2021]签到-129))</p>
+<p>本以为是签到题，打开CTRL+F搜一下flag，没有，坏了，不是签到</p>
+<p>追踪一下tcp吧，追踪到5，发现了f14g</p>
+<p><img src="https://img-blog.csdnimg.cn/e2fb0bf2d58b4e59bfff2f7835e111ca.png"></p>
+<p>乱码，还是看HTTP流吧</p>
+<p>发现了</p>
+<blockquote>
+<p><code>64306c455357644251306c6e51554e4a5a3046355355737764306c7154586c4a616b31355357704e65556c7154586c4a616b31355357704e65556c7154586c4a616b31355357704e65556c7154586c4a616b31355357704e65556c7154576c44546d39525241707154586c4a616b31355357704e65556c7154586c4a616b31355357704e65556c7154586c4a616b31355357704e65556c7162314645616b46445357644251306c6e51554e4a5a32644554545a46524530325157704e5a3046365458524e524531305257704e436e5177553078304d464e4d6444425454485177553078304d464e4d6444425454485177553078304d464e4d6444425454485177553078304d464e4d6444425454485177553078304d464e4d644442705130354e65556c7154586c4a616b31355357704e65556b4b4e6b467154576442656b31305455524e644556715458644a616b38775a566f324d6d56774e557377643074795556645a64315a485a48593152556c3051576c4e4d5546355a4777316255733254545a7162475a7763573579555552304d464e4d64444254544170304d464e4d6444425454485177553078304d464e4d6444425454485177553078304d464e4d6444425454485177553078304d464e4d6444425454485177553078304d464e4d537a42425357526159585a764e7a567462485a735130354e564530325255524e436e6f77655531334d464e4e6555467154545a524e327877596a647362584a5252484a7a5131706f516c68614d446c745647637751306c355655524a4d315a74596e4676656d3951567974736357563151303477553078304d464e4d64444254544851775530774b63336858576d786b4d5659354d544e6c4e325179576d684752324a7a576d31615a7a427363446c7064573569567974585a7a427363446c7064573569567974585a7a427363446c706457356956797458537a423354586876564531336230524e6555464454517045546a4252524534775555527356324636546c684e65444258596d593562464a48556b524f5245347759584a6b4d464a6d4f565a6162444658596e644252456c6b556d46746345524c61577832526b6c6b556d46746345524c61577832566b747754544a5a436a303955556c6f545442525245347755516f3d</code></p>
+</blockquote>
+<p>像base16</p>
+<img src="https://img-blog.csdnimg.cn/21d1f402767446fbbc6d5ecc09e3cc35.png" style="zoom:67%;" />
+
+<p>base64解</p>
+<p><img src="https://img-blog.csdnimg.cn/eec4ba4c656742d58dbf89c86d0e94d9.png"></p>
+<p>根据最后一行逆序吗？好像还是一行一行的</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;wIDIgACIgACIgAyIK0wIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMiCNoQD&quot;</span></span><br><span class="line">b = <span class="string">&quot;jMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjMyIjoQDjACIgACIgACIggDM6EDM6AjMgAzMtMDMtEjM&quot;</span></span><br><span class="line">c = <span class="string">&quot;t0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0iCNMyIjMyIjMyIjMyI&quot;</span></span><br><span class="line">d = <span class="string">&quot;6AjMgAzMtMDMtEjMwIjO0eZ62ep5K0wKrQWYwVGdv5EItAiM1Aydl5mK6M6jlfpqnrQDt0SLt0SL&quot;</span></span><br><span class="line">e = <span class="string">&quot;t0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLt0SLK0AIdZavo75mlvlCNMTM6EDM&quot;</span></span><br><span class="line">f = <span class="string">&quot;z0yMw0SMyAjM6Q7lpb7lmrQDrsCZhBXZ09mTg0CIyUDI3VmbqozoPW+lqeuCN0SLt0SLt0SLt0SL&quot;</span></span><br><span class="line">g = <span class="string">&quot;sxWZld1V913e7d2ZhFGbsZmZg0lp9iunbW+Wg0lp9iunbW+Wg0lp9iunbW+WK0wMxoTMwoDMyACM&quot;</span></span><br><span class="line">h = <span class="string">&quot;DN0QDN0QDlWazNXMx0Wbf9lRGRDNDN0ard0Rf9VZl1WbwADIdRampDKilvFIdRampDKilvVKpM2Y&quot;</span></span><br><span class="line">i = <span class="string">&quot;==QIhM0QDN0Q&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(b[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(c[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(d[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(e[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(f[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(g[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(h[::-<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(i[::-<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/ed251c6a20f442fcb90df875c9ee79ce.png"></p>
+<p>去重，flag出了</p>
+<p><code>flag&#123;Welc0me_GkC4F_m1siCCCCCC!&#125;</code></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>SkyMirror</tag>
+        <tag>simple_flow</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(陇剑杯 2021) webshell系列</title>
+    <url>/2022/04/29/webshell/</url>
+    <content><![CDATA[<p>这是一个大赛原题系列，总共七道题，题目在<a href="http://ctfer.club/challenges#[%E9%99%87%E5%89%91%E6%9D%AF%202021]webshell%EF%BC%88%E9%97%AE1%EF%BC%89-88">这儿</a></p>
+<h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a><a href="http://ctfer.club/challenges#[%E9%99%87%E5%89%91%E6%9D%AF%202021]webshell%EF%BC%88%E9%97%AE1%EF%BC%89-88">（1）</a></h3><p>webshell ，想一想，应该是post传输，筛选一下post</p>
+<p><img src="https://img-blog.csdnimg.cn/ff898474bad8463391a5d631b58b3f59.png" alt="ws1.1.png"></p>
+<p>随便点开第一个看一下</p>
+<p><img src="https://img-blog.csdnimg.cn/d4eec08bbc9b43d59b4f3ed1bc2e78b6.png"></p>
+<p>就有了，或者搜索一下password也可以</p>
+<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>绝对路径的话有两个部分组成，一个是网站根目录，另一个是相对路径</p>
+<p>导出HTTP对象，一个个找，在index.php%3fm=home&amp;a=assign_resume_tpl文件中发现了含有phpinfo()页面的东西</p>
+<p><img src="https://img-blog.csdnimg.cn/2c42b116b7f74c7691be0e53929518f5.png"></p>
+<p>将其后缀变更为.html用浏览器打开，先查找网站根路径为/var/www/html</p>
+<p><img src="https://img-blog.csdnimg.cn/dba562a9c22244738cb851e2de52850f.png"></p>
+<p>在PHP变量中查找.log后缀的日志文件，路径为data/Runtime/Logs/Home/21_08_07.log，两个拼起来就是答案</p>
+<p><img src="https://img-blog.csdnimg.cn/55d6ef0a455d4bf080ff14aa79111a0c.png"></p>
+<p>我看别人也有这样做的</p>
+<p>筛选post，（1）里说过</p>
+<p>跟包，跟到332</p>
+<p><img src="https://img-blog.csdnimg.cn/f240d306007346b29ce3756983708a12.png"></p>
+<p>拼接一下就有了</p>
+<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>说到权限，可能会执行whoami命令，我们全局搜索whoami，找到第317号数据请求包中包含 whoami命令，第319号响应包中包含结果</p>
+<p><img src="https://img-blog.csdnimg.cn/50adfcce3a484a4e90154b7ce37675cf.png#pic_center"></p>
+<p>根据（2）的phpinfo()，其实可以得到很多东西，比如这一题的答案</p>
+<p><img src="https://img-blog.csdnimg.cn/f3ec412d83eb4377af547681cd0ef26a.png#pic_center"></p>
+<h3 id="（4）"><a href="#（4）" class="headerlink" title="（4）"></a>（4）</h3><p>借助（2）的分析，很容易就能得到</p>
+<p>答案是1.php</p>
+<h3 id="（5）"><a href="#（5）" class="headerlink" title="（5）"></a>（5）</h3><p>第一种方法是猜测，一般来说代理工具客户端就是frpc，然后搜索一下，还真是</p>
+<p><img src="https://img-blog.csdnimg.cn/897ef53484594f13b7f380087d18dff6.png#pic_center"></p>
+<p>第二种方法，充分利用wireshark 导出对象的功能，导出HTTP对象，然后保存下来</p>
+<p>1(51).php就是查看上传后的木马文件目录</p>
+<p><img src="https://img-blog.csdnimg.cn/4e5cde1d3c354fe7a684b350455ca36f.png#pic_center"></p>
+<p>还有一种方法是我最不推荐的，不好理解，也有点麻烦</p>
+<p>学习了别的师傅的WP，</p>
+<p>将344包TCP流Urldecode，发现一个<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/SUBSTR()%E5%87%BD%E6%95%B0/2694062?fr=aladdin">substr</a>,从第2位开始截取，所以下面类似base64的编码去掉前两位（截图中少复制一个%3D，末尾缺个等号）然后继续urldecode一波。</p>
+<p><img src="https://img-blog.csdnimg.cn/0d41fe56d8f54ea69b2043f1f933015c.png#pic_center"></p>
+<p>然后继续urldecode一波（需要用可以解码特殊字符的，强烈安利<a href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Base64%EF%BC%88Base64%E8%BD%AC%E6%8D%A2%EF%BC%89('A-Za-z0-9%2B/%3D',true)&input=TDNaaGNpOTNkM2N2YUhSdGJDOW1jbkJqTG1sdWFRPT0">CyberChef</a>）</p>
+<p><img src="https://img-blog.csdnimg.cn/95810334d3114712939e437a4663cc7c.png#pic_center"></p>
+<h3 id="（6）（7）"><a href="#（6）（7）" class="headerlink" title="（6）（7）"></a>（6）（7）</h3><p>这一题，咱们采用（2）中相同的做法，把所有的HTTP对象导出，然后挨个看，就会发现1(6).php中有个aaa=</p>
+<p>就很有可能是上传的袋里配置文件。</p>
+<p><img src="https://img-blog.csdnimg.cn/e06379629a5c4adc88742a53fb4ed7bd.png#pic_center"></p>
+<p>（当然这题你也可以追踪流来看，如果不嫌麻烦的话）</p>
+<p>还是<a href="https://ctf.mzy0.com/CyberChef3/#recipe=URL_Decode()From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')&input=JTQwaW5pX3NldCglMjJkaXNwbGF5X2Vycm9ycyUyMiUyQyUyMCUyMjAlMjIpJTNCJTQwc2V0X3RpbWVfbGltaXQoMCklM0JmdW5jdGlvbiUyMGFzZW5jKCUyNG91dCklN0JyZXR1cm4lMjAlMjRvdXQlM0IlN0QlM0JmdW5jdGlvbiUyMGFzb3V0cHV0KCklN0IlMjRvdXRwdXQlM0RvYl9nZXRfY29udGVudHMoKSUzQm9iX2VuZF9jbGVhbigpJTNCZWNobyUyMCUyMjI4JTIyLiUyMmY3MiUyMiUzQmVjaG8lMjAlNDBhc2VuYyglMjRvdXRwdXQpJTNCZWNobyUyMCUyMmY0ODYlMjIuJTIyMTFmNCUyMiUzQiU3RG9iX3N0YXJ0KCklM0J0cnklN0IlMjRmJTNEYmFzZTY0X2RlY29kZShzdWJzdHIoJTI0X1BPU1QlNUIlMjJqNjgwNzEzMDE1OThmJTIyJTVEJTJDMikpJTNCJTI0YyUzRCUyNF9QT1NUJTVCJTIyeGE1ZDYwNmU2Nzg4M2ElMjIlNUQlM0IlMjRjJTNEc3RyX3JlcGxhY2UoJTIyJTVDciUyMiUyQyUyMiUyMiUyQyUyNGMpJTNCJTI0YyUzRHN0cl9yZXBsYWNlKCUyMiU1Q24lMjIlMkMlMjIlMjIlMkMlMjRjKSUzQiUyNGJ1ZiUzRCUyMiUyMiUzQmZvciglMjRpJTNEMCUzQiUyNGklM0NzdHJsZW4oJTI0YyklM0IlMjRpJTJCJTNEMiklMjRidWYuJTNEdXJsZGVjb2RlKCUyMiUyNSUyMi5zdWJzdHIoJTI0YyUyQyUyNGklMkMyKSklM0JlY2hvKCU0MGZ3cml0ZShmb3BlbiglMjRmJTJDJTIyYSUyMiklMkMlMjRidWYpJTNGJTIyMSUyMiUzQSUyMjAlMjIpJTNCJTNCJTdEY2F0Y2goRXhjZXB0aW9uJTIwJTI0ZSklN0JlY2hvJTIwJTIyRVJST1IlM0ElMkYlMkYlMjIuJTI0ZS0lM0VnZXRNZXNzYWdlKCklM0IlN0QlM0Jhc291dHB1dCgpJTNCZGllKCklM0ImajY4MDcxMzAxNTk4Zj1GQkwzWmhjaTkzZDNjdmFIUnRiQzltY25CakxtbHVhUSUzRCUzRCZ4YTVkNjA2ZTY3ODgzYT01QjYzNkY2RDZENkY2RTVEMEE3MzY1NzI3NjY1NzI1RjYxNjQ2NDcyMjAzRDIwMzEzOTMyMkUzMTM2MzgyRTMyMzMzOTJFMzEzMjMzMEE3MzY1NzI3NjY1NzI1RjcwNkY3Mjc0MjAzRDIwMzczNzM3MzgwQTc0NkY2QjY1NkUzRDU4NjEzMzQyNEE2NjMyNkMzNTY1NkU2RDRFMzY1QTM3NDEzODZENzYwQTBBNUI3NDY1NzM3NDVGNzM2RjYzNkIzNTVEMEE3NDc5NzA2NTIwM0QyMDc0NjM3MDBBNzI2NTZENkY3NDY1NUY3MDZGNzI3NDIwM0QzODMxMzEzMTBBNzA2Qzc1Njc2OTZFMjAzRDIwNzM2RjYzNkI3MzM1MEE3MDZDNzU2NzY5NkU1Rjc1NzM2NTcyMjAzRDIwMzA0ODQ0NDY3NDMxMzY2MzRDNTE0QTBBNzA2Qzc1Njc2OTZFNUY3MDYxNzM3Mzc3NjQyMDNEMjA0QTU0NEUzMjM3MzY0NzcwMEE3NTczNjU1RjY1NkU2MzcyNzk3MDc0Njk2RjZFMjAzRDIwNzQ3Mjc1NjUwQTc1NzM2NTVGNjM2RjZENzA3MjY1NzM3MzY5NkY2RTIwM0QyMDc0NzI3NTY1MEE">CyberChef</a></p>
+<p>解码一下，就能发现这题的flag</p>
+<p>同时，会惊奇的发现（7）的flag</p>
+<p><img src="https://img-blog.csdnimg.cn/68ca6e3fc49b49cfaf8e5f7b7aa2ee18.png#pic_center"></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>flow</tag>
+        <tag>Misc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(陇剑杯 2021) SQL注入系列</title>
+    <url>/2022/04/29/SQLflow/</url>
+    <content><![CDATA[<h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>第一题，看SQL注入的语句，很明显是布尔盲注的特征</p>
+<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>这题更没劲，根据我的经验，流量分析倒着看就对了</p>
+<blockquote>
+<p>(select%20flag%20from%20sqli.flag),43,1)%20=%20’+’,1,(select%20table_name%20from%20information_schema.tables)</p>
+</blockquote>
+<p>数据库名#表名#字段名显而易见</p>
+<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>将日志导入excel，筛选返回长度479 480 481 482</p>
+<p><img src="https://img-blog.csdnimg.cn/d893e06b2ded4f9f85d031d4fd2c7b7d.png"></p>
+<p>然后再拿word替换一下，得到</p>
+<p><img src="https://img-blog.csdnimg.cn/a24dd5c5e019430b8b986821ee2968a3.png"></p>
+<p>flag{deddcd67-bcfd-487e-b940-1217e668c7db}</p>
+<p>当然也可以写个脚本</p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>flow</tag>
+        <tag>Misc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>(陇剑杯 2021)ios系列</title>
+    <url>/2022/04/29/ios_flow/</url>
+    <content><![CDATA[<h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>根据经验，没思路就追踪TCP流</p>
+<p>追到15流，会发现一坨东西，翻一翻就能得到。</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZCuV.png"></p>
+<p>很明显，3.128.156.159</p>
+<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>还是刚刚追踪的TCP流</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZpj0.png"></p>
+<p>项目连接都摆出来了</p>
+<blockquote>
+<p><a href="https://github.com/ph4ntonn/Stowaway/">https://github.com/ph4ntonn/Stowaway/</a></p>
+</blockquote>
+<p>工具就是stowaway</p>
+<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>访问项目连接，翻一翻得到了</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxVx9s.png"></p>
+<p>hack4sec就是密文了</p>
+<h3 id="（4）"><a href="#（4）" class="headerlink" title="（4）"></a>（4）</h3><p>翻来覆去，并没有找到跟SQL注入有关的数据，但是看见了TLS加密的</p>
+<p>解密（wireshark➡编辑➡首选项➡protocols）一下，看HTTP2发现了SQL注入的语句，存下来，然后把需要的数据筛选出来，这里我看花眼了，所以写了个脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;1.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">indata = file.read()</span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;_from_user%29%3D%22(?P&lt;wahaha&gt;.*?)%22_then_id_else&quot;</span>,re.S)</span><br><span class="line">result = obj.finditer(indata)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> result :</span><br><span class="line">    <span class="built_in">print</span>(it.group(<span class="string">&quot;wahaha&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>然后得到的数据，<a href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')&input=MzcgMzQgMzYgMzUgMzUgMzggNjYgMzMgMkQgNjMgMzggMzQgMzEgMkQgMzQgMzUgMzYgNjIgMkQgMzggMzUgNjQgMzcgMkQgNjQgMzYgNjMgMzAgNjYgMzIgNjUgNjQgNjEgNjIgNjIgMzIg">hex解码</a>一下，就能得到</p>
+<blockquote>
+<p>746558f-c841-456b-85d7-d6c0f2edabb2</p>
+</blockquote>
+<h3 id="（5）"><a href="#（5）" class="headerlink" title="（5）"></a>（5）</h3><p>两种办法，第一种很笨，就是用wireshark过滤，借助</p>
+<blockquote>
+<p>tcp.port == n</p>
+</blockquote>
+<p>发现10-499是有数据的</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZScq.png"></p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxVz3n.png"></p>
+<p>第二种参考了雪殇的wp，<a href="https://www.cnblogs.com/wongbingming/p/13212306.html">TCP dump</a>一下</p>
+<blockquote>
+<p>tcpdump -n -r triffic.pcap | awk ‘{print $3}’ | sort -u &gt; ou1t.txt</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZiHU.png"></p>
+<h3 id="（7）"><a href="#（7）" class="headerlink" title="（7）"></a>（7）</h3><p>看一眼access.log,很明显</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZkEF.png"></p>
+<p>再结合（4）或者（5）都能得到192.168.1.12</p>
+<h3 id="（8）"><a href="#（8）" class="headerlink" title="（8）"></a>（8）</h3><p>看日志，明显。</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZPBT.png"></p>
+<p>webshell特征，所以密码为fxxk</p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>flow</tag>
+        <tag>Misc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>（2022第二届网刃杯）Misc 玩坏的winxp</title>
+    <url>/2022/04/29/winxp/</url>
+    <content><![CDATA[<p>这算是个取证题吧，第一次做取证题，毫无思路，工具也是没得</p>
+<p>题目在<a href="http://ctfer.club/challenges#%E7%8E%A9%E5%9D%8F%E7%9A%84winxp-133">这儿</a></p>
+<p>diskgenius打开</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxxbVI.png"></p>
+<p>发现敏感图片</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/Lxxqat.png"></p>
+<p>压缩包套娃，解压需要压缩密码</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/Lxx7qA.png"></p>
+<p>戴围脖的企鹅？一开始还以为是微博，但是其实是QQ</p>
+<p>继续找，并没有发现QQ应用，但是发现了Firefox，看到了几个sqlite文件，打开看一看</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/Lxxa5V.png"></p>
+<p>发现QQ：1272045963</p>
+<p>看QQ空间得到</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxxTrd.png"></p>
+<p>md5解码得到</p>
+<p><code>xiaomin520</code></p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxxoKH.png"></p>
+<p>解码得flag</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxzULd.png"></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>Misc</tag>
+        <tag>SkyMirror</tag>
+        <tag>Forensics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>（2022第二届网刃杯） ISC</title>
+    <url>/2022/04/29/wangren2022ics/</url>
+    <content><![CDATA[<h3 id="ncsubj"><a href="#ncsubj" class="headerlink" title="ncsubj"></a>ncsubj</h3><p>这题主要考点是编码方面，打开，追踪流一下，发现奇奇怪怪编码</p>
+<img src="https://img-blog.csdnimg.cn/e99722acc11740919d172799f392ed56.png" style="zoom:67%;" />
+
+<p>三段，长得很像base64，解码看看</p>
+<p><img src="https://img-blog.csdnimg.cn/3151d795090546dc9f1393f9c5273a9e.png"></p>
+<p>果然，没有想象的那么简单，继续解码</p>
+<p><img src="https://img-blog.csdnimg.cn/1dee0d006c7f4fbfae834a9652ee0caa.png"></p>
+<p>whatancsubject很像，还真是</p>
+<h3 id="喜欢移动的黑客"><a href="#喜欢移动的黑客" class="headerlink" title="喜欢移动的黑客"></a>喜欢移动的黑客</h3><p>比赛时候，正常开，打不开，分了一下，出来了个压缩包，就以为是压缩包，然后思路走偏了。</p>
+<p>之前从来没有接触过流量的文件头，也没看出来，这次涨姿势了。</p>
+<p>把题目中的pcapang和正常的pcapang放一起，会很明显发现文件头不一样，头四位前面改成 0A0D0D0A ，就能正常打开</p>
+<p>继续看，结合提议，筛选出modbus，流量中的数据一般是HEX，所以算一下10000的HEX = 2710</p>
+<p>继续翻找，发现异常</p>
+<p><img src="https://img-blog.csdnimg.cn/9462a093fd564a8c8c3e53a53e07ffb7.png"></p>
+<p>转回10进制，10086，拼接68156</p>
+<p>得到flag</p>
+<h3 id="xyp07"><a href="#xyp07" class="headerlink" title="xyp07"></a>xyp07</h3><p>这题推荐一款工具<code>科来网络分析系统</code>官网是能下到的</p>
+<p>也不知道是不是巧合，我也是第一次用这款工具，</p>
+<p>咱们直接打开，把流量包一扔，它就诊断出来了</p>
+<p><img src="https://img-blog.csdnimg.cn/9bac756c1a034cdfa368545b8b0b0394.png"></p>
+<p>打开一翻，出现奇怪东西</p>
+<p><img src="https://img-blog.csdnimg.cn/b6e0d190c47042a485fcca76366c848e.png"></p>
+<p>解码，base91</p>
+<img src="https://img-blog.csdnimg.cn/80431d5e0fe2416eb7a0e97282036c45.png" style="zoom:67%;" />
+
+<h3 id="cryptolalia"><a href="#cryptolalia" class="headerlink" title="cryptolalia"></a>cryptolalia</h3><p>题目在<a href="http://ctfer.club/challenges#cryptolalia-134">这儿</a></p>
+<p>题目附件为一张图片，直接修改后缀，能得到一个压缩包，压缩包注释一条鱼，并且放出hint：鱼很重要</p>
+<p>暂时不知道有什么用，继续看</p>
+<p>又有hint，能爆破，果然爆破出<code>污泥脱水间数据详情</code>的密码</p>
+<img src="https://img-blog.csdnimg.cn/d80d3e85b28d4fb7b67cd221b856dd10.png" style="zoom:67%;" />
+
+<p>打开流量，懵逼了，猜测被加密过，追踪TCP流发现</p>
+<p><img src="https://img-blog.csdnimg.cn/52db43206a334d3e950f52a9a91ab9c2.png"></p>
+<p>发现似乎密文<code>U2FsdGVkX19pczQKWsMcjgrJt8f09dSN</code></p>
+<p>来到<a href="https://www.sojson.com/encrypt.html">这里</a>，联想fish</p>
+<p>解码得到<img src="https://img-blog.csdnimg.cn/85447d32f06243a1aa25c4088dae7e0c.png"></p>
+<p>得到<code>设备药剂间数据详情</code>压缩包密码，解压后又一压缩包和txt，txt最后说<code>年轻人，有时候眼见不一定为实！</code></p>
+<p>什么意思，莫非是伪加密，好家伙，一修复就好了</p>
+<p>解压又得到一流量</p>
+<p>无脑追踪流，0流就发现异常</p>
+<p><img src="https://img-blog.csdnimg.cn/2ae09c7c517f47b79b4cd96354ad8d07.png"></p>
+<p>把图片导出来，修改高度就能得到</p>
+<p><img src="https://img-blog.csdnimg.cn/7e9c664607dd4ad29b5240908c7c414c.png"></p>
+<h3 id="LED-BOOM"><a href="#LED-BOOM" class="headerlink" title="LED_BOOM"></a>LED_BOOM</h3><p>这题不难，认真读题很重要，搞安全一定要对一切信息很敏感</p>
+<p>这题当时没有认真读题，所以没有做出来</p>
+<p>先看题，题目在<a href="http://ctfer.club/challenges#LED_BOOM-131">这儿</a></p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSFMM6.png"></p>
+<p>雪殇直接一眼顶针AES，我是一眼看不出来，得猜</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSFuxx.png"></p>
+<p>题干在这里，<code>强调三次</code>筛选一下s7comm，按照长度，会发现有三个length相同的包，细看发现了LED:On ，Off</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSA454.png"></p>
+<p>得到<code>585692787</code></p>
+<p>结合图片中的密文，<code>U2FsdGVkX19cOOV8qLVgcso8U4fse+7LirQKiHFkn9HU9BuwFAivH1siJXg/Rk6z</code>解秘一下</p>
+<p>在<a href="https://www.sojson.com/encrypt_aes.html">这里</a>解码得到</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSVMfH.png"></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>flow</tag>
+        <tag>SkyMirror</tag>
+        <tag>ISC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SkyMirror_WP_USB流量分析</title>
+    <url>/2022/04/30/usb%20wireshark/</url>
+    <content><![CDATA[<h3 id="RoarCTF2019-davinci-cipher-数位板流量分析"><a href="#RoarCTF2019-davinci-cipher-数位板流量分析" class="headerlink" title="(RoarCTF2019)davinci_cipher_数位板流量分析"></a>(RoarCTF2019)davinci_cipher_<em>数位板流量分析</em></h3><p>这是我目前做的比较难的一个流量分析，这题干扰项超级多，但是根据提示能知道是个usb流量分析，如果没有这个提示，做这个题绝对是超级艰难；题目在<a href="http://ctfer.club/challenges#[RoarCTF2019]davinci_cipher-116">这儿</a></p>
+<p>首先flag.txt：通过百度，可以得出是一串emoji的Unicode的编码，可以来<a href="https://r12a.github.io/app-conversion/">这里</a>解码一下</p>
+<p>然后经过初步的流量分析（或者说是看提示），可以看出有一串非常可疑的USB流量tshark分离一下</p>
+<blockquote>
+<p>tshark -r k3y.pcapng -T fields -e usbhid.data &gt; usbdata.txt</p>
+</blockquote>
+<p>看别的大佬的博客，学到了一种处理空白数据的方法</p>
+<blockquote>
+<p>tshark -r ‘k3y.pcapng’ -T fields -e usbhid.data |sed ‘/^$/d’ &gt; usbdata.txt</p>
+</blockquote>
+<p>再看流量，看到了wacom是一块数位板</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSGoJ1.png"></p>
+<p>wacom是有压感的绘图板，详细说明在<a href="https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf">USB协议文档</a>里的<strong>Figure 19</strong>：</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSGTRx.png"></p>
+<p>一般都是x坐标2个字节，Y坐标也是2个字节，又因为X，Y坐标均以小端方式存储，因此画图坐标个位数字变化会大一些。猜测坐标如图所示（深紫X，浅蓝Y，红色压感）。</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSGIiR.png"></p>
+<p>开始处理一下有用数据</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="built_in">open</span>(<span class="string">&quot;coor.txt&quot;</span>,<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;usbdata.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>):</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">len</span>(line)==<span class="number">55</span>):</span><br><span class="line">        a.write(line)</span><br><span class="line"><span class="comment">#把没必要的数据过滤掉，依据长度</span></span><br><span class="line">a.close()</span><br></pre></td></tr></table></figure>
+
+<p>剃掉压感为0的数据，把坐标提取出来还原成10进制。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="built_in">open</span>(<span class="string">&quot;finish.txt&quot;</span>,<span class="string">&#x27;a+&#x27;</span>)</span><br><span class="line">x1 = []</span><br><span class="line">y1 = []</span><br><span class="line">x2 = []</span><br><span class="line">y2 = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;coor.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>):</span><br><span class="line">    <span class="keyword">if</span>(line[<span class="number">16</span>:<span class="number">18</span>]!=<span class="string">&quot;00&quot;</span>):</span><br><span class="line">        x1.append(line[<span class="number">4</span>:<span class="number">8</span>])</span><br><span class="line">        y1.append(line[<span class="number">10</span>:<span class="number">14</span>])</span><br><span class="line"><span class="comment">#筛选必要的坐标数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x1:</span><br><span class="line">    x2.append(<span class="built_in">int</span>(i[<span class="number">2</span>:<span class="number">4</span>]+i[<span class="number">0</span>:<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> y1:</span><br><span class="line">    y2.append(<span class="built_in">int</span>(j[<span class="number">2</span>:<span class="number">4</span>]+j[<span class="number">0</span>:<span class="number">2</span>],<span class="number">16</span>))</span><br><span class="line"><span class="comment">#把十六进制坐标转为十进制</span></span><br><span class="line"><span class="keyword">for</span> z <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x2)):<span class="comment">#根据 一般都是x坐标2个字节，Y坐标也是2个字节 再判断一下</span></span><br><span class="line">    a.write(<span class="built_in">str</span>(x2[z])+<span class="string">&quot; &quot;</span>+<span class="built_in">str</span>(y2[z])+<span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后放到gnuplot</p>
+<blockquote>
+<p>plot “finish.txt”</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSG4o9.png"></p>
+<p>反转一下得到</p>
+<blockquote>
+<p>MONA_LISA_IS_A_MAN</p>
+</blockquote>
+<p>用第一步flag.txt里的emoji作为密文，上步得出的字符串作为密钥，<a href="https://aghorler.github.io/emoji-aes/#">emoji解密</a>，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>SkyMirror</tag>
+        <tag>USB_flow</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python re模块</title>
+    <url>/2022/05/03/python%20re/</url>
+    <content><![CDATA[<p>初识re</p>
+<h3 id="findall"><a href="#findall" class="headerlink" title="findall"></a>findall</h3><p>findall : 匹配字符串中所有的符合正则内容</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="built_in">list</span> = re.findall(<span class="string">r&quot;\d+&quot;</span>,<span class="string">&quot;my phone number is : 10086 ; my girlfriend&#x27;s phonenumber is : 10010&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="finditer"><a href="#finditer" class="headerlink" title="finditer"></a>finditer</h3><p>finditer : 匹配字符串中所有内容（返回的是迭代器）;从迭代器里拿到内容需要.group()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">it = re.finditer(<span class="string">r&quot;\d+&quot;</span>,<span class="string">&quot;my phone number is : 10086 ; my girlfriend&#x27;s phonenumber is : 10010&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> it :</span><br><span class="line">    <span class="built_in">print</span>(i.group())</span><br></pre></td></tr></table></figure>
+
+<h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>search : 找到一个结果就返回，返回结果是match对象，需要.group()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">s = re.search(<span class="string">r&quot;\d+&quot;</span>,<span class="string">&quot;my phone number is : 10086 ; my girlfriend&#x27;s phonenumber is : 10010&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(s.group())</span><br></pre></td></tr></table></figure>
+
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><p>match : 从头开始匹配</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">m = re.match(<span class="string">r&quot;\d+&quot;</span>,<span class="string">&quot;my phone number is : 10086 ; my girlfriend&#x27;s phonenumber is : 10010&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(m.group())</span><br></pre></td></tr></table></figure>
+
+<h3 id="预加载正则表达"><a href="#预加载正则表达" class="headerlink" title="预加载正则表达"></a>预加载正则表达</h3><p>先正则匹配，再re</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;\d+&quot;</span>)</span><br><span class="line"></span><br><span class="line">ret =  obj.finditer(<span class="string">&quot;my phone number is : 10086 ; my girlfriend&#x27;s phonenumber is : 10010&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> ret : </span><br><span class="line">    <span class="built_in">print</span>(it.group())</span><br></pre></td></tr></table></figure>
+
+<h4 id="一个鲜明的预加载例子"><a href="#一个鲜明的预加载例子" class="headerlink" title="一个鲜明的预加载例子"></a>一个鲜明的预加载例子</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">a = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;div class= &#x27;jay&#x27;&gt;&lt;span id= &#x27;1&#x27;&gt;郭麒麟&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class= &#x27;jj&#x27;&gt;&lt;span id= &#x27;2&#x27;&gt;郭德纲&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class= &#x27;mike&#x27;&gt;&lt;span id= &#x27;3&#x27;&gt;于谦&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class= &#x27;jack&#x27;&gt;&lt;span id= &#x27;4&#x27;&gt;岳云鹏&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment">#  (?P&lt;分组名字&gt;正则) 可以单独从正则匹配内容中提取所需</span></span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;&lt;div class= &#x27;(?P&lt;english&gt;.*?)&#x27;&gt;&lt;span id= &#x27;(?P&lt;id&gt;\d+)&#x27;&gt;(?P&lt;德云社&gt;.*?)&lt;/span&gt;&lt;/div&gt;&quot;</span>, re.S)<span class="comment">#让. 能匹配到换行符</span></span><br><span class="line">result = obj.finditer(a)</span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> result :</span><br><span class="line">    <span class="built_in">print</span>(it.group(<span class="string">&quot;english&quot;</span>))</span><br><span class="line">    <span class="built_in">print</span>(it.group(<span class="string">&quot;id&quot;</span>))</span><br><span class="line">    <span class="built_in">print</span>(it.group(<span class="string">&quot;德云社&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+</search>
