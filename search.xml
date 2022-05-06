@@ -501,6 +501,22 @@
 <p>这里有一个用户提交的页面，用户可以在此提交数据，数据提交之后给后台处理</p>
 <p>我们可以输入 <code>&lt;img src=1 οnerrοr=alert(&#39;hack&#39;)&gt;</code>  </p>
 <p>页面直接弹出了 hack 的页面，可以看到，我们插入的语句已经被页面给执行了。<br>这就是DOM型XSS漏洞，这种漏洞数据流向是： 前端–&gt;浏览器</p>
+<h3 id="XSS刷题笔记"><a href="#XSS刷题笔记" class="headerlink" title="XSS刷题笔记"></a>XSS刷题笔记</h3><p>这一部分是<a href="https://xss.haozi.me/%E7%9A%84wp">https://xss.haozi.me/的wp</a></p>
+<p>这里边主要训练了一些XSS的简单题目</p>
+<h4 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h4><p>常规题目，直接<code>&lt;script&gt;alert(1)&lt;/script&gt;</code>结束战斗</p>
+<h4 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h4><p>先来个<code>&lt;/textarea&gt;</code>与前边的<code>&lt;textarea&gt;</code>闭合，然后再<code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<h4 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h4><p>先来个<code>&quot;&gt;</code>与前边的<code>&quot;</code>及<code>&lt;</code>闭合，然后再<code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<h4 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h4><p>后端代码来看，过滤了<code>()</code></p>
+<p>我们可以用代替``</p>
+<p><img src="https://img-blog.csdnimg.cn/4df93d2e3adb46ebb24c31c79c27a86c.png"></p>
+<h4 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h4><p>这题过滤了()和``</p>
+<p>考虑使用HTML</p>
+<p>这题考虑HTML编码绕过，来到<a href="http://www.gjw123.com/tools-htmlende">这里</a></p>
+<p><img src="https://img-blog.csdnimg.cn/5fb948a5d7af4738a57ff5fb857e6481.png"></p>
+<p>我们需要用svg标签可以直接执行HTML实体字符</p>
+<p>所以答案为<code>&lt;svg&gt;&lt;script&gt;alert&amp;#40;&amp;#49;&amp;#41;&lt;/script&gt;&lt;/svg&gt;</code></p>
+<h4 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h4><p>并不是只要<code>--&gt;</code>才能闭合<code>&lt;!--</code>,<code>--!&gt;</code>也能闭合，直接闭合一下，然后就好了</p>
+<p><img src="https://img-blog.csdnimg.cn/ccb110bb5dcf4473be22193ad7e48b44.png"></p>
 ]]></content>
       <tags>
         <tag>Web</tag>
