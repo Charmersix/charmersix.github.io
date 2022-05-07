@@ -504,19 +504,32 @@
 <h3 id="XSS刷题笔记"><a href="#XSS刷题笔记" class="headerlink" title="XSS刷题笔记"></a>XSS刷题笔记</h3><p>这一部分是<a href="https://xss.haozi.me/%E7%9A%84wp">https://xss.haozi.me/的wp</a></p>
 <p>这里边主要训练了一些XSS的简单题目</p>
 <h4 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h4><p>常规题目，直接<code>&lt;script&gt;alert(1)&lt;/script&gt;</code>结束战斗</p>
+<p>或者<code>&lt;img src=&quot;x&quot; onerror=&quot;alert(1)&quot;&gt;</code></p>
+<p>(下述题目两种方式均可互换，不再一一说明)</p>
 <h4 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h4><p>先来个<code>&lt;/textarea&gt;</code>与前边的<code>&lt;textarea&gt;</code>闭合，然后再<code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<p>当然你也可以用一个标签结束战斗<code>&lt;/textarea&gt;&lt;img src=&quot;x&quot; onerror=&quot;alert(1)&quot;&gt;&lt;textarea&gt;</code></p>
 <h4 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h4><p>先来个<code>&quot;&gt;</code>与前边的<code>&quot;</code>及<code>&lt;</code>闭合，然后再<code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<p>同样，可以一个标签结束<code>&quot;&gt;&lt;img src=&quot;x&quot; onerror=&quot;alert(1)&quot;&gt;</code></p>
 <h4 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h4><p>后端代码来看，过滤了<code>()</code></p>
-<p>我们可以用代替``</p>
+<p>我们可以用``代替</p>
 <p><img src="https://img-blog.csdnimg.cn/4df93d2e3adb46ebb24c31c79c27a86c.png"></p>
+<p>或者是<code>&lt;img src=&quot;x&quot; onerror=&quot;alert</code>1<code>&quot;&gt;</code></p>
 <h4 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h4><p>这题过滤了()和``</p>
 <p>考虑使用HTML</p>
 <p>这题考虑HTML编码绕过，来到<a href="http://www.gjw123.com/tools-htmlende">这里</a></p>
 <p><img src="https://img-blog.csdnimg.cn/5fb948a5d7af4738a57ff5fb857e6481.png"></p>
 <p>我们需要用svg标签可以直接执行HTML实体字符</p>
-<p>所以答案为<code>&lt;svg&gt;&lt;script&gt;alert&amp;#40;&amp;#49;&amp;#41;&lt;/script&gt;&lt;/svg&gt;</code></p>
-<h4 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h4><p>并不是只要<code>--&gt;</code>才能闭合<code>&lt;!--</code>,<code>--!&gt;</code>也能闭合，直接闭合一下，然后就好了</p>
+<p>所以答案为<code>&lt;svg&gt;&lt;script&gt;alert&amp;#40;&amp;#49;&amp;#41;&lt;/script&gt;&lt;/svg&gt;</code>或者<code>&lt;img src=&quot;x&quot; onerror=&quot;alert&amp;#40;1&amp;#41;&quot;&gt;</code></p>
+<h4 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h4><p>并不是只要<code>--&gt;</code>才能闭合<code>&lt;!--</code>,<code>--!&gt;</code>也能闭合，直接闭合一下，然后就好了<code>--!&gt;&lt;img src=&quot;x&quot; onerror=&quot;alert(1)&quot;&gt;</code></p>
 <p><img src="https://img-blog.csdnimg.cn/ccb110bb5dcf4473be22193ad7e48b44.png"></p>
+<h4 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h4><p>此关是将所有以<code>auto</code>或者<code>on</code>开头的且以<code>=</code>或<code>&gt;</code>结尾的属性替换成<code>_</code>后直接输出，且匹配是不考虑大小写</p>
+<p>所以过滤了<a href="https://www.w3school.com.cn/tags/att_input_autofocus.asp">autofocus</a>和<a href="https://www.runoob.com/jsref/event-onerror-media.html">onerror</a>、<a href="https://www.runoob.com/jsref/event-onmousemove.html">onmousemove</a>事件, 以及防止input标签被闭合</p>
+<p>这里查到可以使用换行符来绕过，因为<code>Javascript</code>通常以分号结尾，如果解析引擎能确定一个语句时完整的，且行尾有换行符，则分号可省略,而如果不是完整的语句，<code>javascript</code>则会继续处理，直到语句完整结束或分号<img src="https://img-blog.csdnimg.cn/93c6cb91324a4a2091027890fcabf4a9.png"></p>
+<h4 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h4><p>此关是对于以<code>&lt;/</code>开头后接任意0个或1个非<code>&gt;</code>字符且以<code>&gt;</code>结尾的字符串进行过滤，且不考虑大小写，即过滤了以<code>&lt;&gt;</code>包裹的标签</p>
+<p>由于<code>html</code>的容错性很高，对于标签不闭合也可以接受(网上说这只是<code>html4</code>时的无尾标签特性，而<code>html5</code>时就将其去除了，不知道为啥这里还能执行成功)，这里就直接使用不闭合的语句就能成功弹窗</p>
+<p><img src="https://img-blog.csdnimg.cn/f9ab1e2d663d40079814c69da291ad3d.png"></p>
+<h4 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h4><p>这题把<code>&lt;/style&gt;</code>替换了，也就是过滤了，其实还是第五题考点，换行绕过就行</p>
+<p><img src="https://img-blog.csdnimg.cn/a604dd59f4474e7ab5a001ee27045f1a.png"></p>
 ]]></content>
       <tags>
         <tag>Web</tag>
