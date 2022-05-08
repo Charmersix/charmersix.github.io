@@ -530,6 +530,20 @@
 <p><img src="https://img-blog.csdnimg.cn/f9ab1e2d663d40079814c69da291ad3d.png"></p>
 <h4 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h4><p>这题把<code>&lt;/style&gt;</code>替换了，也就是过滤了，其实还是第五题考点，换行绕过就行</p>
 <p><img src="https://img-blog.csdnimg.cn/a604dd59f4474e7ab5a001ee27045f1a.png"></p>
+<h4 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h4><p>这关没有做黑名单，反而做了白名单</p>
+<p><img src="https://img-blog.csdnimg.cn/172615e1ee564541945cd5257a8c08fa.png"></p>
+<h4 id="0x10"><a href="#0x10" class="headerlink" title="0x10"></a>0x10</h4><p>我采用了最原始的方法，闭合标签</p>
+<p><img src="https://img-blog.csdnimg.cn/007ee376dbbf4457a3d60f84baf3d298.png"></p>
+<p>看别人的blog，有简单方法，好吧还是我HTML不如大佬了</p>
+<p><img src="https://img-blog.csdnimg.cn/9407c26b2e244baa955470cff164c24e.png"></p>
+<h4 id="0x11"><a href="#0x11" class="headerlink" title="0x11"></a>0x11</h4><p>“被替换成了/“，并没有什么用啊，还是可以闭合</p>
+<p><img src="https://img-blog.csdnimg.cn/43b94c318236458daf845070f7cc74bd.png"></p>
+<p> //虽然被转义成了//, 但转义之后还是//, 在js中还是注释符 </p>
+<h4 id="0x12"><a href="#0x12" class="headerlink" title="0x12"></a>0x12</h4><p>在我看来内嵌一个标签是最简单粗暴的方法，只要<code>&lt;&gt;</code> 没有被过滤就好</p>
+<p><img src="https://img-blog.csdnimg.cn/8dd61efce8a544998304673c92385658.png"></p>
+<p>当然也可以想办法绕过，闭合一下，”被替换成\“ ，怎么办？</p>
+<p>语文上有双重否定表示肯定，数学上有负负得正，那么</p>
+<p><img src="https://img-blog.csdnimg.cn/222e449f20c34f06b4864e4504d8912e.png"></p>
 ]]></content>
       <tags>
         <tag>Web</tag>
