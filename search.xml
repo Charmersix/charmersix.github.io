@@ -544,6 +544,26 @@
 <p>当然也可以想办法绕过，闭合一下，”被替换成\“ ，怎么办？</p>
 <p>语文上有双重否定表示肯定，数学上有负负得正，那么</p>
 <p><img src="https://img-blog.csdnimg.cn/222e449f20c34f06b4864e4504d8912e.png"></p>
+<h4 id="0x0A"><a href="#0x0A" class="headerlink" title="0x0A"></a>0x0A</h4><p>这又用到一个知识点，就是@，如果你访问 <a href="mailto:www.baidu.com@www.google.com">www.baidu.com@www.google.com</a>，那么你最后进入的是谷歌的界面，所以这一关，就在自己的服务器上放一个js文件，写上alert(1);这里你可以用我的<code>charmersix.icu/xss.js</code>我看题目作者的库里也留了个，也可以用作者的<code>http://xss.haozi.me/j.js</code></p>
+<p>这里刚开始在chrome上死活打不通，但是换到Firefox就好了，edge也打不通</p>
+<p><img src="https://img-blog.csdnimg.cn/5284f64f7ac74ba5906a814e143da0df.png"></p>
+<h4 id="0x0B"><a href="#0x0B" class="headerlink" title="0x0B"></a>0x0B</h4><p>此关使用<code>toUpperCase</code>函数对于输入进行了转成大写的操作</p>
+<p>对于大小写的问题，<code>html</code> 标签, 域名 不区分大小写，<code>path</code>部分区分大小写。</p>
+<p><code>uniocde</code>编码也可以解决绕过大小写,因为<code>js</code>解析器在工作时回对<code>unicode</code>先进行解码，例如这里会被先解析成<code>alert(1)</code>从而实现弹窗</p>
+<p><code>html</code>中<code>unicode</code>编码格式：&amp;#编码的十进制数值，一般的格式还有直接<code>\u</code>开头的<code>16</code>进制四位编码，一定是四位，否则报错</p>
+<p><img src="https://img-blog.csdnimg.cn/dac7647a03b343978403eac97a7b895f.png"></p>
+<p>还有一种题解，延续上一题的做法，因为域名是对大小写不敏感的</p>
+<h4 id="0x0C"><a href="#0x0C" class="headerlink" title="0x0C"></a>0x0C</h4><p>多过滤了一个script，并没有什么影响，上题题解仍然可用</p>
+<h4 id="0x0D"><a href="#0x0D" class="headerlink" title="0x0D"></a>0x0D</h4><p>此关是对于输入的<code>&lt; / &quot; &#39;</code>等进行了过滤，将其转换成空，并且在输入处进行了单行注释，这里可以通过使用换行符进行绕过，但换行仅能过单行注释，代码还是不能正常运行，这里可使用<code>html</code>注释<br><code>--&gt;</code>来注释后面的<code>js</code>，使代码正常运行</p>
+<p>对于这里使用<code>html</code>的注释符也能闭合<code>js</code>单行注释，查了一下，发现说对于那些不支持<code>JavaScript</code>的浏览器会把脚本作为页面的内容来显示;为了防止这种情况发生，我们可以使用这样的<code>HTML</code>注释标签</p>
+<p>可以看到这里就是使用了<code>html</code>标签闭合的<code>js</code>,对于<code>&lt;!--</code>和<code>--&gt;</code>都可以在<code>html</code>的<code>script</code>标签里单独使用进行单行注释，这里<code>&lt;</code>被过滤了，所以使用<code>--&gt;</code></p>
+<p><img src="https://img-blog.csdnimg.cn/84e0d8037d3d489eb1cdf4e25e0c9edd.png"></p>
+<h4 id="0x0E"><a href="#0x0E" class="headerlink" title="0x0E"></a>0x0E</h4><p>此关对于所有以<code>&lt;</code>开头的加任意大小写字符的进行替换为<code>&lt;_</code>且再将所有小写字母换成大写</p>
+<p>这里参考官方题解后学到了一些骚操作，对于<code>ſ</code>古英语中的<code>s</code>的写法, 转成大写是正常的<code>S</code>,从而可以绕过<code>&lt;script&gt;</code>限制</p>
+<p><img src="https://img-blog.csdnimg.cn/82d42e722b564e49b18d269a48eb3bd2.png"></p>
+<h4 id="0x0F"><a href="#0x0F" class="headerlink" title="0x0F"></a>0x0F</h4><p>此关还是对于输入的一些符号进行了编码操作，但对<code>html inline js</code>转义没有什么用，浏览器会先解析<code>html</code>, 然后再解析<code>js</code></p>
+<p>但是由于输入信息是在<code>img</code>标签内，所以<code>html</code>实体编码是可以被直接解析的,所以闭合前面的标签，在构造语句即可，这里<code>onerror</code>后面用分号闭合后感觉类型堆叠执行一样。</p>
+<p><img src="https://img-blog.csdnimg.cn/21cf7a221e6f43bb9df079780f23c7cb.png"></p>
 ]]></content>
       <tags>
         <tag>Web</tag>
