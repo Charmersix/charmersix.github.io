@@ -602,9 +602,8 @@
 <h3 id="破坏消毒剂"><a href="#破坏消毒剂" class="headerlink" title="破坏消毒剂"></a>破坏消毒剂</h3><p>Angular sanitizer 是用 JavaScript 编写的客户端过滤器，它扩展了 Angular 以安全地允许使用名为 ng-bind-html 的属性进行 HTML 绑定，其中包含要过滤的引用。然后它接受输入并将其呈现在不可见的 DOM 树中，并对元素和属性应用白名单过滤。</p>
 <p>在测试<a href="https://github.com/angular/angular.js/pull/12524">Angular sanitizer</a>时，我考虑过使用 Angular 表达式覆盖原生 JavaScript 函数。问题是 Angular 表达式不支持函数语句或函数表达式，因此您将无法用任何值覆盖函数。考虑了一会儿，我想到了 String.fromCharCode。因为该函数是从 String 构造函数调用的，而不是通过字符串文字，所以“this”值将是 String 构造函数。也许我可以后门 fromCharCode 函数！</p>
 <p>如何在无法创建函数的情况下对 fromCharCode 函数进行后门？简单：重用现有功能！问题是如何在每次调用 fromCharCode 时控制该值。如果我们使用 Array 连接函数，我们可以使 String 构造函数成为一个假数组。我们所需要的只是一个长度属性和一个 0 属性，用于我们的假数组的第一个索引，幸运的是它已经有一个长度属性，因为它的参数长度是 1。我们只需要给它一个 0 属性。这是如何做到的：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;a&#x27;</span>.<span class="property">constructor</span>.<span class="property">fromCharCode</span>=[].<span class="property">join</span>;<span class="string">&#x27;a&#x27;</span>.<span class="property">constructor</span>[<span class="number">0</span>]=<span class="string">&#x27;\u003ciframe onload=alert(/Backdoored/)\u003e&#x27;</span>; </span><br></pre></td></tr></table></figure>
-
-<p>当调用 String.fromCharCode 时，您每次都会得到字符串 <iframe onload=alert(/Backdoored/)> 而不是所需的值。这在 Angular 沙箱中完美运行。这是一个小提琴：</p>
+<p><img src="https://img-blog.csdnimg.cn/8ba945db65894a728ec97bdd6b511b7c.png"></p>
+<p>当调用 String.fromCharCode 时，您每次都会得到字符串 <code>&lt;iframe onload=alert(/Backdoored/)&gt;</code> 而不是所需的值。这在 Angular 沙箱中完美运行。这是一个小提琴：</p>
 <p><a href="http://jsfiddle.net/2zs2yv7o/2/">http://jsfiddle.net/2zs2yv7o/2/</a></p>
 <p>我继续查看 Angular sanitizer 的代码，但我找不到任何会导致绕过的对 String.fromCharcode 的调用。我查看了其他原生函数，发现了一个有趣的函数：charCodeAt。如果我可以覆盖这个值，那么它将被注入到一个属性中而无需任何过滤。但是有一个问题：这次“this”值将是字符串文字，而不是字符串构造函数。这意味着我不能使用相同的技术来覆盖该函数，因为我将无法操作索引或长度，因为这对于字符串文字是不可写的。</p>
 <p>然后我想到了使用 [].concat; 使用此函数将按原样返回字符串和连接在一起的参数。下面的小提琴调用’abc’.charCodeAt(0)，所以你会期望输出是’97’（ascii a），但由于后门，它反而返回基本字符串加上参数。</p>
