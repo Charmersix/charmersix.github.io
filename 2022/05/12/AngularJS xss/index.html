@@ -10,9 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="研究员加雷斯·海耶斯
-@garethheyes(蓝鸟)
-抽象的对极受欢迎的 JavaScript 框架AngularJS的天真使用将许多网站暴露给 Angular 模板注入。这种相对低调的服务器端模,"> 
+    <meta name="description" content="文章引用自：https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angular,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -23,9 +21,7 @@
     
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="没有 HTML 的 XSS：使用 AngularJS 的客户端模板注入 - Charmersix"/>
-    <meta name="twitter:description" content="研究员加雷斯·海耶斯
-@garethheyes(蓝鸟)
-抽象的对极受欢迎的 JavaScript 框架AngularJS的天真使用将许多网站暴露给 Angular 模板注入。这种相对低调的服务器端模,"/>
+    <meta name="twitter:description" content="文章引用自：https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angular,"/>
     
     
     
@@ -33,9 +29,7 @@
     <meta property="og:site_name" content="Charmersix"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content="没有 HTML 的 XSS：使用 AngularJS 的客户端模板注入 - Charmersix"/>
-    <meta property="og:description" content="研究员加雷斯·海耶斯
-@garethheyes(蓝鸟)
-抽象的对极受欢迎的 JavaScript 框架AngularJS的天真使用将许多网站暴露给 Angular 模板注入。这种相对低调的服务器端模,"/>
+    <meta property="og:description" content="文章引用自：https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angular,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -73,7 +67,8 @@
 
         </div>
         <div class="content markdown">
-            <p>研究员加雷斯·海耶斯</p>
+            <p>文章引用自：<a target="_blank" rel="noopener" href="https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs">https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs</a></p>
+<p>研究员加雷斯·海耶斯</p>
 <p><a target="_blank" rel="noopener" href="https://twitter.com/garethheyes">@garethheyes</a>(蓝鸟)</p>
 <h3 id="抽象的"><a href="#抽象的" class="headerlink" title="抽象的"></a>抽象的</h3><p>对极受欢迎的 JavaScript 框架<a target="_blank" rel="noopener" href="https://angularjs.org/">AngularJS</a>的天真使用将许多网站暴露给 Angular 模板注入。这种相对低调的<a target="_blank" rel="noopener" href="https://portswigger.net/blog/server-side-template-injection">服务器端模板注入</a>兄弟可以与 Angular 沙箱逃逸相结合，以在其他安全站点上发起<a target="_blank" rel="noopener" href="https://portswigger.net/web-security/cross-site-scripting">跨站点脚本</a>( <a target="_blank" rel="noopener" href="https://portswigger.net/web-security/cross-site-scripting">XSS</a> ) 攻击。到目前为止，还没有公开的沙盒逃逸会影响 Angular 1.3.1+ 和 1.4.0+。这篇文章将总结 Angular 模板注入的核心概念，然后展示影响所有现代 Angular 版本的新沙箱逃逸的开发。</p>
 <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>AngularJS 是 Google 编写的 MVC 客户端框架。使用 Angular，您通过 view-source 或 Burp 看到的包含“ng-app”的 HTML 页面实际上是模板，并将由 Angular 呈现。这意味着如果用户输入直接嵌入到页面中，应用程序可能容易受到客户端模板注入的攻击。即使用户输入是 HTML 编码的并且在属性内也是如此。</p>

