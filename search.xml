@@ -784,10 +784,22 @@
 <p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/change.php&#39;,type:&#39;post&#39;,data:&#123;p:&#39;123&#39;&#125;&#125;);&lt;/script&gt;</code></p>
 <p>payload来喽，解决</p>
 <p><img src="https://img-blog.csdnimg.cn/d6eb838fe97e432dafbb2981a18f6abe.png"></p>
-<h3 id="web332"><a href="#web332" class="headerlink" title="web332"></a>web332</h3><p>这题很简单，要买flag嘛，但是钱不够，还有个转账口子</p>
+<h3 id="web332"><a href="#web332" class="headerlink" title="web332"></a>web332</h3><p>先试一下上一题的payload，就是说，只要拿到admin了，什么都好说，然后失败了，转换思路。</p>
+<p>这题很简单，要买flag嘛，但是钱不够，还有个转账口子</p>
 <p>尝试转负的，然后就成功了</p>
 <p><img src="https://img-blog.csdnimg.cn/7f640a54e90146fbaec3670dff798fab.png"></p>
 <p>购买flag，成功</p>
+<p>这题也可以给自己转账，然后会发现，给自己转账是不要钱的，然后就可以一直转，只要金额少于自己的余额就行。</p>
+<p>这里就不再演示了。</p>
+<p>然后这好像跟xss没什么关系，现在x不到admin的密码了，我们试一试能不能直接x一下admin转账，我们抓包看一下转账的传参</p>
+<p><img src="https://img-blog.csdnimg.cn/efab3fff3b164a188fd162531921c071.png"></p>
+<p>改一下上一题的payload</p>
+<p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/amount.php&#39;,type:&#39;post&#39;,data:&#123;u:&#39;123&#39;,a:&#39;10000&#39;&#125;&#125;);&lt;/script&gt;</code></p>
+<p>搞定啊</p>
+<h3 id="web333"><a href="#web333" class="headerlink" title="web333"></a>web333</h3><p>首先试一试上一题，给自己转账是可行的，x到admin转账也是可行的。</p>
+<p><img src="https://img-blog.csdnimg.cn/635daf0f3a4f4898b3b50353c49878dc.png"></p>
+<p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/amount.php&#39;,type:&#39;post&#39;,data:&#123;u:&#39;123&#39;,a:&#39;10000&#39;&#125;&#125;);&lt;/script&gt;</code></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>js很重要，可以通过js搞整个网页</p>
 ]]></content>
       <tags>
         <tag>wp</tag>
