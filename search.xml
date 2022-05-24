@@ -808,4 +808,24 @@
         <tag>ctfshow</tag>
       </tags>
   </entry>
+  <entry>
+    <title>(陇剑杯 2021)日志分析系列</title>
+    <url>/2022/04/29/rizhifenxi/</url>
+    <content><![CDATA[<p>这一系列一共有两部分，一部分是日志分析的三个题目，另一部分是简单的日志分析</p>
+<h3 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h3><h4 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h4><p>这题让找源码文件，根据经验，源码一般放在<code>www/wwwroot</code>下边</p>
+<p>直接CTRL+F找一下，果然有。</p>
+<p><img src="https://img-blog.csdnimg.cn/6c1fc74849f34c4fa88aa1c463ebe12b.png"></p>
+<h4 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h4><p>一眼顶针</p>
+<p><img src="https://img-blog.csdnimg.cn/6a162b49eba64f8e95b301d920e42b09.png"></p>
+<p>解码看看</p>
+<p><img src="https://img-blog.csdnimg.cn/843d004995324ac8920d46c29bb00008.png"></p>
+<p>这不很明显<code>sess_car</code></p>
+<h4 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h4><p>从（2）能看出一段反序列化，那么类自然就是<code>SplFileObject</code></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>flow</tag>
+        <tag>Misc</tag>
+      </tags>
+  </entry>
 </search>
