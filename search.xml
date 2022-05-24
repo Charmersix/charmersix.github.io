@@ -810,7 +810,7 @@
   </entry>
   <entry>
     <title>(陇剑杯 2021)日志分析系列</title>
-    <url>/2022/04/29/rizhifenxi/</url>
+    <url>/2022/05/24/rizhifenxi/</url>
     <content><![CDATA[<p>这一系列一共有两部分，一部分是日志分析的三个题目，另一部分是简单的日志分析</p>
 <h3 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h3><h4 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h4><p>这题让找源码文件，根据经验，源码一般放在<code>www/wwwroot</code>下边</p>
 <p>直接CTRL+F找一下，果然有。</p>
@@ -821,6 +821,16 @@
 <p><img src="https://img-blog.csdnimg.cn/843d004995324ac8920d46c29bb00008.png"></p>
 <p>这不很明显<code>sess_car</code></p>
 <h4 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h4><p>从（2）能看出一段反序列化，那么类自然就是<code>SplFileObject</code></p>
+<h3 id="简单日志分析"><a href="#简单日志分析" class="headerlink" title="简单日志分析"></a>简单日志分析</h3><h4 id="（1）-1"><a href="#（1）-1" class="headerlink" title="（1）"></a>（1）</h4><p>打开浏览一下</p>
+<p><img src="https://img-blog.csdnimg.cn/d2daa3d491744701bcf4d3fccfc5fa99.png"></p>
+<p>发现这么个东西，像极了base64</p>
+<p>解码看，懂的都懂</p>
+<p><img src="https://img-blog.csdnimg.cn/9a562992d88145a0a626046506e9e8e0.png"></p>
+<p>参数就是<code>user</code>了</p>
+<h4 id="（2）-1"><a href="#（2）-1" class="headerlink" title="（2）"></a>（2）</h4><p>又见base64</p>
+<p><img src="https://img-blog.csdnimg.cn/d5ac6159e3784ee9a06591ac9be8ee4d.png"></p>
+<h4 id="（3）-1"><a href="#（3）-1" class="headerlink" title="（3）"></a>（3）</h4><p>还是base64，好没劲啊</p>
+<p><img src="https://img-blog.csdnimg.cn/782157cc0e814fa2a6a8efdfd35436ed.png"></p>
 ]]></content>
       <tags>
         <tag>wp</tag>
