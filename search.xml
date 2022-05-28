@@ -112,6 +112,25 @@
 <p><img src="https://img-blog.csdnimg.cn/ed251c6a20f442fcb90df875c9ee79ce.png"></p>
 <p>去重，flag出了</p>
 <p><code>flag&#123;Welc0me_GkC4F_m1siCCCCCC!&#125;</code></p>
+<h3 id="安洵杯-2019-Attack"><a href="#安洵杯-2019-Attack" class="headerlink" title="[安洵杯 2019]Attack"></a>[安洵杯 2019]Attack</h3><p>之前做过一次菜刀的流量分析，这次来做一个蚁剑的</p>
+<p>这题挺强的，题目也是在[这儿]([SkyMirror (ctfer.club)](<a href="http://ctfer.club/challenges#[%E5%AE%89%E6%B4%B5%E6%9D%AF">http://ctfer.club/challenges#[安洵杯</a> 2019]Attack-139))</p>
+<p>老样子，先搜索flag看看</p>
+<img src="https://img-blog.csdnimg.cn/27feb43643ff4e7f90386d3958b5b722.png" style="zoom:67%;" />
+
+<p>这里也是看到了一个压缩包，然后我手提了n遍，一直没提准确，然后就foremost了，出一个压缩包</p>
+<p>缺密码，继续看。</p>
+<p>导出对象看看</p>
+<p><img src="https://img-blog.csdnimg.cn/78351cb41a464e44b8af011105cef583.png"></p>
+<p>这啥玩意，上百度</p>
+<blockquote>
+<p><strong>关于lsass</strong><br>lsass是windows系统的一个进程，用于本地安全和登陆策略。mimikatz可以从 lsass.exe 里获取windows处于active状态账号明文密码。本题的lsass.dmp就是内存运行的镜像，也可以提取到账户密码</p>
+<p><strong>下载</strong><br><a href="https://github.com/gentilkiwi/mimikatz/releases/">https://github.com/gentilkiwi/mimikatz/releases/</a></p>
+<p><strong>如何使用</strong><br>把lsass.dmp复制到mimikatz的目录，然后运行mimikatz（一定要管理员身份运行）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//提升权限</span><br><span class="line">privilege::debug</span><br><span class="line">//载入dmp文件</span><br><span class="line">sekurlsa::minidump lsass.dmp</span><br><span class="line">//读取登陆密码</span><br><span class="line">sekurlsa::logonpasswords full</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/ec3e694eab4e412a836b30a5575a2fd1.png"></p>
+<p>这也就是压缩包密码了，解压得到flag</p>
 ]]></content>
       <tags>
         <tag>wp</tag>
