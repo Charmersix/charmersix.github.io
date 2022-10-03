@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>(陇剑杯 2021)ios系列 - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="（1）根据经验，没思路就追踪TCP流
+追到15流，会发现一坨东西，翻一翻就能得到。
+
+很明显，3.128.156.159
+（2）还是刚刚追踪的TCP流
+
+项目连接都摆出来了
+
+https://git,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="(陇剑杯 2021)ios系列 - Charmersix"/>
+    <meta name="twitter:description" content="（1）根据经验，没思路就追踪TCP流
+追到15流，会发现一坨东西，翻一翻就能得到。
+
+很明显，3.128.156.159
+（2）还是刚刚追踪的TCP流
+
+项目连接都摆出来了
+
+https://git,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="(陇剑杯 2021)ios系列 - Charmersix"/>
+    <meta property="og:description" content="（1）根据经验，没思路就追踪TCP流
+追到15流，会发现一坨东西，翻一翻就能得到。
+
+很明显，3.128.156.159
+（2）还是刚刚追踪的TCP流
+
+项目连接都摆出来了
+
+https://git,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">(陇剑杯 2021)ios系列</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">(陇剑杯 2021)ios系列</h1>
+        <div class="stuff">
+            <span>四月 29, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/flow/" rel="tag">flow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>根据经验，没思路就追踪TCP流</p>
+<p>追到15流，会发现一坨东西，翻一翻就能得到。</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZCuV.png"></p>
+<p>很明显，3.128.156.159</p>
+<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>还是刚刚追踪的TCP流</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZpj0.png"></p>
+<p>项目连接都摆出来了</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/ph4ntonn/Stowaway/">https://github.com/ph4ntonn/Stowaway/</a></p>
+</blockquote>
+<p>工具就是stowaway</p>
+<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>访问项目连接，翻一翻得到了</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxVx9s.png"></p>
+<p>hack4sec就是密文了</p>
+<h3 id="（4）"><a href="#（4）" class="headerlink" title="（4）"></a>（4）</h3><p>翻来覆去，并没有找到跟SQL注入有关的数据，但是看见了TLS加密的</p>
+<p>解密（wireshark➡编辑➡首选项➡protocols）一下，看HTTP2发现了SQL注入的语句，存下来，然后把需要的数据筛选出来，这里我看花眼了，所以写了个脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;1.txt&quot;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">indata = file.read()</span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;_from_user%29%3D%22(?P&lt;wahaha&gt;.*?)%22_then_id_else&quot;</span>,re.S)</span><br><span class="line">result = obj.finditer(indata)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> result :</span><br><span class="line">    <span class="built_in">print</span>(it.group(<span class="string">&quot;wahaha&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>然后得到的数据，<a target="_blank" rel="noopener" href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')&input=MzcgMzQgMzYgMzUgMzUgMzggNjYgMzMgMkQgNjMgMzggMzQgMzEgMkQgMzQgMzUgMzYgNjIgMkQgMzggMzUgNjQgMzcgMkQgNjQgMzYgNjMgMzAgNjYgMzIgNjUgNjQgNjEgNjIgNjIgMzIg">hex解码</a>一下，就能得到</p>
+<blockquote>
+<p>746558f-c841-456b-85d7-d6c0f2edabb2</p>
+</blockquote>
+<h3 id="（5）"><a href="#（5）" class="headerlink" title="（5）"></a>（5）</h3><p>两种办法，第一种很笨，就是用wireshark过滤，借助</p>
+<blockquote>
+<p>tcp.port == n</p>
+</blockquote>
+<p>发现10-499是有数据的</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZScq.png"></p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxVz3n.png"></p>
+<p>第二种参考了雪殇的wp，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wongbingming/p/13212306.html">TCP dump</a>一下</p>
+<blockquote>
+<p>tcpdump -n -r triffic.pcap | awk ‘{print $3}’ | sort -u &gt; ou1t.txt</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZiHU.png"></p>
+<h3 id="（7）"><a href="#（7）" class="headerlink" title="（7）"></a>（7）</h3><p>看一眼access.log,很明显</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZkEF.png"></p>
+<p>再结合（4）或者（5）都能得到192.168.1.12</p>
+<h3 id="（8）"><a href="#（8）" class="headerlink" title="（8）"></a>（8）</h3><p>看日志，明显。</p>
+<p><img src="https://s1.ax1x.com/2022/04/29/LxZPBT.png"></p>
+<p>webshell特征，所以密码为fxxk</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">（2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">（3）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">（4）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">（5）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%887%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">（7）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%888%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">（8）</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

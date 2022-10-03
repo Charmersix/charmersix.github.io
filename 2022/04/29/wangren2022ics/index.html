@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>（2022第二届网刃杯） ISC - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="ncsubj这题主要考点是编码方面，打开，追踪流一下，发现奇奇怪怪编码
+
+
+三段，长得很像base64，解码看看
+
+果然，没有想象的那么简单，继续解码
+
+whatancsubject很像，还真是
+喜,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="（2022第二届网刃杯） ISC - Charmersix"/>
+    <meta name="twitter:description" content="ncsubj这题主要考点是编码方面，打开，追踪流一下，发现奇奇怪怪编码
+
+
+三段，长得很像base64，解码看看
+
+果然，没有想象的那么简单，继续解码
+
+whatancsubject很像，还真是
+喜,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="（2022第二届网刃杯） ISC - Charmersix"/>
+    <meta property="og:description" content="ncsubj这题主要考点是编码方面，打开，追踪流一下，发现奇奇怪怪编码
+
+
+三段，长得很像base64，解码看看
+
+果然，没有想象的那么简单，继续解码
+
+whatancsubject很像，还真是
+喜,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">（2022第二届网刃杯） ISC</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">（2022第二届网刃杯） ISC</h1>
+        <div class="stuff">
+            <span>四月 29, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ISC/" rel="tag">ISC</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SkyMirror/" rel="tag">SkyMirror</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/flow/" rel="tag">flow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="ncsubj"><a href="#ncsubj" class="headerlink" title="ncsubj"></a>ncsubj</h3><p>这题主要考点是编码方面，打开，追踪流一下，发现奇奇怪怪编码</p>
+<img src="https://img-blog.csdnimg.cn/e99722acc11740919d172799f392ed56.png" style="zoom:67%;" />
+
+<p>三段，长得很像base64，解码看看</p>
+<p><img src="https://img-blog.csdnimg.cn/3151d795090546dc9f1393f9c5273a9e.png"></p>
+<p>果然，没有想象的那么简单，继续解码</p>
+<p><img src="https://img-blog.csdnimg.cn/1dee0d006c7f4fbfae834a9652ee0caa.png"></p>
+<p>whatancsubject很像，还真是</p>
+<h3 id="喜欢移动的黑客"><a href="#喜欢移动的黑客" class="headerlink" title="喜欢移动的黑客"></a>喜欢移动的黑客</h3><p>比赛时候，正常开，打不开，分了一下，出来了个压缩包，就以为是压缩包，然后思路走偏了。</p>
+<p>之前从来没有接触过流量的文件头，也没看出来，这次涨姿势了。</p>
+<p>把题目中的pcapang和正常的pcapang放一起，会很明显发现文件头不一样，头四位前面改成 0A0D0D0A ，就能正常打开</p>
+<p>继续看，结合提议，筛选出modbus，流量中的数据一般是HEX，所以算一下10000的HEX = 2710</p>
+<p>继续翻找，发现异常</p>
+<p><img src="https://img-blog.csdnimg.cn/9462a093fd564a8c8c3e53a53e07ffb7.png"></p>
+<p>转回10进制，10086，拼接68156</p>
+<p>得到flag</p>
+<h3 id="xyp07"><a href="#xyp07" class="headerlink" title="xyp07"></a>xyp07</h3><p>这题推荐一款工具<code>科来网络分析系统</code>官网是能下到的</p>
+<p>也不知道是不是巧合，我也是第一次用这款工具，</p>
+<p>咱们直接打开，把流量包一扔，它就诊断出来了</p>
+<p><img src="https://img-blog.csdnimg.cn/9bac756c1a034cdfa368545b8b0b0394.png"></p>
+<p>打开一翻，出现奇怪东西</p>
+<p><img src="https://img-blog.csdnimg.cn/b6e0d190c47042a485fcca76366c848e.png"></p>
+<p>解码，base91</p>
+<img src="https://img-blog.csdnimg.cn/80431d5e0fe2416eb7a0e97282036c45.png" style="zoom:67%;" />
+
+<h3 id="cryptolalia"><a href="#cryptolalia" class="headerlink" title="cryptolalia"></a>cryptolalia</h3><p>题目在<a target="_blank" rel="noopener" href="http://ctfer.club/challenges#cryptolalia-134">这儿</a></p>
+<p>题目附件为一张图片，直接修改后缀，能得到一个压缩包，压缩包注释一条鱼，并且放出hint：鱼很重要</p>
+<p>暂时不知道有什么用，继续看</p>
+<p>又有hint，能爆破，果然爆破出<code>污泥脱水间数据详情</code>的密码</p>
+<img src="https://img-blog.csdnimg.cn/d80d3e85b28d4fb7b67cd221b856dd10.png" style="zoom:67%;" />
+
+<p>打开流量，懵逼了，猜测被加密过，追踪TCP流发现</p>
+<p><img src="https://img-blog.csdnimg.cn/52db43206a334d3e950f52a9a91ab9c2.png"></p>
+<p>发现似乎密文<code>U2FsdGVkX19pczQKWsMcjgrJt8f09dSN</code></p>
+<p>来到<a target="_blank" rel="noopener" href="https://www.sojson.com/encrypt.html">这里</a>，联想fish</p>
+<p>解码得到<img src="https://img-blog.csdnimg.cn/85447d32f06243a1aa25c4088dae7e0c.png"></p>
+<p>得到<code>设备药剂间数据详情</code>压缩包密码，解压后又一压缩包和txt，txt最后说<code>年轻人，有时候眼见不一定为实！</code></p>
+<p>什么意思，莫非是伪加密，好家伙，一修复就好了</p>
+<p>解压又得到一流量</p>
+<p>无脑追踪流，0流就发现异常</p>
+<p><img src="https://img-blog.csdnimg.cn/2ae09c7c517f47b79b4cd96354ad8d07.png"></p>
+<p>把图片导出来，修改高度就能得到</p>
+<p><img src="https://img-blog.csdnimg.cn/7e9c664607dd4ad29b5240908c7c414c.png"></p>
+<h3 id="LED-BOOM"><a href="#LED-BOOM" class="headerlink" title="LED_BOOM"></a>LED_BOOM</h3><p>这题不难，认真读题很重要，搞安全一定要对一切信息很敏感</p>
+<p>这题当时没有认真读题，所以没有做出来</p>
+<p>先看题，题目在<a target="_blank" rel="noopener" href="http://ctfer.club/challenges#LED_BOOM-131">这儿</a></p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSFMM6.png"></p>
+<p>雪殇直接一眼顶针AES，我是一眼看不出来，得猜</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSFuxx.png"></p>
+<p>题干在这里，<code>强调三次</code>筛选一下s7comm，按照长度，会发现有三个length相同的包，细看发现了LED:On ，Off</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSA454.png"></p>
+<p>得到<code>585692787</code></p>
+<p>结合图片中的密文，<code>U2FsdGVkX19cOOV8qLVgcso8U4fse+7LirQKiHFkn9HU9BuwFAivH1siJXg/Rk6z</code>解秘一下</p>
+<p>在<a target="_blank" rel="noopener" href="https://www.sojson.com/encrypt_aes.html">这里</a>解码得到</p>
+<p><img src="https://s1.ax1x.com/2022/04/30/OSVMfH.png"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ncsubj"><span class="toc-number">1.</span> <span class="toc-text">ncsubj</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%96%9C%E6%AC%A2%E7%A7%BB%E5%8A%A8%E7%9A%84%E9%BB%91%E5%AE%A2"><span class="toc-number">2.</span> <span class="toc-text">喜欢移动的黑客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xyp07"><span class="toc-number">3.</span> <span class="toc-text">xyp07</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cryptolalia"><span class="toc-number">4.</span> <span class="toc-text">cryptolalia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LED-BOOM"><span class="toc-number">5.</span> <span class="toc-text">LED_BOOM</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

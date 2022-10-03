@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Misc_流量分析_基础 - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="不能鸽了，从考试周，鸽到现在，新建文件夹半个月了，今天必写出来
+开始咱们先说点流量分析常见的题目。
+flag能直接找到这部分题可能就难在谁有耐心吧，最简单的就是通过flag查找工具，直接找到flag,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Misc_流量分析_基础 - Charmersix"/>
+    <meta name="twitter:description" content="不能鸽了，从考试周，鸽到现在，新建文件夹半个月了，今天必写出来
+开始咱们先说点流量分析常见的题目。
+flag能直接找到这部分题可能就难在谁有耐心吧，最简单的就是通过flag查找工具，直接找到flag,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Misc_流量分析_基础 - Charmersix"/>
+    <meta property="og:description" content="不能鸽了，从考试周，鸽到现在，新建文件夹半个月了，今天必写出来
+开始咱们先说点流量分析常见的题目。
+flag能直接找到这部分题可能就难在谁有耐心吧，最简单的就是通过flag查找工具，直接找到flag,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Misc_流量分析_基础</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Misc_流量分析_基础</h1>
+        <div class="stuff">
+            <span>六月 17, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/flow/" rel="tag">flow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>不能鸽了，从考试周，鸽到现在，新建文件夹半个月了，今天必写出来</p>
+<p>开始咱们先说点流量分析常见的题目。</p>
+<h3 id="flag能直接找到"><a href="#flag能直接找到" class="headerlink" title="flag能直接找到"></a>flag能直接找到</h3><p>这部分题可能就难在谁有耐心吧，最简单的就是通过flag查找工具，直接找到flag，或者是通过常见编码后的flag</p>
+<p>常见的有这几种</p>
+<blockquote>
+<p>#默认字符关键字<br>flag,666c6167,Zmxh,&amp;#102,464C4147</p>
+<p>#默认正则关键字<br>flag{.+},666c6167\w+,Zmxh[\w=]+,&amp;#102.+</p>
+<p>#其他关键字<br>key,ctf,f1ag,ffllaagg,f-l-a-g</p>
+<p>#flag二进制格式<br>1100110011011000110000101100111</p>
+<p>#正则编码类<br>key{.<em>},ctf{.</em>},f1ag{.*}</p>
+<p>#正则匹配中文<br>[\u4E00-\u9FA5]+</p>
+<p>#百里挑一正则<br>.[a-f1234567890]{17}}</p>
+<p>#ip正则<br>\d+.\d+.\d+.\d+</p>
+<p>#flag反写<br>{.*}galf</p>
+<p>#安恒<br>dasctf</p>
+<p>cyberpeace{.*} </p>
+</blockquote>
+<p>还有一些流量包东西很杂，一条条翻太慢了，可以在跑一下string，就一目了然</p>
+<p>还有一些就是flag分段的，可能每个字母都在不同的包中，也可能分成了几段。</p>
+<p>这一块中，比较难的就是编码不常见的，那玩意看见了都不一定能猜到那是flag，更何况他再藏得深一点，像第二届网刃杯的</p>
+<p>ncsubj、xyp07和cryptolalia</p>
+<p>这个xyp07很奇妙，拿科莱一跑就出来了。</p>
+<p>cryptolalia非对称加密，这个看出来需要一定的经验。</p>
+<h3 id="能从流量包中提取出文件的"><a href="#能从流量包中提取出文件的" class="headerlink" title="能从流量包中提取出文件的"></a>能从流量包中提取出文件的</h3><p>这一块大部分都能通过导出文件这一操作来实现，当然有些时候用binwalk或者是formost分离出来，如果这个文件是在流量包中的，那么这两个工具提取可能没有那么顺利，比如说一个图片可能能提出来，但是损坏了，这样很影响后边的判断。但是如果是流量文件隐写了个文件，这俩工具还是挺好用的。</p>
+<p>导出文件操作呢，不熟悉wireshark的可能不会</p>
+<p>具体就是</p>
+<p><code>左上角文件—&gt;导出对象</code></p>
+<p><img src="https://s1.ax1x.com/2022/06/17/Xb0t3t.png"></p>
+<p>还有一种是流量包中存在被base64编码过的文件</p>
+<p>经典的菜刀666，之前也有写过，在<a href="https://charmersix.icu/2022/05/03/SkyMirror-WP-simple-flow/">这里</a></p>
+<h3 id="SQL盲注流量"><a href="#SQL盲注流量" class="headerlink" title="SQL盲注流量"></a>SQL盲注流量</h3><p>这一块在日志分析，流量分析中都会涉及，考到了也不难，就是那一种题型</p>
+<p>之前也在<a href="https://charmersix.icu/2022/04/29/SQLflow/">这里</a>写过</p>
+<p>之前没有提供脚本，这边给大家一个，但是需要根据具体题目自己改一改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#GET /index.php?act=news&amp;id=1%20and%20ascii(substr(((select%20concat_ws(char(94),%20flag)%20%20from%20db_flag.tb_flag%20%20limit%200,1)),%2038,%201))&gt;125</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">a = []</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span> (<span class="string">&quot;sqltest.pcapng&quot;</span>,<span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:<span class="comment">#读取pcap文件</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> f.readlines():</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">b&quot;id=1%20and%20ascii(substr(((select%20concat_ws(char(94),%20flag)%20%20from%20db_flag.tb_flag%20%20limit%200,1)),&quot;</span> <span class="keyword">in</span> i):</span><br><span class="line">            <span class="comment">#print(i)</span></span><br><span class="line">            a.append(i)<span class="comment">#把这些东西搞到a数组里</span></span><br><span class="line">a1 = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    <span class="comment">#print(i)</span></span><br><span class="line">    b = re.search(<span class="string">br&quot;%200,1\)\),%20(\d+),%201\)\)&quot;</span>,i).group(<span class="number">1</span>)</span><br><span class="line">    c = re.search(<span class="string">br&quot;&gt;(\d+) HTTP/1.1&quot;</span>,i).group(<span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(b)</span></span><br><span class="line">    <span class="comment">#print(c)</span></span><br><span class="line">    a1[<span class="built_in">int</span>(b)] = <span class="built_in">int</span>(c)</span><br><span class="line"><span class="comment">#从a开始调出来</span></span><br><span class="line"><span class="comment">#print(a1)</span></span><br><span class="line">flag =<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="number">1</span>,<span class="number">39</span>):</span><br><span class="line">    flag+=(<span class="built_in">chr</span>(a1[i]))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment">#整成一行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="USB流量分析"><a href="#USB流量分析" class="headerlink" title="USB流量分析"></a>USB流量分析</h3><p>这一块常考的就是键鼠，都考烂了，应该不会难，2022国赛换汤不换出了一个，也是给我整懵逼了，这里边分了两块，一部分是能跑出个压缩包，另一部分是密码，刚开始没意识到，跑出来rar损坏，然后把队友思路都整偏了，都在修rar，我的错我的错。</p>
+<p>比较难的，见过一个数位板<a href="https://charmersix.icu/2022/04/30/usb%20wireshark/">这里</a>写过</p>
+<p>还可能会出现一些手柄，刻字机啥的。</p>
+<p>然后推荐雪殇以及其他两位大佬共同写的一个工具，只能说tql</p>
+<p>工具在<a target="_blank" rel="noopener" href="https://github.com/jiayuqi7813/knm">这里</a></p>
+<h3 id="根据题目要求做题"><a href="#根据题目要求做题" class="headerlink" title="根据题目要求做题"></a>根据题目要求做题</h3><p>这部分一定要认真读题，可能并不是找flag，一定要看清楚让你找啥，比如说一些工控题目，webshell比如<a href="https://charmersix.icu/2022/04/29/webshell/">这个</a></p>
+<p>这部分里也有你从未接触过的知识，这样可以仔细看一下追踪流，找找有什么规律，比如2021国赛题目robot，之前也是写过</p>
+<p>还有就是第二届网刃杯：喜欢移动的黑客、LED_BOOM</p>
+<p>一定一定要认真读题，认真分析，认真找规律。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>流量分析大体思路</p>
+<blockquote>
+<ol>
+<li>拿到后，先看一下题目题干，然后先find</li>
+<li>如果没有找到，看一下是不是http，若果是先统计http请求看一下，或者是放到科莱里，总体看一下</li>
+<li>导出对象，看一下</li>
+<li>追踪流，挨个流看，如果很多，倒着看</li>
+<li>string跑一下</li>
+<li>是不是usb，跑脚本</li>
+<li>有没有隐写</li>
+<li>有没有大串编码</li>
+<li>从来没见过的协议，去百度</li>
+<li>记得把文件放010editor里看一下</li>
+</ol>
+</blockquote>
+<p>这部分还算是比较简单，算是基础吧，像那些WiFi，被加密过的流量，都还没有写，因为那些我也玩的不遛</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#flag%E8%83%BD%E7%9B%B4%E6%8E%A5%E6%89%BE%E5%88%B0"><span class="toc-number">1.</span> <span class="toc-text">flag能直接找到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%BD%E4%BB%8E%E6%B5%81%E9%87%8F%E5%8C%85%E4%B8%AD%E6%8F%90%E5%8F%96%E5%87%BA%E6%96%87%E4%BB%B6%E7%9A%84"><span class="toc-number">2.</span> <span class="toc-text">能从流量包中提取出文件的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL%E7%9B%B2%E6%B3%A8%E6%B5%81%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">SQL盲注流量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#USB%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">USB流量分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82%E5%81%9A%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">根据题目要求做题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

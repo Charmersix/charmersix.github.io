@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>(陇剑杯 2021) webshell系列 - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="这是一个大赛原题系列，总共七道题，题目在这儿
+（1）webshell ，想一想，应该是post传输，筛选一下post
+
+随便点开第一个看一下
+
+就有了，或者搜索一下password也可以
+（2）绝对,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="(陇剑杯 2021) webshell系列 - Charmersix"/>
+    <meta name="twitter:description" content="这是一个大赛原题系列，总共七道题，题目在这儿
+（1）webshell ，想一想，应该是post传输，筛选一下post
+
+随便点开第一个看一下
+
+就有了，或者搜索一下password也可以
+（2）绝对,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="(陇剑杯 2021) webshell系列 - Charmersix"/>
+    <meta property="og:description" content="这是一个大赛原题系列，总共七道题，题目在这儿
+（1）webshell ，想一想，应该是post传输，筛选一下post
+
+随便点开第一个看一下
+
+就有了，或者搜索一下password也可以
+（2）绝对,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">(陇剑杯 2021) webshell系列</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">(陇剑杯 2021) webshell系列</h1>
+        <div class="stuff">
+            <span>四月 29, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/flow/" rel="tag">flow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>这是一个大赛原题系列，总共七道题，题目在<a target="_blank" rel="noopener" href="http://ctfer.club/challenges#[%E9%99%87%E5%89%91%E6%9D%AF%202021]webshell%EF%BC%88%E9%97%AE1%EF%BC%89-88">这儿</a></p>
+<h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a><a target="_blank" rel="noopener" href="http://ctfer.club/challenges#[%E9%99%87%E5%89%91%E6%9D%AF%202021]webshell%EF%BC%88%E9%97%AE1%EF%BC%89-88">（1）</a></h3><p>webshell ，想一想，应该是post传输，筛选一下post</p>
+<p><img src="https://img-blog.csdnimg.cn/ff898474bad8463391a5d631b58b3f59.png" alt="ws1.1.png"></p>
+<p>随便点开第一个看一下</p>
+<p><img src="https://img-blog.csdnimg.cn/d4eec08bbc9b43d59b4f3ed1bc2e78b6.png"></p>
+<p>就有了，或者搜索一下password也可以</p>
+<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>绝对路径的话有两个部分组成，一个是网站根目录，另一个是相对路径</p>
+<p>导出HTTP对象，一个个找，在index.php%3fm=home&amp;a=assign_resume_tpl文件中发现了含有phpinfo()页面的东西</p>
+<p><img src="https://img-blog.csdnimg.cn/2c42b116b7f74c7691be0e53929518f5.png"></p>
+<p>将其后缀变更为.html用浏览器打开，先查找网站根路径为/var/www/html</p>
+<p><img src="https://img-blog.csdnimg.cn/dba562a9c22244738cb851e2de52850f.png"></p>
+<p>在PHP变量中查找.log后缀的日志文件，路径为data/Runtime/Logs/Home/21_08_07.log，两个拼起来就是答案</p>
+<p><img src="https://img-blog.csdnimg.cn/55d6ef0a455d4bf080ff14aa79111a0c.png"></p>
+<p>我看别人也有这样做的</p>
+<p>筛选post，（1）里说过</p>
+<p>跟包，跟到332</p>
+<p><img src="https://img-blog.csdnimg.cn/f240d306007346b29ce3756983708a12.png"></p>
+<p>拼接一下就有了</p>
+<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>说到权限，可能会执行whoami命令，我们全局搜索whoami，找到第317号数据请求包中包含 whoami命令，第319号响应包中包含结果</p>
+<p><img src="https://img-blog.csdnimg.cn/50adfcce3a484a4e90154b7ce37675cf.png#pic_center"></p>
+<p>根据（2）的phpinfo()，其实可以得到很多东西，比如这一题的答案</p>
+<p><img src="https://img-blog.csdnimg.cn/f3ec412d83eb4377af547681cd0ef26a.png#pic_center"></p>
+<h3 id="（4）"><a href="#（4）" class="headerlink" title="（4）"></a>（4）</h3><p>借助（2）的分析，很容易就能得到</p>
+<p>答案是1.php</p>
+<h3 id="（5）"><a href="#（5）" class="headerlink" title="（5）"></a>（5）</h3><p>第一种方法是猜测，一般来说代理工具客户端就是frpc，然后搜索一下，还真是</p>
+<p><img src="https://img-blog.csdnimg.cn/897ef53484594f13b7f380087d18dff6.png#pic_center"></p>
+<p>第二种方法，充分利用wireshark 导出对象的功能，导出HTTP对象，然后保存下来</p>
+<p>1(51).php就是查看上传后的木马文件目录</p>
+<p><img src="https://img-blog.csdnimg.cn/4e5cde1d3c354fe7a684b350455ca36f.png#pic_center"></p>
+<p>还有一种方法是我最不推荐的，不好理解，也有点麻烦</p>
+<p>学习了别的师傅的WP，</p>
+<p>将344包TCP流Urldecode，发现一个<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/SUBSTR()%E5%87%BD%E6%95%B0/2694062?fr=aladdin">substr</a>,从第2位开始截取，所以下面类似base64的编码去掉前两位（截图中少复制一个%3D，末尾缺个等号）然后继续urldecode一波。</p>
+<p><img src="https://img-blog.csdnimg.cn/0d41fe56d8f54ea69b2043f1f933015c.png#pic_center"></p>
+<p>然后继续urldecode一波（需要用可以解码特殊字符的，强烈安利<a target="_blank" rel="noopener" href="https://ctf.mzy0.com/CyberChef3/#recipe=From_Base64%EF%BC%88Base64%E8%BD%AC%E6%8D%A2%EF%BC%89('A-Za-z0-9%2B/%3D',true)&input=TDNaaGNpOTNkM2N2YUhSdGJDOW1jbkJqTG1sdWFRPT0">CyberChef</a>）</p>
+<p><img src="https://img-blog.csdnimg.cn/95810334d3114712939e437a4663cc7c.png#pic_center"></p>
+<h3 id="（6）（7）"><a href="#（6）（7）" class="headerlink" title="（6）（7）"></a>（6）（7）</h3><p>这一题，咱们采用（2）中相同的做法，把所有的HTTP对象导出，然后挨个看，就会发现1(6).php中有个aaa=</p>
+<p>就很有可能是上传的袋里配置文件。</p>
+<p><img src="https://img-blog.csdnimg.cn/e06379629a5c4adc88742a53fb4ed7bd.png#pic_center"></p>
+<p>（当然这题你也可以追踪流来看，如果不嫌麻烦的话）</p>
+<p>还是<a target="_blank" rel="noopener" href="https://ctf.mzy0.com/CyberChef3/#recipe=URL_Decode()From_Hex%EF%BC%8816%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89('Auto')&input=JTQwaW5pX3NldCglMjJkaXNwbGF5X2Vycm9ycyUyMiUyQyUyMCUyMjAlMjIpJTNCJTQwc2V0X3RpbWVfbGltaXQoMCklM0JmdW5jdGlvbiUyMGFzZW5jKCUyNG91dCklN0JyZXR1cm4lMjAlMjRvdXQlM0IlN0QlM0JmdW5jdGlvbiUyMGFzb3V0cHV0KCklN0IlMjRvdXRwdXQlM0RvYl9nZXRfY29udGVudHMoKSUzQm9iX2VuZF9jbGVhbigpJTNCZWNobyUyMCUyMjI4JTIyLiUyMmY3MiUyMiUzQmVjaG8lMjAlNDBhc2VuYyglMjRvdXRwdXQpJTNCZWNobyUyMCUyMmY0ODYlMjIuJTIyMTFmNCUyMiUzQiU3RG9iX3N0YXJ0KCklM0J0cnklN0IlMjRmJTNEYmFzZTY0X2RlY29kZShzdWJzdHIoJTI0X1BPU1QlNUIlMjJqNjgwNzEzMDE1OThmJTIyJTVEJTJDMikpJTNCJTI0YyUzRCUyNF9QT1NUJTVCJTIyeGE1ZDYwNmU2Nzg4M2ElMjIlNUQlM0IlMjRjJTNEc3RyX3JlcGxhY2UoJTIyJTVDciUyMiUyQyUyMiUyMiUyQyUyNGMpJTNCJTI0YyUzRHN0cl9yZXBsYWNlKCUyMiU1Q24lMjIlMkMlMjIlMjIlMkMlMjRjKSUzQiUyNGJ1ZiUzRCUyMiUyMiUzQmZvciglMjRpJTNEMCUzQiUyNGklM0NzdHJsZW4oJTI0YyklM0IlMjRpJTJCJTNEMiklMjRidWYuJTNEdXJsZGVjb2RlKCUyMiUyNSUyMi5zdWJzdHIoJTI0YyUyQyUyNGklMkMyKSklM0JlY2hvKCU0MGZ3cml0ZShmb3BlbiglMjRmJTJDJTIyYSUyMiklMkMlMjRidWYpJTNGJTIyMSUyMiUzQSUyMjAlMjIpJTNCJTNCJTdEY2F0Y2goRXhjZXB0aW9uJTIwJTI0ZSklN0JlY2hvJTIwJTIyRVJST1IlM0ElMkYlMkYlMjIuJTI0ZS0lM0VnZXRNZXNzYWdlKCklM0IlN0QlM0Jhc291dHB1dCgpJTNCZGllKCklM0ImajY4MDcxMzAxNTk4Zj1GQkwzWmhjaTkzZDNjdmFIUnRiQzltY25CakxtbHVhUSUzRCUzRCZ4YTVkNjA2ZTY3ODgzYT01QjYzNkY2RDZENkY2RTVEMEE3MzY1NzI3NjY1NzI1RjYxNjQ2NDcyMjAzRDIwMzEzOTMyMkUzMTM2MzgyRTMyMzMzOTJFMzEzMjMzMEE3MzY1NzI3NjY1NzI1RjcwNkY3Mjc0MjAzRDIwMzczNzM3MzgwQTc0NkY2QjY1NkUzRDU4NjEzMzQyNEE2NjMyNkMzNTY1NkU2RDRFMzY1QTM3NDEzODZENzYwQTBBNUI3NDY1NzM3NDVGNzM2RjYzNkIzNTVEMEE3NDc5NzA2NTIwM0QyMDc0NjM3MDBBNzI2NTZENkY3NDY1NUY3MDZGNzI3NDIwM0QzODMxMzEzMTBBNzA2Qzc1Njc2OTZFMjAzRDIwNzM2RjYzNkI3MzM1MEE3MDZDNzU2NzY5NkU1Rjc1NzM2NTcyMjAzRDIwMzA0ODQ0NDY3NDMxMzY2MzRDNTE0QTBBNzA2Qzc1Njc2OTZFNUY3MDYxNzM3Mzc3NjQyMDNEMjA0QTU0NEUzMjM3MzY0NzcwMEE3NTczNjU1RjY1NkU2MzcyNzk3MDc0Njk2RjZFMjAzRDIwNzQ3Mjc1NjUwQTc1NzM2NTVGNjM2RjZENzA3MjY1NzM3MzY5NkY2RTIwM0QyMDc0NzI3NTY1MEE">CyberChef</a></p>
+<p>解码一下，就能发现这题的flag</p>
+<p>同时，会惊奇的发现（7）的flag</p>
+<p><img src="https://img-blog.csdnimg.cn/68ca6e3fc49b49cfaf8e5f7b7aa2ee18.png#pic_center"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">（1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">（2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">（3）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">（4）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%885%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">（5）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%EF%BC%887%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">（6）（7）</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

