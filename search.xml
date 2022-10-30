@@ -2151,7 +2151,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Web_6_SSRF/JWT/XXE</title>
+    <title>Web_7_SSRF/JWT/XXE</title>
     <url>/2022/10/30/web_7_ssrf/</url>
     <content><![CDATA[<h1 id="第十一课-SSRF、JWT、XXE"><a href="#第十一课-SSRF、JWT、XXE" class="headerlink" title="第十一课 SSRF、JWT、XXE"></a>第十一课 SSRF、JWT、XXE</h1><h2 id="第一节-SSRF的漏洞利用"><a href="#第一节-SSRF的漏洞利用" class="headerlink" title="第一节 SSRF的漏洞利用"></a>第一节 SSRF的漏洞利用</h2><h3 id="0x1-ssrf原理解析"><a href="#0x1-ssrf原理解析" class="headerlink" title="0x1 ssrf原理解析"></a>0x1 ssrf原理解析</h3><h4 id="什么是ssrf"><a href="#什么是ssrf" class="headerlink" title="什么是ssrf"></a>什么是ssrf</h4><blockquote>
 <p>服务端请求伪造，攻击者向服务端发送包含恶意url链接的请求。ssrf常被用于探测攻击者无法访问的网络区域，比如内网或是防火墙访问限制的主机。</p>
