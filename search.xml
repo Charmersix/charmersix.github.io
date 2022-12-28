@@ -1284,8 +1284,7 @@
   <entry>
     <title>Web_XSS</title>
     <url>/2022/05/04/web_XSS/</url>
-    <content><![CDATA[<p>xss也算是web安全必备吧，一直没学，现在补一补</p>
-<p>在这之前先搞清楚xss的原理</p>
+    <content><![CDATA[<p>在这之前先搞清楚xss的原理</p>
 <h3 id="XSS的原理和分类"><a href="#XSS的原理和分类" class="headerlink" title="XSS的原理和分类"></a>XSS的原理和分类</h3><p>xss呢就是在web页面插入一段恶意的script代码，用户浏览页面的的时候，嵌入web里的script代码就执行，然后就达到恶意攻击用户的目的。xss是针对用户层面的攻击。</p>
 <p>xss有三类：存储型、反射型和DOM型；</p>
 <p>存储型XSS：</p>
