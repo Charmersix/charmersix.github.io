@@ -17,22 +17,14 @@
 <link rel="stylesheet" href="/css/style.css">
 
     <link rel="shortcut icon" href="/images/logo.png">
-    
-<link rel="stylesheet" href="/font/css/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/regular.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/solid.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/brands.min.css">
-
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {}
     KEEP.hexo_config = {"hostname":"charmersix.icu","root":"/","language":"en","path":"search.json"}
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/logo.png","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline.charmersix.icu","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/logo.png","avatar":"/images/head.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://waline-charmersix.vercel.app/","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
     KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
@@ -474,68 +466,34 @@
     </div>
     
         
-            .waline-comment-container {
-  #waline-comment {
-    --waline-theme-color var(--primary-color)
-    --waline-active-color var(--primary-color-light-1)
-    --waline-color var(--text-color-3)
-    --waline-bgcolor var(--background-color-1)
-    --waline-border-color var(--border-color)
-    --waline-disable-bgcolor var(--background-color-2)
-    --waline-disable-color var(--text-color-3)
-    --waline-code-bgcolor rgba(40, 44, 52, 0.9)
-    --waline-info-bgcolor var(--background-color-3)
-    --waline-info-color var(--text-color-3)
-    --waline-border 1px solid var(--waline-border-color)
+            
 
-    input
-    textarea {
-      position relative
-      box-sizing border-box
-      padding 0.6rem 1rem
-      color var(--text-color-3)
-      background transparent
-      border-radius 0.4rem
-      outline none
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://waline-charmersix.vercel.app/',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
 
-      &:hover {
-        background var(--background-color-2)
-      }
-    }
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
 
-
-    .wl-header {
-      box-sizing border-box
-      padding 0
-    }
-
-
-    button {
-      transition-t("color, background", "0, 0", "0.2, 0.2", "ease, ease")
-    }
-
-    .wl-logout-btn {
-      svg {
-        width 1rem
-        height 1rem
-        path {
-          color var(--background-color-3)
-        }
-      }
-    }
-
-    .wl-panel {
-      border-radius 0.4rem
-    }
-
-    .wl-count
-    .wl-num
-    .wl-preview h4
-    .wl-like span {
-      color var(--text-color-4)
-    }
-  }
-}
 
 
         
@@ -707,60 +665,36 @@
 
 
 
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/header-shrink.js"></script>
-
-<script src="/js/back2top.js"></script>
-
-<script src="/js/dark-light-toggle.js"></script>
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
 
 
 
 
-
-    
-<script src="/js/local-search.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
 
 
 
-
-    
-<script src="/js/code-block.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
 
 
 
-
-    
-<script src="/js/lazyload.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
 
 
 <div class="post-scripts pjax">
     
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
         
-<script src="/js/post-helper.js"></script>
-
-        
-            
-<script src="/js/libs/anime.min.js"></script>
-
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
         
         
-            
-<script src="/js/toc.js"></script>
-
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
         
     
 </div>
 
 
-    
-<script src="/js/libs/pjax.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', () => {
         window.pjax = new Pjax({
