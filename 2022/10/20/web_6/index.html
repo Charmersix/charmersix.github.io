@@ -1,76 +1,260 @@
-
 <!DOCTYPE html>
-<html lang="en" class="loading">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Web_6_反序列化 - Charmersix</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="第一节 php基础、类与对象读文档类与对象
-0x1 php中的面向对象在前面的课程中，我们使用的最小命令单元，是函数或者语言结构，我们可以通过某个函数（比如phpinfo）来执行某个操作，这种使用单,"> 
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Charmersix" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Charmersix">
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <title>
+        
+            Web_6_反序列化 |
+        
+        Charmersix&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Web_6_反序列化 - Charmersix"/>
-    <meta name="twitter:description" content="第一节 php基础、类与对象读文档类与对象
-0x1 php中的面向对象在前面的课程中，我们使用的最小命令单元，是函数或者语言结构，我们可以通过某个函数（比如phpinfo）来执行某个操作，这种使用单,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="Charmersix"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Web_6_反序列化 - Charmersix"/>
-    <meta property="og:description" content="第一节 php基础、类与对象读文档类与对象
-0x1 php中的面向对象在前面的课程中，我们使用的最小命令单元，是函数或者语言结构，我们可以通过某个函数（比如phpinfo）来执行某个操作，这种使用单,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
+    <link rel="shortcut icon" href="/images/head.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"charmersix.icu","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/head.png","avatar":"/images/ta.jpg","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":true},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":"https://lsvf4zhg.api.lncldglobal.com","reaction":true,"version":2}},"post":{"author_label":{"enable":false,"auto":false,"custom_label_list":["CTFer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
 <meta name="generator" content="Hexo 5.4.2"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Charmersix</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://charmersix.icu"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">Web_6_反序列化</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
 </div>
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">Web_6_反序列化</h1>
-        <div class="stuff">
-            <span>十月 20, 2022</span>
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
             
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Study/" rel="tag">Study</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/unserialize/" rel="tag">unserialize</a></li></ul>
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Charmersix&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/link"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/link">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
 
 
         </div>
-        <div class="content markdown">
-            <h2 id="第一节-php基础、类与对象"><a href="#第一节-php基础、类与对象" class="headerlink" title="第一节 php基础、类与对象"></a>第一节 php基础、类与对象</h2><p>读文档类与对象</p>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Web_6_反序列化</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/ta.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Charmersix</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-10-20 00:00:00</span>
+        <span class="mobile">2022-10-20 00:00</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-04-09 16:39:50</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Study/">Study</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/unserialize/">unserialize</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>9.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>39 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="第一节-php基础、类与对象"><a href="#第一节-php基础、类与对象" class="headerlink" title="第一节 php基础、类与对象"></a>第一节 php基础、类与对象</h2><p>读文档类与对象</p>
 <h3 id="0x1-php中的面向对象"><a href="#0x1-php中的面向对象" class="headerlink" title="0x1 php中的面向对象"></a>0x1 php中的面向对象</h3><p>在前面的课程中，我们使用的最小命令单元，是函数或者语言结构，我们可以通过某个函数（比如phpinfo）来执行某个操作，这种使用单独函数来完成特定功能的语言模式，我们叫做面向过程编程。面向过程编程方法的优势是代码简单，开发迅速，不足之处就是如果功能、逻辑、数据进行大量的增长，这时候，代码维护难度将会成倍的增加，扩展性、可移植性就大大降低。</p>
 <p>于是以Java为代表的面向对象编程顺势而出，解决了复杂逻辑空间下的编码模式问题，php在最开始的纯面向过程逐步向面向对象模式改进，在保持其一贯的简单易学、编码快速的优势下，同向对象之间取得平衡。</p>
 <h4 id="面向对象的思想"><a href="#面向对象的思想" class="headerlink" title="面向对象的思想"></a>面向对象的思想</h4><p>面向对象的设计思想主要有</p>
@@ -171,7 +355,12 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$name</span> = <span class="string">&quot;charmersix&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$name</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>可以得到序列化字符串</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210031520075.png" alt="image-20221002180711339"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210031520075.png"
+                      alt="image-20221002180711339"
+                ></p>
 <p>其中第一个s表示被序列化的对象类型,s指string</p>
 <p>后面紧跟一个冒号和数字,表示属性的长度,后面冒号+双引号表示属性的内容</p>
 <p>我们也可以尝试序列化一个我们自定义的类</p>
@@ -232,7 +421,12 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&quot;panda&quot;</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$color</span> = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$move</span> = <span class="string">&quot;step&quot;</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;i can eat&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;i can sleep&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;color&#x27;</span>];</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span> -&gt; name = <span class="string">&quot;tiger&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// $a = new Animal();</span></span><br><span class="line"><span class="comment">// echo serialize ($a);</span></span><br><span class="line"><span class="variable">$b</span> = <span class="string">&#x27;O:6:&quot;Animal&quot;:2:&#123;s:4:&quot;name&quot;;s:5:&quot;panda&quot;;s:5:&quot;color&quot;;s:3:&quot;red&quot;;&#125;&#x27;</span>;</span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span> -&gt; name;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到,我们这里反序列化的属性值,不管是不是panda,最终反序列化后,都变成了tiger,所以wakeup方法会在反序列化前被调用,用来提前处理属性的值</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210031935656.png" alt="image-20221003193513620"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202210031935656.png"
+                      alt="image-20221003193513620"
+                ></p>
 <h4 id="construct和destruct方法"><a href="#construct和destruct方法" class="headerlink" title="construct和destruct方法"></a>construct和destruct方法</h4><p>和上面方法类似,这里成为构造函数和析构函数</p>
 <p>表示对象在实例化时执行的函数和对象要销毁前执行的函数</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&quot;panda&quot;</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$color</span> = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$move</span> = <span class="string">&quot;step&quot;</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;i can eat&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;i can sleep&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;color&#x27;</span>];</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span> -&gt; name = <span class="string">&quot;tiger&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;对象被new时执行&lt;br&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;对象被销毁时执行&lt;br&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">Animal</span>();</span><br></pre></td></tr></table></figure>
@@ -335,7 +529,12 @@
 <p>可以看到扔掉了c这个属性的值,继续增加system的数量就可以注入我们想要的属性</p>
 <h2 id="第三节-phar的反序列化"><a href="#第三节-phar的反序列化" class="headerlink" title="第三节 phar的反序列化"></a>第三节 phar的反序列化</h2><h3 id="0x6-什么是phar"><a href="#0x6-什么是phar" class="headerlink" title="0x6 什么是phar"></a>0x6 什么是phar</h3><p>phar是一类文件的后缀名称，也是php协议的一种</p>
 <p>phar可以将多个php文件合并到一个独立的压缩包，相对独立，不用解压到硬盘即可运行php脚本，支持web服务器和命令行运行</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301291556581.png" alt="image-20230129155652448"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301291556581.png"
+                      alt="image-20230129155652448"
+                ></p>
 <h3 id="0x7-基于phar的反序列化"><a href="#0x7-基于phar的反序列化" class="headerlink" title="0x7 基于phar的反序列化"></a>0x7 基于phar的反序列化</h3><h4 id="phar怎么用"><a href="#phar怎么用" class="headerlink" title="phar怎么用"></a>phar怎么用</h4><p>正常来说文件包含是这样的</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br></pre></td></tr></table></figure>
 
@@ -351,9 +550,14 @@
 <p>所以phar就可以认为是类似于Java的一种jar包, 将相对独立的多个php文件打包在一起, 组成一个独立的模块供其他应用调用, 或者干脆自己打包为一个独立的应用, 类似于我们<code>bp.jar</code></p>
 <h4 id="phar是怎么生成的"><a href="#phar是怎么生成的" class="headerlink" title="phar是怎么生成的"></a>phar是怎么生成的</h4><p>那么如何打包一个phar文件呢,首先改一下配置文件</p>
 <blockquote>
-<p>[Phar]<br>; <a target="_blank" rel="noopener" href="http://php.net/phar.readonly">http://php.net/phar.readonly</a><br>phar.readonly = Off</p>
+<p>[Phar]<br>; <a class="link"   target="_blank" rel="noopener" href="http://php.net/phar.readonly" >http://php.net/phar.readonly<i class="fas fa-external-link-alt"></i></a><br>phar.readonly = Off</p>
 </blockquote>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301291602388.png" alt="image-20230129160252331"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301291602388.png"
+                      alt="image-20230129160252331"
+                ></p>
 <p>然后我们自己着手写一下</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&#x27;flag.phar&#x27;</span>);</span><br><span class="line"><span class="comment">//phar已经是个对象，然后调用方法</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">buildFromDirectory</span>(<span class="title function_ invoke__">dirname</span>(<span class="keyword">__FILE__</span>).<span class="string">&#x27;/project&#x27;</span>);</span><br><span class="line"><span class="comment">//public PharData::buildFromDirectory(string $directory)</span></span><br><span class="line"><span class="comment">//dirname() 函数返回路径中的目录名称部分。</span></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="variable">$phar</span>-&gt; <span class="title function_ invoke__">createDefalutStub</span>(<span class="string">&#x27;index.php&#x27;</span>));</span><br><span class="line"><span class="comment">//final public static Phar::createDefaultStub(?string $index = null, ?string $webIndex = null)</span></span><br></pre></td></tr></table></figure>
 
@@ -365,8 +569,18 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//include.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./flag.phar&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>最终我们执行一下<code>include.php</code>, 就可以读取到flag内容</p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301291918762.png" alt="image-20230129191830604"></p>
-<p>我们在包含的时候也可以不加<code>phar</code>后缀, 因为php文件没有后缀也是能读取的, like this<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292153134.png" alt="image-20230129215302039"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301291918762.png"
+                      alt="image-20230129191830604"
+                ></p>
+<p>我们在包含的时候也可以不加<code>phar</code>后缀, 因为php文件没有后缀也是能读取的, like this<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292153134.png"
+                      alt="image-20230129215302039"
+                ></p>
 <h4 id="phar是怎么反序列化的"><a href="#phar是怎么反序列化的" class="headerlink" title="phar是怎么反序列化的"></a>phar是怎么反序列化的</h4><blockquote>
 <p>比方说这里有一个题目</p>
 <p>文件上传， 但是不让上传php、ini、htaccess（黑名单）就可以尝试上传phar文件, phar文件里就有可能用到了<code>file_exists()</code>, 就可以利用反序列化</p>
@@ -375,18 +589,38 @@
 <p>当使用<code>phar::getMetadata</code>方法时, 会进行反序列化, 我们本地测试一下</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hack</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;hack class destruct&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$h</span> = <span class="keyword">new</span> <span class="title function_ invoke__">hack</span>();</span><br><span class="line"><span class="comment">//执行析构</span></span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&#x27;flag.phar&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt; <span class="title function_ invoke__">buildFromDirectory</span>(<span class="title function_ invoke__">dirname</span>(<span class="keyword">__FILE__</span>).<span class="string">&#x27;/project&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt; <span class="title function_ invoke__">setMetadata</span>(<span class="variable">$h</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt; <span class="title function_ invoke__">setStub</span>(<span class="variable">$phar</span>-&gt; <span class="title function_ invoke__">createDefaultStub</span>(<span class="string">&#x27;flag.php&#x27;</span>,<span class="string">&#x27;index.php&#x27;</span>));</span><br></pre></td></tr></table></figure>
 
-<p>我们打开phar文件可以发现, 出现了序列化的strings<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292235095.png" alt="image-20230129223513002"></p>
+<p>我们打开phar文件可以发现, 出现了序列化的strings<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292235095.png"
+                      alt="image-20230129223513002"
+                ></p>
 <p>执行之后, 发现本地生成了<code>flag.phar</code>, 然后尝试<code>getMetadata</code>, 看看能否反序列化hack类</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hack</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;hack class destruct&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&#x27;flag.phar&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt; <span class="title function_ invoke__">getMetadata</span>();</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292253400.png" alt="image-20230129225356303"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292253400.png"
+                      alt="image-20230129225356303"
+                ></p>
 <p>可以发现时成功反序列化hack类</p>
 <p>那么有没有可以自动反序列化的方法呢, 当然有, 通过尝试, 我们发现<code>include</code>协议和<code>phar</code>协议都可以反序列化</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//include.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hack</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;hack class destruct&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">file_exists</span>(<span class="string">&#x27;phar://flag.phar&#x27;</span>);</span><br><span class="line"><span class="comment">//include &#x27;flag.phar&#x27;;</span></span><br><span class="line"><span class="comment">//这里地址可以精确到/flag.phar/flag.php, 也可以只写到/flag.phar, 因为在index.php里用到了createDefaultStub缺省方法</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292256447.png" alt="image-20230129225621351"></p>
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292257459.png" alt="image-20230129225729348"></p>
-<p>那么为什么这个协议就可以反序列化呢, 我们可以看一下php的<a target="_blank" rel="noopener" href="https://github.com/php/php-src">源码</a>, 具体可以看<a target="_blank" rel="noopener" href="https://github.com/php/php-src/blob/master/main/streams/streams.c">这里的1874行</a></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292256447.png"
+                      alt="image-20230129225621351"
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202301292257459.png"
+                      alt="image-20230129225729348"
+                ></p>
+<p>那么为什么这个协议就可以反序列化呢, 我们可以看一下php的<a class="link"   target="_blank" rel="noopener" href="https://github.com/php/php-src" >源码<i class="fas fa-external-link-alt"></i></a>, 具体可以看<a class="link"   target="_blank" rel="noopener" href="https://github.com/php/php-src/blob/master/main/streams/streams.c" >这里的1874行<i class="fas fa-external-link-alt"></i></a></p>
 <p>能使用<code>phar伪协议</code>的地方,就能自动反序列化<code>metaData</code>里面的数据</p>
 <p>具体哪些函数可以用<code>phar协议</code>这里做一个汇总, 可以说是比较全面的</p>
 <table>
@@ -462,18 +696,43 @@
 <p>首先我们来看一下本地<code>session.serialize_handler</code>的不同有什么影响, 这里我们再写一个<code>phpinfo</code></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//phpinfo.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">phpinfo</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302041919786.png" alt="image-20230204191912630"></p>
-<p>可以看到原始的是<code>php</code>, 这里我们获取一下session试试, 我们可以在本地看到session内容<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302041922727.png" alt="image-20230204192254625"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302041919786.png"
+                      alt="image-20230204191912630"
+                ></p>
+<p>可以看到原始的是<code>php</code>, 这里我们获取一下session试试, 我们可以在本地看到session内容<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302041922727.png"
+                      alt="image-20230204192254625"
+                ></p>
 <p>然后我们换一个<code>handler</code></p>
-<p>来到配置文件修改一下<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302041932948.png" alt="image-20230204193230833"></p>
-<p>可以发现明显的不同<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302042341858.png"></p>
+<p>来到配置文件修改一下<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302041932948.png"
+                      alt="image-20230204193230833"
+                ></p>
+<p>可以发现明显的不同<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302042341858.png"
+                     
+                ></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ini: session.serialize_handler = php</span><br><span class="line">session: user|O:<span class="number">4</span>:<span class="string">&quot;User&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;name&quot;</span>;s:<span class="number">10</span>:<span class="string">&quot;Charmersix&quot;</span>;&#125;</span><br><span class="line"></span><br><span class="line">ini:  session.serialize_handler = php_serialize</span><br><span class="line">session: a:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;user&quot;</span>;O:<span class="number">4</span>:<span class="string">&quot;User&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;name&quot;</span>;s:<span class="number">10</span>:<span class="string">&quot;Charmersix&quot;</span>;&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果我们存储的是<code>php_serialize</code>形式, 然后再用<code>php</code>这种形式去读取, 就会出现一个反序列化的情况.</p>
 <p>比如这样</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:<span class="number">4</span>:<span class="string">&quot;User&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;name&quot;</span>;s:<span class="number">10</span>:<span class="string">&quot;Charmersix&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这样就可以把<code>|</code>后面的反序列化<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302050111775.png" alt="20200309232031-83c7666e-6219-1"></p>
+<p>这样就可以把<code>|</code>后面的反序列化<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302050111775.png"
+                      alt="20200309232031-83c7666e-6219-1"
+                ></p>
 <p>这里我们做一个题目试试, 由于这个题目曾经出现过<code>ctfshow</code>平台的年初挑战, 所以是可以免费出现的, 别的一些<code>ctfshow</code>会员题目由于担心侵权, 所以题目源码就尽量不会出现在我的文章里</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;class.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">ini_set</span>(<span class="string">&quot;session.serialize_handler&quot;</span>, <span class="string">&quot;php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;phpinfo&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="title function_ invoke__">phpinfo</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="string">&quot;class.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$happy</span>=<span class="keyword">new</span> <span class="title class_">Happy</span>();</span><br><span class="line"><span class="variable">$happy</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -501,121 +760,348 @@
 <p>最终payload</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O:<span class="number">5</span>:\<span class="string">&quot;Happy\&quot;:1:&#123;s:5:\&quot;happy\&quot;;O:5:\&quot;_New_\&quot;:3:&#123;s:5:\&quot;daniu\&quot;;O:5:\&quot;_New_\&quot;:3:&#123;s:5:\&quot;daniu\&quot;;O:4:\&quot;Year\&quot;:1:&#123;s:6:\&quot;zodiac\&quot;;N;&#125;s:5:\&quot;robot\&quot;;s:6:\&quot;zodiac\&quot;;s:8:\&quot;notrobot\&quot;;s:11:\&quot;/etc/passwd\&quot;;&#125;s:5:\&quot;robot\&quot;;N;s:8:\&quot;notrobot\&quot;;N;&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>发包, 们会发现他这里有一个<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302072206347.png" alt="image-20230207220632124"></p>
-<p>所以我们需要把cookie补上, 成功<img src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302072207463.png" alt="image-20230207220718359"></p>
+<p>发包, 们会发现他这里有一个<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302072206347.png"
+                      alt="image-20230207220632124"
+                ></p>
+<p>所以我们需要把cookie补上, 成功<img  
+                     lazyload
+                     alt="image"
+                     data-src="https://blog-1308152021.cos.ap-beijing.myqcloud.com/image/202302072207463.png"
+                      alt="image-20230207220718359"
+                ></p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
+            </div>
+
             
-                <ul id="audio-list" style="display:none">
+
+            
+                <ul class="post-tags-box">
                     
-                        
-                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Web/">#Web</a>&nbsp;
+                        </li>
                     
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
+                        <li class="tag-item">
+                            <a href="/tags/Study/">#Study</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/unserialize/">#unserialize</a>&nbsp;
+                        </li>
                     
                 </ul>
             
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/10/30/web_7_ssrf/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_7_SSRF/JWT/XXE</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2022/09/20/web_4/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Web_4_PHP文件上传</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+                <div class="comment-container">
+                    
+<div class="comments-container">
+    <div id="comments-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments"></i>&nbsp;Comments
+    </div>
+    
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <script data-pjax src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          function loadWaline() {
+            Waline.init({
+              el: '#waline-comment',
+              serverURL: 'https://lsvf4zhg.api.lncldglobal.com',
+              lang: 'en' || 'zh-CN',
+              comment: '.post-comments-count',
+              reaction: 'true' === 'true'
+            })
+          }
+
+          if ('true' === 'true') {
+            setTimeout(() => {
+              loadWaline()
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadWaline)
+          }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-php%E5%9F%BA%E7%A1%80%E3%80%81%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-text">第一节 php基础、类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x1-php%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-text">0x1 php中的面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%80%9D%E6%83%B3"><span class="nav-text">面向对象的思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#php%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">php面向对象的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB"><span class="nav-text">聚类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%81%E8%A3%85"><span class="nav-text">封装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB"><span class="nav-text">隔离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-text">继承</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E6%80%81"><span class="nav-text">多态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x2-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-text">0x2 类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95%E6%9D%83%E9%99%90"><span class="nav-text">类的属性和方法权限</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#public%E6%9D%83%E9%99%90"><span class="nav-text">public权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#protected%E6%9D%83%E9%99%90"><span class="nav-text">protected权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#private%E6%9D%83%E9%99%90"><span class="nav-text">private权限</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">类的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7"><span class="nav-text">静态属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#final%E5%B1%9E%E6%80%A7"><span class="nav-text">final属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">类的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-text">接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#trait"><span class="nav-text">trait</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E7%B1%BB"><span class="nav-text">匿名类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">对象序列化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-php%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">第二节 php的序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x3-%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">0x3 序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">反序列化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x4-PHP%E4%B8%AD%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="nav-text">0x4 PHP中的魔术方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sleep%E5%92%8Cwakeup%E6%96%B9%E6%B3%95"><span class="nav-text">sleep和wakeup方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#construct%E5%92%8Cdestruct%E6%96%B9%E6%B3%95"><span class="nav-text">construct和destruct方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#call%E5%92%8CcallStatic%E6%96%B9%E6%B3%95"><span class="nav-text">call和callStatic方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get%E3%80%81set%E5%92%8Cisset%E3%80%81unset"><span class="nav-text">get、set和isset、unset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tostring%E6%96%B9%E6%B3%95"><span class="nav-text">tostring方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#invoke%E6%96%B9%E6%B3%95"><span class="nav-text">invoke方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-state%E6%96%B9%E6%B3%95"><span class="nav-text">set_state方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#debugInfo%E6%96%B9%E6%B3%95"><span class="nav-text">debugInfo方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x5-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E7%9A%84%E7%BB%95%E8%BF%87"><span class="nav-text">0x5 反序列化中的绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%95%E8%BF%87-wakeup%E6%96%B9%E6%B3%95"><span class="nav-text">绕过__wakeup方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%B7%E7%BB%95%E8%BF%87%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D"><span class="nav-text">+号绕过正则匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%BB%95%E8%BF%87"><span class="nav-text">引用绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ascii%E7%A0%81%E7%BB%95%E8%BF%87"><span class="nav-text">Ascii码绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exception%E7%BB%95%E8%BF%87"><span class="nav-text">Exception绕过</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%80%83%E9%80%B8%E7%BB%95%E8%BF%87"><span class="nav-text">字符逃逸绕过</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-phar%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">第三节 phar的反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x6-%E4%BB%80%E4%B9%88%E6%98%AFphar"><span class="nav-text">0x6 什么是phar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x7-%E5%9F%BA%E4%BA%8Ephar%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">0x7 基于phar的反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#phar%E6%80%8E%E4%B9%88%E7%94%A8"><span class="nav-text">phar怎么用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#phar%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84"><span class="nav-text">phar是怎么生成的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#phar%E6%98%AF%E6%80%8E%E4%B9%88%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84"><span class="nav-text">phar是怎么反序列化的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-session%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-text">第四节 session的反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x8-PHP%E4%B8%AD%E7%9A%84session%E6%9C%BA%E5%88%B6"><span class="nav-text">0x8 PHP中的session机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x9-session%E5%A4%84%E7%90%86handler%E5%BC%95%E8%B5%B7%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-text">0x9 session处理handler引起的安全问题</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2022.04.28</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Charmersix</a>
+            
         </div>
         
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="f71ceda7a670da0dc3de"
-        data-cs="8be3f3262b0ceccee081194200fa10dca1224f03"
-        data-r="blog_comments"
-        data-o="Charmersix"
-        data-a="Charmersix"
-        data-d="false"
-    >查看评论</div>
-
-
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
     </div>
+</footer>
+
+        </div>
+    </div>
+
     
-        <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8A%82-php%E5%9F%BA%E7%A1%80%E3%80%81%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">第一节 php基础、类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x1-php%E4%B8%AD%E7%9A%84%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">0x1 php中的面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-number">1.1.1.</span> <span class="toc-text">面向对象的思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#php%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">php面向对象的特点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">聚类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">隔离</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">多态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x2-%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">0x2 类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95%E6%9D%83%E9%99%90"><span class="toc-number">1.2.1.</span> <span class="toc-text">类的属性和方法权限</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#public%E6%9D%83%E9%99%90"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">public权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#protected%E6%9D%83%E9%99%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">protected权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#private%E6%9D%83%E9%99%90"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">private权限</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">类的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">静态属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#final%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">final属性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text">类的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#trait"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">trait</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E7%B1%BB"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">匿名类</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.2.4.</span> <span class="toc-text">对象序列化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8A%82-php%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">第二节 php的序列化与反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x3-%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">0x3 序列化与反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.1.1.</span> <span class="toc-text">序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.1.2.</span> <span class="toc-text">反序列化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x4-PHP%E4%B8%AD%E7%9A%84%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">0x4 PHP中的魔术方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep%E5%92%8Cwakeup%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.1.</span> <span class="toc-text">sleep和wakeup方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#construct%E5%92%8Cdestruct%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">construct和destruct方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call%E5%92%8CcallStatic%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.3.</span> <span class="toc-text">call和callStatic方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#get%E3%80%81set%E5%92%8Cisset%E3%80%81unset"><span class="toc-number">2.2.4.</span> <span class="toc-text">get、set和isset、unset</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tostring%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.5.</span> <span class="toc-text">tostring方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#invoke%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.6.</span> <span class="toc-text">invoke方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set-state%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.7.</span> <span class="toc-text">set_state方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#debugInfo%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.8.</span> <span class="toc-text">debugInfo方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x5-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.</span> <span class="toc-text">0x5 反序列化中的绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%95%E8%BF%87-wakeup%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.1.</span> <span class="toc-text">绕过__wakeup方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%B7%E7%BB%95%E8%BF%87%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D"><span class="toc-number">2.3.2.</span> <span class="toc-text">+号绕过正则匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.3.</span> <span class="toc-text">引用绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ascii%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.4.</span> <span class="toc-text">Ascii码绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exception%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.5.</span> <span class="toc-text">Exception绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%80%83%E9%80%B8%E7%BB%95%E8%BF%87"><span class="toc-number">2.3.6.</span> <span class="toc-text">字符逃逸绕过</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8A%82-phar%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">第三节 phar的反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x6-%E4%BB%80%E4%B9%88%E6%98%AFphar"><span class="toc-number">3.1.</span> <span class="toc-text">0x6 什么是phar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x7-%E5%9F%BA%E4%BA%8Ephar%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">0x7 基于phar的反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#phar%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-number">3.2.1.</span> <span class="toc-text">phar怎么用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phar%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84"><span class="toc-number">3.2.2.</span> <span class="toc-text">phar是怎么生成的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phar%E6%98%AF%E6%80%8E%E4%B9%88%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84"><span class="toc-number">3.2.3.</span> <span class="toc-text">phar是怎么反序列化的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.2.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%8A%82-session%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">第四节 session的反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x8-PHP%E4%B8%AD%E7%9A%84session%E6%9C%BA%E5%88%B6"><span class="toc-number">4.1.</span> <span class="toc-text">0x8 PHP中的session机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x9-session%E5%A4%84%E7%90%86handler%E5%BC%95%E8%B5%B7%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">4.2.</span> <span class="toc-text">0x9 session处理handler引起的安全问题</span></a></li></ol></li></ol>	
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
         </div>
     
-</div>
 
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
     </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
 </div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
 </body>
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>
